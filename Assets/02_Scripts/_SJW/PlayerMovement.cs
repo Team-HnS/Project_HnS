@@ -48,9 +48,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-
-
-
         if(Input.GetKeyDown(KeyCode.W) && player.state != Player.PlayerState.Dash)
         {
             player.PlayerDash();
