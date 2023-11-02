@@ -16,7 +16,10 @@ public class Player : MonoBehaviour
     Death
     }
     public PlayerState state;
+
+    private PlayerMovement playermove;
     private Animator animator;
+    private SkinnedMeshAfterImage Afterglow;
 
     [SerializeField]
     private int max_hp;
@@ -71,12 +74,14 @@ public class Player : MonoBehaviour
         Def = 10;
 
         Attack_speed = 10f;
-        Move_Speed = 3.5f;
+        Move_Speed = 5f;
     }
 
     private void Awake()
     {
+        playermove = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
+        Afterglow = GetComponentInChildren<SkinnedMeshAfterImage>();
         SetState();
 
 
@@ -106,4 +111,31 @@ public class Player : MonoBehaviour
             animator.SetTrigger("DoIdle");
         }
     }
+
+    public void PlayerDash()
+    {
+        if (state != PlayerState.Dash)
+        {
+            Afterglow.enabled = true;
+            state = PlayerState.Dash;
+            animator.SetTrigger("DoDash");
+            playermove.agent.speed = Move_Speed * 3;
+                Invoke("DashEnd",0.3f);
+        }
+    }
+    public void DashEnd()
+    {
+        Afterglow.enabled = false;
+        playermove.agent.speed = Move_Speed;
+        if (playermove.isMove)
+        {
+            PlayerRun();
+        }
+        else
+        {
+            PlayerIdle();
+        }
+    }
+
+
 }

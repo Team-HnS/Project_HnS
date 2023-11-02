@@ -7,11 +7,11 @@ using UnityEngine.TextCore.Text;
 public class PlayerMovement : MonoBehaviour
 {
     private Camera cam;
-    private NavMeshAgent agent;
+    [HideInInspector]
+    public NavMeshAgent agent;
 
 
-    [SerializeField]
-    private bool isMove;
+    public bool isMove;
 
     [SerializeField]
     private Transform playerCharacter;//플레이어 캐릭터
@@ -47,6 +47,14 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+
+
+
+
+        if(Input.GetKeyDown(KeyCode.W) && player.state != Player.PlayerState.Dash)
+        {
+            player.PlayerDash();
+        }
      
     }
 
@@ -72,10 +80,12 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
 
-            // var dir = destination - transform.position;
-            var dir = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z) - transform.position; 
-            //playerCharacter.transform.forward = dir;
-            LerfRot(dir);
+            if(agent.remainingDistance != 0.0f)
+            {
+                var dir = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z) - transform.position;
+                LerfRot(dir);
+            }
+
         }
     }
 
