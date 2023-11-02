@@ -9,7 +9,6 @@ public class PlayerMovement : MonoBehaviour
     private Camera cam;
     private NavMeshAgent agent;
 
-
     [SerializeField]
     private bool isMove;
 
@@ -29,9 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         LookMoveDirection();
-
 
         if (Input.GetMouseButton(0))
         {
@@ -78,7 +75,6 @@ public class PlayerMovement : MonoBehaviour
             LerfRot(dir);
         }
     }
-
 
     public void LerfRot(Vector3 dir)
     {
