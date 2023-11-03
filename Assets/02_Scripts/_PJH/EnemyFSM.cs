@@ -14,13 +14,11 @@ public class EnemyFSM : MonoBehaviour
 
     public float detectionDistance = 10f; // 플레이어 인식
     public float attackDistance = 3f; // 공격
-    public float enemySpeed = 2f; // 이동속도        
-
-    private state currentState;
+    public float enemySpeed = 2f; // 이동속도         
 
     enum state
     {
-        Idle, Move, Attack, AttackDelay, Die
+        Idle, Move, Attack, Die
     }
 
     private void Awake()
@@ -43,20 +41,21 @@ public class EnemyFSM : MonoBehaviour
             // 공격범위 내에 있다면
             if (distanceToPlayer <= attackDistance)
             {
-                Debug.Log("공격");
+                agent.isStopped = true;
                 ChangeState(state.Attack);
-                ChangeState(state.AttackDelay);
+
             }
             else
             {
+                agent.isStopped = false;
                 // 플레이어를 향해 이동
                 LookMoveDirection();
 
                 agent.SetDestination(player.transform.position);
+               
                 agent.velocity = agent.desiredVelocity.normalized * agent.speed;
 
-
-                ChangeState(state.Move);                
+                ChangeState(state.Move);
             }
         }
         else
@@ -68,8 +67,9 @@ public class EnemyFSM : MonoBehaviour
 
     private void LookMoveDirection()
     {
-        // var dir = destination - transform.position;
+        //var dir = destination - transform.position;
         var dir = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z) - transform.position;
+
         //playerCharacter.transform.forward = dir;
         LerfRot(dir);
     }
@@ -94,8 +94,9 @@ public class EnemyFSM : MonoBehaviour
             animator.SetBool("Attack", false);
         }
         else if (state == state.Attack)
-        {            
+        {
             animator.SetBool("Attack", true);
+
         }
         else if (state == state.Die)
         {
