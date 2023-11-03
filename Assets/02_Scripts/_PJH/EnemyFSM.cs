@@ -41,22 +41,24 @@ public class EnemyFSM : MonoBehaviour
             // 공격범위 내에 있다면
             if (distanceToPlayer <= attackDistance)
             {
-                agent.isStopped = true;
                 ChangeState(state.Attack);
-
+                if (animator.name != "Attack")
+                {
+                    
+                }
             }
             else
-            {
-                agent.isStopped = false;
-                // 플레이어를 향해 이동
-                LookMoveDirection();
-
-                agent.SetDestination(player.transform.position);
-               
-                agent.velocity = agent.desiredVelocity.normalized * agent.speed;
-
+            {                
                 ChangeState(state.Move);
             }
+
+            // 플레이어를 향해 이동
+            LookMoveDirection();
+
+            agent.SetDestination(player.transform.position);
+
+            agent.velocity = agent.desiredVelocity.normalized * agent.speed;
+
         }
         else
         {
@@ -69,7 +71,7 @@ public class EnemyFSM : MonoBehaviour
     {
         //var dir = destination - transform.position;
         var dir = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z) - transform.position;
-
+        Debug.Log(dir);
         //playerCharacter.transform.forward = dir;
         LerfRot(dir);
     }

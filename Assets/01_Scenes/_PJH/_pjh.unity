@@ -435,6 +435,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_BaseOffset
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_AutoBraking
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_Acceleration
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8892893566765765898, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_ObstacleAvoidanceType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4886890944459050055, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4886890944459050055, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4886890944459050055, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 631129342725119860, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
       propertyPath: player
       value: 
@@ -445,11 +493,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 631129342725119860, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
       propertyPath: attackDistance
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 864964155149467497, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1588096761069184398, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4660403022958937197, guid: 9aecfe31c9b73be49ae67d7ba3649975, type: 3}
       propertyPath: m_RootOrder
@@ -1007,9 +1059,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 1776374321975381876, guid: 39aee291b68daa84ab5bd841138c0d4d, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776374321975381876, guid: 39aee291b68daa84ab5bd841138c0d4d, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776374321975381876, guid: 39aee291b68daa84ab5bd841138c0d4d, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3343002067274761712, guid: 39aee291b68daa84ab5bd841138c0d4d, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4950836311045572025, guid: 39aee291b68daa84ab5bd841138c0d4d, type: 3}
       propertyPath: m_RootOrder
