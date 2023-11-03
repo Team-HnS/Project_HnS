@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
 
 
     public GameObject target;
+    public GameObject next_target;
+    public bool isNextTarget;
 
     [SerializeField]
     private int lv; //레벨
@@ -106,6 +108,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        isNextTarget = false;
         cam = Camera.main;
         playermove = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
@@ -144,10 +147,6 @@ public class Player : MonoBehaviour
 
     public void MouseBtnUpCheck()
     {
-        if(!playermove.canMove)
-        {
-            return;
-        }
 
 
         RaycastHit hit;
@@ -158,11 +157,20 @@ public class Player : MonoBehaviour
 
             if (hit.transform.gameObject.layer == 10) //만약 클릭한게 몬스터였을경우
             {
+                if (!playermove.canMove) // 못움직이면 = 이미 공격 중이면 다음 대기열에 저장
+                {
+                    isNextTarget = true;
+                    next_target = hit.transform.gameObject;
+
+                    playermove.saveMovePos = Vector3.zero;
+                    playermove.isSavePos = false;
+
+                    return;
+                }
+                // 공격중이아니라면
                 target = hit.transform.gameObject;
                 print(hit.transform.gameObject.name + "몬스터 클릭함!");
-                playermove.PlayerTargetMove(target);
-
-               // PlayerNomalAttack(hit.transform.gameObject);
+                playermove.PlayerTargetMove(target); //타겟팅 변경
             }
         }
     }
@@ -226,7 +234,7 @@ public class Player : MonoBehaviour
             state = PlayerState.Dash;
             animator.SetTrigger("DoDash");
             playermove.agent.speed = Move_Speed * 3;
-                Invoke("DashEnd",0.3f);
+                //Invoke("DashEnd",0.3f);
         }
     }
     public void DashEnd()

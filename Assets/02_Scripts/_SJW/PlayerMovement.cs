@@ -59,10 +59,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.transform.gameObject.layer == 7)
             {
-                if (!canMove) //움직일수 있는 지 판단
+                if (!canMove) //움직일수 있는 지 판단 못움직이면 대기열에 저장
                 {
                     saveMovePos = hit.point;
                     isSavePos = true;
+
+                    player.next_target = null;
+                    player.isNextTarget = false;
+
                     return;
                 }
                     
@@ -76,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerTargetMove(GameObject target)
     {
-
             SetDest(target.transform.position);
             player.PlayerTrace(); // 이동 시킴
 
@@ -91,6 +94,12 @@ public class PlayerMovement : MonoBehaviour
             isSavePos = false;
             agent.velocity = agent.desiredVelocity.normalized * agent.speed;
             player.PlayerRun(); // 이동 시킴
+        }
+        else  if(player.isNextTarget)
+        {
+            player.isNextTarget = false;
+            player.target = player.next_target;
+            PlayerTargetMove(player.target); //타겟팅 변경
         }
     }
 
