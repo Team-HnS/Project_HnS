@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
     { 
     Idle,
     Run,
+    Trace,
     Dash,
     Casting,
     Attack,
@@ -17,9 +19,13 @@ public class Player : MonoBehaviour
     }
     public PlayerState state;
 
+    private Camera cam;
     private PlayerMovement playermove;
     private Animator animator;
     private SkinnedMeshAfterImage Afterglow;
+
+
+    public GameObject target;
 
     [SerializeField]
     private int max_hp;
@@ -45,6 +51,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     float move_speed;//이동속도
 
+    [SerializeField]
+    float attack_Range;//공격범위(사거리)
+
 
     public int Max_Hp {  get { return max_hp; } set { max_hp = value; } }
     public int Max_Mp { get { return max_mp; } set { max_mp = value; } }
@@ -59,6 +68,7 @@ public class Player : MonoBehaviour
     public float Attack_speed { get { return attack_speed; } set { attack_speed = value; } }
     public float Move_Speed { get { return move_speed; } set { move_speed = value; } }
 
+    public float Attack_Range { get { return attack_Range; } set { attack_Range = value; } }
 
 
     public void SetState() 
@@ -75,10 +85,12 @@ public class Player : MonoBehaviour
 
         Attack_speed = 10f;
         Move_Speed = 5f;
+        Attack_Range = 1f;
     }
 
     private void Awake()
     {
+        cam = Camera.main;
         playermove = GetComponent<PlayerMovement>();
         animator = GetComponentInChildren<Animator>();
         Afterglow = GetComponentInChildren<SkinnedMeshAfterImage>();
@@ -93,6 +105,53 @@ public class Player : MonoBehaviour
     }
 
 
+    void Update()
+    {
+        playermove.LookMoveDirection();
+
+        if (Input.GetMouseButton(0))
+        {
+            playermove.PlayerMove();
+        }
+
+        if (Input.GetMouseButtonUp(0)) 
+        {
+            MouseBtnUpCheck();
+        }
+
+        if (Input.GetKeyDown(KeyCode.W) && state != Player.PlayerState.Dash)
+        {
+            PlayerDash();
+        }
+
+    }
+
+    public void MouseBtnUpCheck()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+        {
+            print(hit.transform.gameObject.name + "클릭");
+
+
+            if (hit.transform.gameObject.layer == 10) //만약 클릭한게 몬스터였을경우
+            {
+                target = hit.transform.gameObject;
+                print(hit.transform.gameObject.name + "몬스터 클릭함!");
+                playermove.PlayerTargetMove(target);
+
+               // PlayerNomalAttack(hit.transform.gameObject);
+            }
+        }
+    }
+
+    public void PlayerNomalAttack(GameObject target)
+    {
+
+        print(target.name + "몬스터 클릭함!");
+        animator.Play("Attack");
+    }
+
 
     public void PlayerRun()
     {
@@ -103,12 +162,32 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void PlayerTrace()
+    {
+        if (state != PlayerState.Trace)
+        {
+            state = PlayerState.Trace;
+            animator.SetTrigger("DoRun");
+        }
+    }
+
     public void PlayerIdle()
     {
         if (state != PlayerState.Idle)
         {
             state = PlayerState.Idle;
             animator.SetTrigger("DoIdle");
+        }
+    }
+
+    public void PlayerAttack()
+    {
+        if (state != PlayerState.Attack)
+        {
+            state = PlayerState.Attack;
+            playermove.canMove = false;
+            animator.SetTrigger("DoAttack");
+            animator.Play("Attack");
         }
     }
 
