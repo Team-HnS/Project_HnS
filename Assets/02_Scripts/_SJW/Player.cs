@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
     {
         Max_Hp = 1000;
         Max_Mp = 1000;
-        cur_hp = Max_Hp;
+        cur_hp = 50;
         cur_mp = Max_Mp;
 
         Str = 10;

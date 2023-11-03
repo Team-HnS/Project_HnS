@@ -41,11 +41,7 @@ public class EnemyFSM : MonoBehaviour
             // 공격범위 내에 있다면
             if (distanceToPlayer <= attackDistance)
             {
-                ChangeState(state.Attack);
-                if (animator.name != "Attack")
-                {
-                    
-                }
+                ChangeState(state.Attack);                
             }
             else
             {                
@@ -59,6 +55,14 @@ public class EnemyFSM : MonoBehaviour
 
             agent.velocity = agent.desiredVelocity.normalized * agent.speed;
 
+            if (animator.name == "Attack")
+            {
+                agent.isStopped = true;
+            }
+            else
+            {
+                agent.isStopped = false;
+            }
         }
         else
         {
