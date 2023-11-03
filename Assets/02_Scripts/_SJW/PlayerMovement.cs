@@ -15,10 +15,13 @@ public class PlayerMovement : MonoBehaviour
 
 
     public bool isMove;
+
     public bool canMove;
 
-    [SerializeField]
-    private Transform playerCharacter;//플레이어 캐릭터
+    public Vector3 saveMovePos;
+    public bool isSavePos;
+
+    public Transform playerCharacter;//플레이어 캐릭터
 
     Player player;
     private void Awake()
@@ -34,16 +37,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(player.state == Player.PlayerState.Trace )
+        if(player.state == Player.PlayerState.Trace ) // 적 추적중일경우
         {
-            if(agent.remainingDistance > player.Attack_Range)
+            if(agent.remainingDistance > player.Attack_Range) //적이 평타 사거리 밖일경우
             {
                 SetDest(player.target.transform.position);
             }
-            else
+            else // 사거리 안으로 들어왔으면
             {
                 agent.SetDestination(transform.position);
-                player.PlayerIdle();
+                player.PlayerAttack();
                 isMove = false;
             }
         }
@@ -56,6 +59,14 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.transform.gameObject.layer == 7)
             {
+                if (!canMove)
+                {
+                    saveMovePos = hit.point;
+                    isSavePos = true;
+                    return;
+                }
+                    
+
                 SetDest(hit.point);
                 agent.velocity = agent.desiredVelocity.normalized * agent.speed;
                 player.PlayerRun(); // 이동 시킴
@@ -69,6 +80,20 @@ public class PlayerMovement : MonoBehaviour
         SetDest(target.transform.position);
         player.PlayerTrace(); // 이동 시킴
     }
+
+    public void CanMove()
+    {
+        canMove = true;
+        if(isSavePos)
+        {
+            SetDest(saveMovePos);
+            isSavePos = false;
+            agent.velocity = agent.desiredVelocity.normalized * agent.speed;
+            player.PlayerRun(); // 이동 시킴
+        }
+    }
+
+
 
 
     private void SetDest(Vector3 dest)

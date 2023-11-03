@@ -28,6 +28,13 @@ public class Player : MonoBehaviour
     public GameObject target;
 
     [SerializeField]
+    private int lv; //레벨
+
+    [SerializeField]
+    private int exp;//경험치
+
+
+    [SerializeField]
     private int max_hp;
     [SerializeField]
     private int max_mp;
@@ -54,6 +61,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     float attack_Range;//공격범위(사거리)
 
+    public int Lv { get { return lv; } set { lv = value; } }
+    public int Exp { get { return exp; } set { exp = value; } }
 
     public int Max_Hp {  get { return max_hp; } set { max_hp = value; } }
     public int Max_Mp { get { return max_mp; } set { max_mp = value; } }
@@ -85,7 +94,7 @@ public class Player : MonoBehaviour
 
         Attack_speed = 10f;
         Move_Speed = 5f;
-        Attack_Range = 1f;
+        Attack_Range = 1.5f;
     }
 
     private void Awake()
@@ -180,13 +189,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayerAttack()
+    public void PlayerAttack() // 기본공격 구현
     {
         if (state != PlayerState.Attack)
         {
             state = PlayerState.Attack;
             playermove.canMove = false;
-            animator.SetTrigger("DoAttack");
+
+
+
+            var dir = new Vector3(target.transform.position.x,target.transform.position.y,target.transform.position.z) - transform.position;
+            playermove.playerCharacter.transform.forward = dir;
+
             animator.Play("Attack");
         }
     }
@@ -204,6 +218,7 @@ public class Player : MonoBehaviour
     }
     public void DashEnd()
     {
+        playermove.playerCharacter.localPosition = Vector3.zero;
         Afterglow.enabled = false;
         playermove.agent.speed = Move_Speed;
         if (playermove.isMove)

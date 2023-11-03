@@ -19,8 +19,14 @@ public class NomalAttack : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        GameObject mainob = animator.gameObject;
+        PlayerMovement pm =  animator.gameObject.GetComponentInParent<PlayerMovement>();
+        Player player = animator.gameObject.GetComponentInParent<Player>();
+
+        // mainob.transform.LookAt(player.target.transform);
+        pm.CanMove();
         Debug.Log(animator.gameObject.name);
-        animator.SetTrigger("DoIdle");
+        //animator.gameObject
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
