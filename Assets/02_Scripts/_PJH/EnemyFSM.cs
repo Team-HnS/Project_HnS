@@ -20,7 +20,7 @@ public class EnemyFSM : MonoBehaviour
 
     enum state
     {
-        Idle, Move, Attack, Die
+        Idle, Move, Attack, AttackDelay, Die
     }
 
     private void Awake()
@@ -45,6 +45,7 @@ public class EnemyFSM : MonoBehaviour
             {
                 Debug.Log("АјАн");
                 ChangeState(state.Attack);
+                ChangeState(state.AttackDelay);
             }
             else
             {
