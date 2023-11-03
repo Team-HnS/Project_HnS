@@ -4,17 +4,40 @@ using UnityEngine;
 
 public class NomalAttack : StateMachineBehaviour
 {
+    float delay = 0;
+    bool check = false;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        check = false;
+        delay = 0;
+        
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+   
+        if (!check)
+        {
+            delay += Time.deltaTime;
+        }
+        else
+        {
+            return;
+        }
+
+        if(delay>0.2f)
+        {
+            check = true;
+            GameObject player = animator.gameObject;
+            GameObject target = player.GetComponentInParent<Player>().target;
+            target.GetComponent<Monster>().hp -= player.GetComponentInParent<Player>().Atk;
+
+            Debug.Log(target.GetComponent<Monster>().hp);
+        }
+
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,7 +48,7 @@ public class NomalAttack : StateMachineBehaviour
 
         // mainob.transform.LookAt(player.target.transform);
         pm.CanMove();
-        Debug.Log(animator.gameObject.name);
+
         //animator.gameObject
     }
 

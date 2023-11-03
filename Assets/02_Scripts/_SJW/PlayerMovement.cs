@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (hit.transform.gameObject.layer == 7)
             {
-                if (!canMove)
+                if (!canMove) //움직일수 있는 지 판단
                 {
                     saveMovePos = hit.point;
                     isSavePos = true;
@@ -76,9 +76,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerTargetMove(GameObject target)
     {
-        print("타겟 무브 작동");
-        SetDest(target.transform.position);
-        player.PlayerTrace(); // 이동 시킴
+
+            SetDest(target.transform.position);
+            player.PlayerTrace(); // 이동 시킴
+
     }
 
     public void CanMove()

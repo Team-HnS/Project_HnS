@@ -44,8 +44,12 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int cur_mp;
 
+
     [SerializeField]
-    private int str;//공격력
+    private int atk;//공격력
+
+    [SerializeField]
+    private int str;//힘
     [SerializeField]
     private int igt;//마법공격력
     [SerializeField]
@@ -69,6 +73,8 @@ public class Player : MonoBehaviour
     public int Cur_Hp { get { return cur_hp; } set { cur_hp = value; } }
     public int Cur_Mp { get { return cur_mp; } set { cur_mp = value; } }
 
+
+    public int Atk { get { return atk; } set { atk = value; } }
     public int Str { get { return str; } set { str = value; } }
     public int Igt { get { return igt; } set { igt = value; } }
     public int Dex { get { return dex; } set { dex = value; } }
@@ -87,12 +93,13 @@ public class Player : MonoBehaviour
         cur_hp = 50;
         cur_mp = Max_Mp;
 
+        Atk = 10;
         Str = 10;
         Igt = 10;
         Dex = 10;
         Def = 10;
 
-        Attack_speed = 10f;
+        Attack_speed = 1f;
         Move_Speed = 5f;
         Attack_Range = 1.5f;
     }
@@ -123,7 +130,7 @@ public class Player : MonoBehaviour
             playermove.PlayerMove();
         }
 
-        if (Input.GetMouseButtonUp(0)) 
+        if (Input.GetMouseButtonUp(0)) // 몬스터 클릭시
         {
             MouseBtnUpCheck();
         }
@@ -137,6 +144,12 @@ public class Player : MonoBehaviour
 
     public void MouseBtnUpCheck()
     {
+        if(!playermove.canMove)
+        {
+            return;
+        }
+
+
         RaycastHit hit;
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
         {
