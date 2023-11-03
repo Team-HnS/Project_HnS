@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.TextCore.Text;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     public bool isMove;
+    public bool canMove;
 
     [SerializeField]
     private Transform playerCharacter;//플레이어 캐릭터
@@ -20,40 +24,52 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         cam = Camera.main;
-       
+        canMove = true;
+
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
 
         player = GetComponent<Player>();
     }
 
-    void Update()
+    private void Update()
     {
-
-        LookMoveDirection();
-
-
-        if (Input.GetMouseButton(0))
+        if(player.state == Player.PlayerState.Trace )
         {
-            RaycastHit hit;
-            if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+            if(agent.remainingDistance > player.Attack_Range)
             {
-                if (hit.transform.gameObject.layer == 7 )
-                {
-                    SetDest(hit.point);
-                    agent.velocity = agent.desiredVelocity.normalized * agent.speed;
-                    player.PlayerRun(); // 이동 시킴
-                }
+                SetDest(player.target.transform.position);
+            }
+            else
+            {
+                agent.SetDestination(transform.position);
+                player.PlayerIdle();
+                isMove = false;
             }
         }
-
-
-        if(Input.GetKeyDown(KeyCode.W) && player.state != Player.PlayerState.Dash)
-        {
-            player.PlayerDash();
-        }
-     
     }
+
+    public void PlayerMove() //땅클릭했을때 호출되는 함수
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+        {
+            if (hit.transform.gameObject.layer == 7)
+            {
+                SetDest(hit.point);
+                agent.velocity = agent.desiredVelocity.normalized * agent.speed;
+                player.PlayerRun(); // 이동 시킴
+            }
+        }
+    }
+
+    public void PlayerTargetMove(GameObject target)
+    {
+        print("타겟 무브 작동");
+        SetDest(target.transform.position);
+        player.PlayerTrace(); // 이동 시킴
+    }
+
 
     private void SetDest(Vector3 dest)
     {
@@ -61,12 +77,12 @@ public class PlayerMovement : MonoBehaviour
         isMove = true;
     }
 
-    private void LookMoveDirection() // 이동시키는 함수
+    public  void LookMoveDirection() // 해당위치를 바라보게 하는 함수 => 단 움직일때만
     {
         if (isMove)
         {
-            print("작동");
-            if (agent.remainingDistance == 0.0f && agent.velocity.sqrMagnitude < 0.1f * 0.1f && player.state == Player.PlayerState.Run)  // 변경
+       
+            if (agent.remainingDistance == 0.0f && agent.velocity.sqrMagnitude < 0.1f * 0.1f && player.state == Player.PlayerState.Run)  // 움직이는 상태가 아닐때
             {
                 print("남은거리" + agent.remainingDistance + "속도" + agent.velocity.sqrMagnitude);
                 print("무브끔작동");
