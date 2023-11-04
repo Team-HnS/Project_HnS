@@ -10,7 +10,7 @@ public class C_Item : ItemData
 
     public int UseCode;//소모품 함수 코드
 
-
+    public bool isGone;// 1회용인지
 
 
     public void UseEffect()

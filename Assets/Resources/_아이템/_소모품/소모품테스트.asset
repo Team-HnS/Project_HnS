@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb6937f8f26c21f439586148e9c80845, type: 3}
   m_Name: "\uC18C\uBAA8\uD488\uD14C\uC2A4\uD2B8"
   m_EditorClassIdentifier: 
-  ItemName: 
-  Item_Icon: {fileID: 0}
-  explanation: 
+  ItemName: "\uD14C\uC2A4\uD2B8\uC774\uB984"
+  Price: 500
+  Item_Icon: {fileID: 21300000, guid: dcd30c9a23ea35d4fb6f3fd199f064d9, type: 3}
+  explanation: "\uD14C\uC2A4\uD2B8 \uC124\uBA85\uC774\uB2E4"
   UseCode: 0
+  isGone: 0
