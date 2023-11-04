@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Player : MonoBehaviour
 {
@@ -130,12 +131,18 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            playermove.PlayerMove();
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                playermove.PlayerMove();
+            }
         }
 
         if (Input.GetMouseButtonUp(0)) // 몬스터 클릭시
         {
-            MouseBtnUpCheck();
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                MouseBtnUpCheck();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.W) && state != Player.PlayerState.Dash)
