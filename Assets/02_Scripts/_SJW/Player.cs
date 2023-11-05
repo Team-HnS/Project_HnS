@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     public GameObject target;
     public GameObject next_target;
     public bool isNextTarget;
+    public bool canDash = true;
+
+
 
     [SerializeField]
     private int lv; //레벨
@@ -159,7 +162,7 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
         {
-            print(hit.transform.gameObject.name + "클릭");
+            // print(hit.transform.gameObject.name + "클릭"); 클릭하는거 체크
 
 
             if (hit.transform.gameObject.layer == 10) //만약 클릭한게 몬스터였을경우
@@ -192,9 +195,10 @@ public class Player : MonoBehaviour
 
     public void PlayerRun()
     {
-        if(state != PlayerState.Run) 
+        if(state != PlayerState.Run ) 
         {
             state = PlayerState.Run;
+            if(canDash)
             animator.SetTrigger("DoRun");
         }
     }
@@ -235,22 +239,27 @@ public class Player : MonoBehaviour
 
     public void PlayerDash()
     {
-        if (state != PlayerState.Dash)
+        if (state != PlayerState.Dash && canDash)
         {
+            canDash = false;
+            print("대쉬 시작");
             Afterglow.enabled = true;
             state = PlayerState.Dash;
             animator.SetTrigger("DoDash");
             playermove.agent.speed = Move_Speed * 3;
-                //Invoke("DashEnd",0.3f);
+                Invoke("DashEnd",0.25f);
         }
     }
     public void DashEnd()
     {
+        canDash = true;
+        print("대쉬 종료");
         playermove.playerCharacter.localPosition = Vector3.zero;
         Afterglow.enabled = false;
         playermove.agent.speed = Move_Speed;
         if (playermove.isMove)
         {
+            animator.SetTrigger("DoRun");
             PlayerRun();
         }
         else

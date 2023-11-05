@@ -37,7 +37,7 @@ public class Dash : StateMachineBehaviour
                 }*/
 
 
-        animator.gameObject.GetComponentInParent<Player>().DashEnd();
+       // animator.gameObject.GetComponentInParent<Player>().DashEnd();
 
     }
 
