@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
         {
-            if (hit.transform.gameObject.layer == 7)
+            if (hit.transform.gameObject.layer == 7) // 땅인지 체크
             {
                 if (!canMove) //움직일수 있는 지 판단 못움직이면 대기열에 저장
                 {
@@ -119,8 +119,6 @@ public class PlayerMovement : MonoBehaviour
        
             if (agent.remainingDistance == 0.0f && agent.velocity.sqrMagnitude < 0.1f * 0.1f && player.state == Player.PlayerState.Run)  // 움직이는 상태가 아닐때
             {
-                print("남은거리" + agent.remainingDistance + "속도" + agent.velocity.sqrMagnitude);
-                print("무브끔작동");
                 player.PlayerIdle();
                 isMove = false;
 
