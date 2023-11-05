@@ -2750,6 +2750,10 @@ PrefabInstance:
       propertyPath: _data.duration
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 4098693140642089733, guid: de1248433c2318b45a64ec3198e0cd86, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 4a8ae6364bd935844b503db19b342709, type: 2}
     - target: {fileID: 4444540619215885752, guid: de1248433c2318b45a64ec3198e0cd86, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2794,6 +2798,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5566062196327812686, guid: de1248433c2318b45a64ec3198e0cd86, type: 3}
+      propertyPath: Testanim
+      value: 
+      objectReference: {fileID: 7400000, guid: 19ab6d22e3f02124a85d0ab8d8df4813, type: 3}
+    - target: {fileID: 5566062196327812686, guid: de1248433c2318b45a64ec3198e0cd86, type: 3}
+      propertyPath: Testanim2
+      value: 
+      objectReference: {fileID: 7400002, guid: 1b22f05997b7ad34685887f15b9f660c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
