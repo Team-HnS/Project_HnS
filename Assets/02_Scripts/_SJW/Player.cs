@@ -31,6 +31,8 @@ public class Player : MonoBehaviour
     public bool isNextTarget;
     public bool canDash = true;
 
+    public AnimationClip Testanim;
+    public AnimationClip Testanim2;
 
 
     [SerializeField]
@@ -92,6 +94,9 @@ public class Player : MonoBehaviour
     public float Attack_Range { get { return attack_Range; } set { attack_Range = value; } }
 
 
+    // 테스트용 변수들
+    public AnimatorOverrideController overrideController;
+
     public void SetState() 
     {
         Max_Hp = 1000;
@@ -108,6 +113,7 @@ public class Player : MonoBehaviour
         Attack_speed = 1f;
         Move_Speed = 5f;
         Attack_Range = 1.5f;
+
     }
 
     private void Awake()
@@ -153,6 +159,25 @@ public class Player : MonoBehaviour
             PlayerDash();
         }
 
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            overrideController["RightHand@Attack01"] = Testanim;
+            animator.runtimeAnimatorController = overrideController;
+
+            animator.Play("TestSet");
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+
+            overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            overrideController["RightHand@Attack01"] = Testanim2;
+            animator.runtimeAnimatorController = overrideController;
+
+            animator.Play("TestSet");
+        }
     }
 
     public void MouseBtnUpCheck()
