@@ -23,7 +23,7 @@ AnimatorStateMachine:
     m_Position: {x: 300, y: -100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5759362362845856658}
-    m_Position: {x: 400, y: -300, z: 0}
+    m_Position: {x: 400, y: -290, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -5484508487227245868}
@@ -161,7 +161,7 @@ AnimatorState:
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
-  m_CycleOffsetParameter: 
+  m_CycleOffsetParameter: AttackDelay
   m_TimeParameter: 
 --- !u!1101 &-3462867177532503149
 AnimatorStateTransition:
