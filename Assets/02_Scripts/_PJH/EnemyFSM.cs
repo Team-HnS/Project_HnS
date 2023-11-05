@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 using UnityEngine.XR;
 
 public class EnemyFSM : MonoBehaviour
@@ -14,7 +15,10 @@ public class EnemyFSM : MonoBehaviour
 
     public float detectionDistance = 10f; // 플레이어 인식
     public float attackDistance = 3f; // 공격
-    public float enemySpeed = 2f; // 이동속도         
+    public float enemySpeed = 2f; // 이동속도
+
+    private Vector3 prevPos;
+    private Quaternion stopRotation;    
 
     enum state
     {
@@ -41,41 +45,42 @@ public class EnemyFSM : MonoBehaviour
             // 공격범위 내에 있다면
             if (distanceToPlayer <= attackDistance)
             {
-                ChangeState(state.Attack);                
+                ChangeState(state.Attack);
             }
             else
-            {                
+            {
                 ChangeState(state.Move);
             }
-
-            // 플레이어를 향해 이동
-            LookMoveDirection();
-
-            agent.SetDestination(player.transform.position);
-
-            agent.velocity = agent.desiredVelocity.normalized * agent.speed;
-
-            if (animator.name == "Attack")
+           
+            prevPos = transform.position;
+            stopRotation = transform.rotation;
+            
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             {
-                agent.isStopped = true;
+                transform.position = prevPos;
+                transform.rotation = stopRotation;
             }
             else
             {
-                agent.isStopped = false;
+                // 플레이어를 향해 이동
+                LookMoveDirection();
+                agent.SetDestination(player.transform.position);
+                agent.velocity = agent.desiredVelocity.normalized * agent.speed;
             }
         }
         else
         {
             ChangeState(state.Idle);
         }
-
     }
+
+    
 
     private void LookMoveDirection()
     {
         //var dir = destination - transform.position;
         var dir = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z) - transform.position;
-        Debug.Log(dir);
+        //Debug.Log(dir);
         //playerCharacter.transform.forward = dir;
         LerfRot(dir);
     }
