@@ -11,7 +11,8 @@ public class EnemyFSM : MonoBehaviour
     private NavMeshAgent agent;
     private Animator animator;
 
-    public Transform player; // 플레이어의 Transform을 할당하기 위한 public 변수
+    private GameObject[] playerObj;
+    private Transform player; // 플레이어의 Transform을 할당하기 위한 public 변수
 
     public float detectionDistance = 10f; // 플레이어 인식
     public float attackDistance = 3f; // 공격
@@ -29,6 +30,16 @@ public class EnemyFSM : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
+    }
+
+    private void Start()
+    {
+        playerObj = GameObject.FindGameObjectsWithTag("Player");
+        player = playerObj[0].transform;
+        if (playerObj != null )
+        {
+            Debug.Log("찾았습니다.");
+        }
     }
 
     // Update is called once per frame
