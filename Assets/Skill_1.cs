@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Skill_1 : StateMachineBehaviour
 {
-    float delay = 0;
-    float beforDelay = 0;
-    bool check = false;
+    //float delay = 0;
+    //float beforDelay = 0;
+   // bool check = false;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        check = false;
-        delay = 0;
+        //check = false;
+       // delay = 0;
         //beforDelay = 
     }
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

@@ -182,26 +182,33 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/TestSkill");
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/SkillData");
+            Resent_Skill.SkillEvent.Invoke();
+
+            overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+            overrideController["_"] = Resent_Skill.SkillMotion;
+            animator.SetFloat("SkillSpeed", 5f);
+            animator.runtimeAnimatorController = overrideController;
+
+            animator.Play("Skill_1");
+
+            //-> 각 스킬 종류에 맞는 onuse사용
 
 
-            Resent_Skill.OnUse(this, Resent_Skill);//-> 각 스킬 종류에 맞는 onuse사용
+            /*   if (Resent_Skill is Skill_Burst)
+               {
+                   Skill_Burst skill1Data = (Skill_Burst)Resent_Skill; // 해당 스킬에 맞게 캐스팅
+                                                                       // skill1Data의 변수 및 기능을 사용할 수 있음
 
+                   overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+                   overrideController["_"] = skill1Data.SkillMotion;
+                   animator.SetFloat("SkillSpeed", 5f);
+                   animator.runtimeAnimatorController = overrideController;
+                   //skill1Data.OnUse(this);
+                   print(skill1Data.activetype);
 
-            if (Resent_Skill is Skill_Burst)
-            {
-                Skill_Burst skill1Data = (Skill_Burst)Resent_Skill; // 해당 스킬에 맞게 캐스팅
-                                                                    // skill1Data의 변수 및 기능을 사용할 수 있음
-  
-                overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-                overrideController["_"] = skill1Data.SkillMotion;
-                animator.SetFloat("SkillSpeed", 5f);
-                animator.runtimeAnimatorController = overrideController;
-                //skill1Data.OnUse(this);
-                print(skill1Data.activetype);
-
-                animator.Play("Skill_1");
-            }
+                   animator.Play("Skill_1");
+               }*/
         }
 
     }

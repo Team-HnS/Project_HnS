@@ -1,6 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+
+[CreateAssetMenu(fileName = "SkillData", menuName = "Scriptable Object/스킬", order = 0)]
 
 public class SkillData : ScriptableObject
 {
@@ -12,10 +17,24 @@ public class SkillData : ScriptableObject
         buff
     }
 
+    public enum TargetType
+    {
+        none,
+        single,
+        multy,
+        Flooring
+    }
+
     public Type skilltype;
 
+    public TargetType activetype;
     public string SkillName;
     public int SkillCode;
+
+    public List<int> hitcount;
+    public List<float> Coefficient;
+    public List<float> Add_Coefficient;
+
 
     public AudioSource SkillSound;// 시전음
     public AnimationClip SkillMotion;//스킬모션
@@ -23,16 +42,12 @@ public class SkillData : ScriptableObject
     [TextArea]
     public string Skill_Explanation;
 
+    public UnityEvent SkillEvent;
 
-    public virtual void OnUse()
-    {
-      
-    }
+    public float Before_Delay;// 선딜레이
+    public float After_Delay;//후딜레이
 
-    public virtual void OnUse(Player Player, SkillData data)
-    {
+    public GameObject Effect;//스킬에 생성할 이펙트
 
-          Debug.Log("데이터 온유스드 호출");
-    }
 
 }
