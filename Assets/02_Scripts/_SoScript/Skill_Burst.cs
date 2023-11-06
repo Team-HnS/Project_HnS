@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_Burst : MonoBehaviour
+
+[CreateAssetMenu(fileName = "SkillData", menuName = "Scriptable Object/스킬/즉발스킬", order = 0)]
+
+public class Skill_Burst : SkillData
 {
-    // Start is called before the first frame update
-    void Start()
+    public enum AtciveType
     {
-        
+        none,
+        single,
+        multy,
+        Flooring
     }
 
-    // Update is called once per frame
-    void Update()
+    public AtciveType activetype;
+
+    public float Before_Delay;// 선딜레이
+    public float After_Delay;//후딜레이
+
+    public GameObject Effect;//스킬에 생성할 이펙트
+
+    public override void OnUse(Player Player,SkillData data)
     {
-        
+
+        Debug.Log("버스트 온유스드 호출");
     }
+
 }

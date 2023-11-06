@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     public AnimationClip Testanim;
     public AnimationClip Testanim2;
 
+    [HideInInspector]
+    public SkillData Resent_Skill;//지금 사용중인 스킬 데이터
 
     [SerializeField]
     private int lv; //레벨
@@ -135,6 +137,8 @@ public class Player : MonoBehaviour
     }
 
 
+
+
     void Update()
     {
         if (canDash) 
@@ -178,14 +182,26 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-          
-            playermove.agent.speed = 0;
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/TestSkill");
 
-            overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-            overrideController["RightHand@Attack01"] = Testanim2;
-            animator.runtimeAnimatorController = overrideController;
 
-            animator.Play("TestSet");
+            Resent_Skill.OnUse(this, Resent_Skill);//-> 각 스킬 종류에 맞는 onuse사용
+
+
+            if (Resent_Skill is Skill_Burst)
+            {
+                Skill_Burst skill1Data = (Skill_Burst)Resent_Skill; // 해당 스킬에 맞게 캐스팅
+                                                                    // skill1Data의 변수 및 기능을 사용할 수 있음
+  
+                overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+                overrideController["_"] = skill1Data.SkillMotion;
+                animator.SetFloat("SkillSpeed", 5f);
+                animator.runtimeAnimatorController = overrideController;
+                //skill1Data.OnUse(this);
+                print(skill1Data.activetype);
+
+                animator.Play("Skill_1");
+            }
         }
 
     }
@@ -232,7 +248,7 @@ public class Player : MonoBehaviour
 
             if (hit.transform.gameObject.layer == 10) //만약 클릭한게 몬스터였을경우
             {
-                if (!playermove.canMove) // 못움직이면 = 이미 공격 중이면 다음 대기열에 저장
+                if (!playermove.canMove && hit.transform.gameObject != target) // 못움직이면 = 이미 공격 중이면 다음 대기열에 저장
                 {
                     isNextTarget = true;
                     next_target = hit.transform.gameObject;
