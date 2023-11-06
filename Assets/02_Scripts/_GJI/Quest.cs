@@ -14,6 +14,6 @@ public class Quest
     public string description; //퀘스트 설명
     //public List<Item> Rewarditems; //보상 아이템
     //public UnitCode UnitCode; //무슨 몬스터를 잡아야하는지 설정
-    //public QuestGoal QuestGoal; // 퀘스트 타입, 잡아야하는 몬스터수, 현재 잡은 몬스터 수, 클리어 npc id
+    //public QuestGoal QuestGoal // 퀘스트 타입, 잡아야하는 몬스터수, 현재 잡은 몬스터 수, 클리어 npc id
 }
    
