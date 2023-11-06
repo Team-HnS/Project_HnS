@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
@@ -12,43 +13,50 @@ public class EnemyFSM : MonoBehaviour
     private Animator animator;
 
     private GameObject[] playerObj;
-    private Transform player; // 플레이어의 Transform을 할당하기 위한 public 변수
+    private Transform player;
 
     public float detectionDistance = 10f; // 플레이어 인식
     public float attackDistance = 3f; // 공격
     public float enemySpeed = 2f; // 이동속도
 
     private Vector3 prevPos;
-    private Quaternion stopRotation;    
+    private Quaternion stopRotation;
+
+    private Monster monster;
+    private bool isDead = false;
 
     enum state
     {
         Idle, Move, Attack, Die
     }
 
-    private void Awake()
+    private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
-    }
 
-    private void Start()
-    {
         playerObj = GameObject.FindGameObjectsWithTag("Player");
         player = playerObj[0].transform;
-        if (playerObj != null )
-        {
-            Debug.Log("찾았습니다.");
-        }
+        //if (playerObj != null )
+        //{
+        //    Debug.Log("찾았습니다.");
+        //}
+
+        monster = GetComponent<Monster>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // 플레이어와 적 사이의 거리를 측정
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);      
 
-        // Debug.Log(distanceToPlayer);
+        // 죽음
+        if (monster.hp <= 0 && isDead == false)
+        {
+            ChangeState(state.Die);
+            isDead = true;
+        }
 
         // 플레이어가 감지 거리 내에 있다면
         if (distanceToPlayer <= detectionDistance)
@@ -122,7 +130,7 @@ public class EnemyFSM : MonoBehaviour
         }
         else if (state == state.Die)
         {
-            animator.SetTrigger("Die");
+            animator.SetBool("Die", true);                     
         }
     }
 }
