@@ -7,6 +7,9 @@ using System.IO;
 
 public class PlayerState : MonoBehaviour
 {
+    public TMP_Text lvText;
+    public TMP_Text expText;
+
     public TMP_Text hpText;
     public TMP_Text mpText;
     public TMP_Text strText;
@@ -20,6 +23,9 @@ public class PlayerState : MonoBehaviour
 
     void Start()
     {
+        hpText = GameObject.Find("lvVal").GetComponent<TMP_Text>();
+        hpText = GameObject.Find("expVal").GetComponent<TMP_Text>();
+
         hpText = GameObject.Find("hpVal").GetComponent<TMP_Text>();
         mpText = GameObject.Find("mpVal").GetComponent<TMP_Text>();
         strText = GameObject.Find("strVal").GetComponent<TMP_Text>();
@@ -31,9 +37,11 @@ public class PlayerState : MonoBehaviour
     }
     void Update()
     {
+        lvText.text = player.Lv.ToString();
+        expText.text =" / "+ player.Exp.ToString();
 
-        hpText.text = player.Max_Hp.ToString();
-        mpText.text = player.Max_Mp.ToString();
+        hpText.text = player.Cur_Hp + " / " +player.Max_Hp.ToString();
+        mpText.text = player.Cur_Mp + " / " + player.Max_Mp.ToString();
         strText.text = player.Str.ToString();
         dexText.text = player.Dex.ToString();
         igtText.text = player.Igt.ToString();
