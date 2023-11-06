@@ -24,13 +24,31 @@ public class TalkManager : MonoBehaviour
         talkData.Add(1002, new string[] { "강해지고싶나. \n그럼 이것들을 구매해라" });
         //id = 1003 : 퀘스트npc
         talkData.Add(1003, new string[] { "도움이 필요해. \n가능한 빨리 해결해줬으면 하는데" });
+
+        //퀘스트용 대화(obj id + quest id)
+        talkData.Add(1003/*퀘스트npc*/ + 10, new string[] {"저기요! \n저 좀 도와주세요:0"});
+        talkData.Add(1001/*잡화상인npc*/ + 10, new string[] { "안녕:1"});
     }
 
     public string GetTalk(int id, int talkIndex) //Object의 id , string배열의 index
     {
-        if (talkIndex == talkData[id].Length) //해당 id를 가지는 string배열의 길이와 같음 
+        //1. 해당 퀘스트 id에서 퀘스트index(순서)에 해당하는 대사가 없음
+        if (!talkData.ContainsKey(id))
+        {
+
+            //해당 퀘스트 자체에 대사가 없을 때 -> 기본 대사를 불러옴 (십, 일의 자리 부분 제거 )
+            if (!talkData.ContainsKey(id - id % 10))
+                return GetTalk(id - id % 100, talkIndex);//GET FIRST TALK
+
+            //
+            else
+                return GetTalk(id - id % 10, talkIndex);//GET FIRST QUEST TALK
+        }
+
+        //2. 해당 퀘스트 id에서 퀘스트index(순서)에 해당하는 대사가 있음
+        if (talkIndex == talkData[id].Length)
             return null;
         else
-            return talkData[id][talkIndex]; //해당 아이디의 해당하는 대사를 반환 
+            return talkData[id][talkIndex]; //해당 아이디의 해당하는 대사를 가져옴
     }
 }
