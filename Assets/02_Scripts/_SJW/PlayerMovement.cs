@@ -37,9 +37,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(player.state == Player.PlayerState.Trace ) // 적 추적중일경우
+        if (player.state == Player.PlayerState.Trace) // 적 추적중일경우
         {
-            if(agent.remainingDistance > player.Attack_Range) //적이 평타 사거리 밖일경우
+            if (agent.remainingDistance > player.Attack_Range) //적이 평타 사거리 밖일경우
             {
                 SetDest(player.target.transform.position);
             }
@@ -50,6 +50,12 @@ public class PlayerMovement : MonoBehaviour
                 isMove = false;
             }
         }
+    }
+
+
+    private void FixedUpdate()
+    {
+     
     }
 
     public void PlayerMove() //땅클릭했을때 호출되는 함수

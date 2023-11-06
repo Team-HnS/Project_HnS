@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private PlayerMovement playermove;
     private Animator animator;
     private SkinnedMeshAfterImage Afterglow;
+    private Collider col;
 
 
     public GameObject target;
@@ -125,7 +126,7 @@ public class Player : MonoBehaviour
         Afterglow = GetComponentInChildren<SkinnedMeshAfterImage>();
         SetState();
 
-
+        col = GetComponent<Collider>();
     }
 
     private void Start()
@@ -136,7 +137,13 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        playermove.LookMoveDirection();
+        if (canDash) 
+        {
+            Checkcollider();
+        }
+        
+    
+            playermove.LookMoveDirection();
 
         if (Input.GetMouseButton(0))
         {
@@ -171,12 +178,45 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
+          
+            playermove.agent.speed = 0;
 
             overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
             overrideController["RightHand@Attack01"] = Testanim2;
             animator.runtimeAnimatorController = overrideController;
 
             animator.Play("TestSet");
+        }
+
+    }
+
+    private RaycastHit colhit; 
+
+    private void Checkcollider()
+    {
+        if (Physics.Raycast(transform.position+new Vector3(0,1,0), playermove.playerCharacter.transform.forward, out colhit, 0.5f))
+        {
+            if(colhit.transform.gameObject.layer == 10)
+            {
+                playermove.agent.speed = 0;
+                Debug.Log("hit point : " + colhit.point + ", distance : " + colhit.distance + ", name : " + colhit.collider.name);
+            }
+           
+            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), playermove.playerCharacter.transform.forward * colhit.distance, Color.red);
+        }
+        else
+        {
+            playermove.agent.speed = Move_Speed ;
+            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), playermove.playerCharacter.transform.forward * 0.5f, Color.red);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == 10)
+        {
+            Debug.Log("몬스터랑충돌함");
+            playermove.agent.velocity = Vector3.zero;
         }
     }
 
