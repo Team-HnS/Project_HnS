@@ -19,11 +19,12 @@ public class EnemyFSM : MonoBehaviour
     public float attackDistance = 3f; // 공격
     public float enemySpeed = 2f; // 이동속도
 
-    private Vector3 prevPos;
+    private Vector3 stopPos;
     private Quaternion stopRotation;
 
     private Monster monster;
     private bool isDead = false;
+    private Collider collider;
 
     enum state
     {
@@ -37,60 +38,68 @@ public class EnemyFSM : MonoBehaviour
 
         playerObj = GameObject.FindGameObjectsWithTag("Player");
         player = playerObj[0].transform;
-        //if (playerObj != null )
-        //{
-        //    Debug.Log("찾았습니다.");
-        //}
-
+        
         monster = GetComponent<Monster>();
+        collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 플레이어와 적 사이의 거리를 측정
+        // 플레이어와 적 사이의 거리 측정
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);      
 
-        // 죽음
-        if (monster.hp <= 0 && isDead == false)
+        // 여기가 지옥?
+        if (monster.hp <= 0 && collider.enabled == true)
         {
             ChangeState(state.Die);
             isDead = true;
+            collider.enabled = false;
         }
+        
+        // 난 살아있어
+        if (isDead == false)
+        {
+            // 나의 영역에 플레이어가 침범했다.
+            if (distanceToPlayer <= detectionDistance)
+            {
+                // 공격범위 내에 있군
+                if (distanceToPlayer <= attackDistance)
+                {
+                    ChangeState(state.Attack);
+                }
+                // 어딜 도망가
+                else
+                {
+                    ChangeState(state.Move);
+                }
 
-        // 플레이어가 감지 거리 내에 있다면
-        if (distanceToPlayer <= detectionDistance)
-        {
-            // 공격범위 내에 있다면
-            if (distanceToPlayer <= attackDistance)
-            {
-                ChangeState(state.Attack);
+                stopPos = transform.position;
+                stopRotation = transform.rotation;
+
+                // 공격할 때는
+                if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+                {
+                    // 제자리에서
+                    transform.position = stopPos;
+                    transform.rotation = stopRotation;
+                }
+                // 공격하지 않고 있다면
+                else
+                {
+                    // 플레이어를 향해 이동
+                    LookMoveDirection();
+                    agent.SetDestination(player.transform.position);
+                    agent.velocity = agent.desiredVelocity.normalized * agent.speed;
+                }
+
             }
+            // 나의 영역은 안전하다.
             else
             {
-                ChangeState(state.Move);
+                ChangeState(state.Idle);
             }
-           
-            prevPos = transform.position;
-            stopRotation = transform.rotation;
-            
-            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
-            {
-                transform.position = prevPos;
-                transform.rotation = stopRotation;
-            }
-            else
-            {
-                // 플레이어를 향해 이동
-                LookMoveDirection();
-                agent.SetDestination(player.transform.position);
-                agent.velocity = agent.desiredVelocity.normalized * agent.speed;
-            }
-        }
-        else
-        {
-            ChangeState(state.Idle);
-        }
+        }        
     }
 
     
