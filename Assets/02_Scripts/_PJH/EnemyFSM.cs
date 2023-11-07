@@ -25,6 +25,7 @@ public class EnemyFSM : MonoBehaviour
     private Monster monster;
     private bool isDead = false;
     private Collider collider;
+    
 
     enum state
     {
@@ -54,6 +55,8 @@ public class EnemyFSM : MonoBehaviour
         {
             ChangeState(state.Die);
             isDead = true;
+            //agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
+            agent.enabled = false;
             collider.enabled = false;
         }
         
