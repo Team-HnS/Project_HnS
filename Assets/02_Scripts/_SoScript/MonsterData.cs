@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "MonsterData", menuName = "Scriptable Object/∏ÛΩ∫≈Õ")]
 public class MonsterData : ScriptableObject
 {
-    public string name;
+    public string MonsterName;
     public int id;
     public int hp;
     public int attack;

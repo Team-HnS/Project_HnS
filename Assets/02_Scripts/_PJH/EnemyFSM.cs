@@ -24,7 +24,7 @@ public class EnemyFSM : MonoBehaviour
 
     private Monster monster;
     private bool isDead = false;
-    private Collider collider;
+    private Collider EnemyCollider;
     
 
     enum state
@@ -41,7 +41,7 @@ public class EnemyFSM : MonoBehaviour
         player = playerObj[0].transform;
         
         monster = GetComponent<Monster>();
-        collider = GetComponent<Collider>();
+        EnemyCollider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -51,13 +51,13 @@ public class EnemyFSM : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);      
 
         // 여기가 지옥?
-        if (monster.hp <= 0 && collider.enabled == true)
+        if (monster.hp <= 0 && EnemyCollider.enabled == true)
         {
             ChangeState(state.Die);
             isDead = true;
             //agent.obstacleAvoidanceType = ObstacleAvoidanceType.NoObstacleAvoidance;
             agent.enabled = false;
-            collider.enabled = false;
+            EnemyCollider.enabled = false;
         }
         
         // 난 살아있어
