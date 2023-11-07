@@ -156,7 +156,6 @@ public class Player : MonoBehaviour
                 playermove.PlayerMove();
             }
         }
-
         if (Input.GetMouseButtonUp(0)) // 몬스터 클릭시
         {
             if (!EventSystem.current.IsPointerOverGameObject())
