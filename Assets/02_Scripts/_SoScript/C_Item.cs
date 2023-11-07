@@ -12,6 +12,8 @@ public class C_Item : ItemData
 
     public bool isGone;// 1회용인지
 
+   
+
 
     public void UseEffect()
     {
@@ -23,6 +25,7 @@ public class C_Item : ItemData
                 break;
 
         case 1:
+
                 break;
         
         }

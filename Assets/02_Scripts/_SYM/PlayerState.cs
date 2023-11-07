@@ -48,6 +48,7 @@ public class PlayerState : MonoBehaviour
         defText.text = player.Def.ToString();
         atkSpdText.text = player.Attack_speed.ToString();
         movSpdText.text = player.Move_Speed.ToString();
+
     }
 
 
