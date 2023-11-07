@@ -10,6 +10,10 @@ public class ItemData : ScriptableObject
     public int Price;//가격
     public Sprite Item_Icon;//아이콘
 
+    public List<string> Item_Rank;
+    public List<Color> Item_Color;
+
+
     [TextArea]
     public string explanation;
 
