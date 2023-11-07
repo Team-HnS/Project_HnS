@@ -1,19 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public int hp = 1000;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public MonsterData data;
+    public int hp;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        hp = data.hp;
     }
 }
