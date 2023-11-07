@@ -172,11 +172,8 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-            overrideController["RightHand@Attack01"] = Testanim;
-            animator.runtimeAnimatorController = overrideController;
 
-            animator.Play("TestSet");
+            animator.Play("Attack");
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -221,15 +218,15 @@ public class Player : MonoBehaviour
             if(colhit.transform.gameObject.layer == 10)
             {
                 playermove.agent.speed = 0;
-                Debug.Log("hit point : " + colhit.point + ", distance : " + colhit.distance + ", name : " + colhit.collider.name);
+                //Debug.Log("hit point : " + colhit.point + ", distance : " + colhit.distance + ", name : " + colhit.collider.name);
             }
            
-            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), playermove.playerCharacter.transform.forward * colhit.distance, Color.red);
+            //Debug.DrawRay(transform.position + new Vector3(0, 1, 0), playermove.playerCharacter.transform.forward * colhit.distance, Color.red);
         }
         else
         {
             playermove.agent.speed = Move_Speed ;
-            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), playermove.playerCharacter.transform.forward * 0.5f, Color.red);
+            //Debug.DrawRay(transform.position + new Vector3(0, 1, 0), playermove.playerCharacter.transform.forward * 0.5f, Color.red);
         }
     }
 
@@ -244,8 +241,6 @@ public class Player : MonoBehaviour
 
     public void MouseBtnUpCheck()
     {
-
-
         RaycastHit hit;
         if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
         {
@@ -254,15 +249,30 @@ public class Player : MonoBehaviour
 
             if (hit.transform.gameObject.layer == 10) //만약 클릭한게 몬스터였을경우
             {
-                if (!playermove.canMove && hit.transform.gameObject != target) // 못움직이면 = 이미 공격 중이면 다음 대기열에 저장
+                if (!playermove.canMove) // 못움직이면 = 이미 공격 중이면 다음 대기열에 저장
                 {
-                    isNextTarget = true;
-                    next_target = hit.transform.gameObject;
+                    if (  hit.transform.gameObject != target) //다른 타겟이면 대기열에 저장
+                    {
+                        isNextTarget = true;
+                        next_target = hit.transform.gameObject;
 
-                    playermove.saveMovePos = Vector3.zero;
-                    playermove.isSavePos = false;
+                        playermove.saveMovePos = Vector3.zero;
+                        playermove.isSavePos = false;
 
-                    return;
+                        return;
+                    }
+                    else
+                    { //같은애 클릭했을경우
+
+                        isNextTarget = true;
+                        next_target = hit.transform.gameObject;
+
+
+                        playermove.saveMovePos = Vector3.zero;
+                        playermove.isSavePos = false;
+
+                        return;
+                    }
                 }
                 // 공격중이아니라면
                 target = hit.transform.gameObject;
@@ -294,8 +304,21 @@ public class Player : MonoBehaviour
     {
         if (state != PlayerState.Trace)
         {
+
+            print(target.name + "트레이스 온");
             state = PlayerState.Trace;
-            animator.SetTrigger("DoRun");
+
+            if (playermove.agent.remainingDistance <= Attack_Range) //적이 평타 사거리 안일경우
+            {
+                Debug.Log("바로때릴게요");
+            }
+            else //밖일경우
+            {
+                Debug.Log("추적합니다");
+                animator.SetTrigger("DoRun");
+            }
+
+
         }
     }
 
@@ -312,6 +335,7 @@ public class Player : MonoBehaviour
     {
         if (state != PlayerState.Attack)
         {
+            print("때릴게");
             state = PlayerState.Attack;
             playermove.canMove = false;
 

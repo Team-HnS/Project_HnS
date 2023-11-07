@@ -9,6 +9,8 @@ public class NomalAttack : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log("공격모션 실행");
+
         check = false;
         delay = 0;
         
@@ -43,8 +45,9 @@ public class NomalAttack : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         GameObject mainob = animator.gameObject;
-        PlayerMovement pm =  animator.gameObject.GetComponentInParent<PlayerMovement>();
-        Player player = animator.gameObject.GetComponentInParent<Player>();
+        PlayerMovement pm = mainob.GetComponentInParent<PlayerMovement>();
+        Player player = mainob.GetComponentInParent<Player>();
+        Debug.Log("공격모션 종료");
 
         // mainob.transform.LookAt(player.target.transform);
         pm.CanMove();

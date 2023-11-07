@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else // 사거리 안으로 들어왔으면
             {
+                print("공격실행");
                 agent.SetDestination(transform.position);
                 player.PlayerAttack();
                 isMove = false;
@@ -75,8 +76,8 @@ public class PlayerMovement : MonoBehaviour
 
                     return;
                 }
-                    
 
+                player.target = null;
                 SetDest(hit.point);
                 agent.velocity = agent.desiredVelocity.normalized * agent.speed;
                 player.PlayerRun(); // 이동 시킴
@@ -84,28 +85,41 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void PlayerTargetMove(GameObject target)
+    public void PlayerTargetMove(GameObject target) //적 클릭했을때
     {
             SetDest(target.transform.position);
+            print("목표지정완료");
             player.PlayerTrace(); // 이동 시킴
 
     }
 
-    public void CanMove()
+    public void CanMove() //움직임 풀때
     {
+
+        Debug.Log("공격끝!" + "세이브포스 : "+ isSavePos + " 이스넥스트 타겟"+ player.isNextTarget);
+
+
         canMove = true;
-        if(isSavePos)
+        if(isSavePos && !player.isNextTarget)
         {
+
+            Debug.Log("이동합니다!");
             SetDest(saveMovePos);
             isSavePos = false;
             agent.velocity = agent.desiredVelocity.normalized * agent.speed;
             player.PlayerRun(); // 이동 시킴
         }
-        else  if(player.isNextTarget)
+        else  if(player.isNextTarget && player.next_target)
         {
+            Debug.Log("공격합니다!");
+
             player.isNextTarget = false;
             player.target = player.next_target;
+            player.next_target = null;
+
             PlayerTargetMove(player.target); //타겟팅 변경
+
+
         }
     }
 
