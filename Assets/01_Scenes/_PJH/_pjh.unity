@@ -329,6 +329,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 631129342725119860, guid: 971e3ce3728d5eb4aae754f7320672e5, type: 3}
+      propertyPath: attackDistance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 864964155149467497, guid: 971e3ce3728d5eb4aae754f7320672e5, type: 3}
       propertyPath: m_Name
       value: Ork
@@ -879,8 +883,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8168475274547939822, guid: de1248433c2318b45a64ec3198e0cd86, type: 3}
-      propertyPath: m_IsTrigger
+    - target: {fileID: 5566062196327812686, guid: de1248433c2318b45a64ec3198e0cd86, type: 3}
+      propertyPath: attack_Range
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
