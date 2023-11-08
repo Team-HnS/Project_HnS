@@ -4,8 +4,8 @@ using TMPro;
 using UnityEngine;
 
 public class Item : MonoBehaviour
-{
-    public M_Item itemData;
+{    
+    public ItemData itemData;
     private TMP_Text nameTag;
 
     private void Start()
@@ -22,6 +22,5 @@ public class Item : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
     }
 }

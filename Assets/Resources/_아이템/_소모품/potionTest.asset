@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc233684b87e574196fe22b5bbfa0b4, type: 3}
-  m_Name: "\uC7AC\uB8CC1\uBC88"
+  m_Script: {fileID: 11500000, guid: eb6937f8f26c21f439586148e9c80845, type: 3}
+  m_Name: potionTest
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: potionTest
   Price: 50
-  Item_Icon: {fileID: 0}
-  item_rank: 0
+  Item_Icon: {fileID: 21300000, guid: 1078813c32b35fb4095c32c81e58d7ed, type: 3}
+  item_rank: 1
   item_Color:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -24,4 +24,6 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.5, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  explanation: "\uC774\uAC74\uC7AC\uB8CC\uB2E4"
+  explanation: "\uD3EC\uC158 \uD14C\uC2A4\uD2B8"
+  UseCode: 1
+  isGone: 1

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb6937f8f26c21f439586148e9c80845, type: 3}
-  m_Name: "\uC18C\uBAA8\uD488\uD14C\uC2A4\uD2B8"
+  m_Name: "\uCCB4\uB825 \uBB3C\uC57D"
   m_EditorClassIdentifier: 
-  ItemName: "\uD14C\uC2A4\uD2B8\uC774\uB984"
-  Price: 500
-  Item_Icon: {fileID: 21300000, guid: dcd30c9a23ea35d4fb6f3fd199f064d9, type: 3}
-  item_rank: 4
+  ItemName: "\uCCB4\uB825 \uBB3C\uC57D"
+  Price: 50
+  Item_Icon: {fileID: 21300000, guid: a339d0daeb0e57547aba2c6a2d4b53aa, type: 3}
+  item_rank: 0
   item_Color:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -24,7 +24,6 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.5, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  explanation: "\uD14C\uC2A4\uD2B8 \uC124\uBA85\uC774\uB2E4"
+  explanation: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294 \uBB3C\uC57D\uC774\uB2E4."
   UseCode: 0
   isGone: 0
-  player: {fileID: 0}
