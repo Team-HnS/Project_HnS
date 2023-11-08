@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -342,14 +343,18 @@ public class Player : MonoBehaviour
     {
         if (state != PlayerState.Trace)
         {
-
             print(target.name + "트레이스 온");
             state = PlayerState.Trace;
-
-            if (playermove.agent.remainingDistance <= Attack_Range) //적이 평타 사거리 안일경우
+ 
+            print( "나 아직 길찾는중이야?" + playermove.agent.pathPending);
+            //if (Vector3.Distance(playermove.playerCharacter.transform.position,target.transform.position) <= Attack_Range) //적이 평타 사거리 안일경우
+            RaycastHit hit;
+            Vector3 pos = target.transform.position - playermove.playerCharacter.position;
+            if (!Physics.Raycast(playermove.playerCharacter.position, pos, out hit, Attack_Range ) && pos.magnitude <= Attack_Range) //적이 평타 사거리 안일경우
             {
+                Debug.Log("내 거리 : " + playermove.playerCharacter.position);
                 Debug.Log("목표거리 : " + playermove.agent.destination);
-                Debug.Log("남은거리 : " + playermove.agent.remainingDistance);
+                Debug.Log("장애물  : " + hit.transform.gameObject.name);
                 Debug.Log("사거리 : " + Attack_Range);
                 Debug.Log("바로때릴게요");
             }

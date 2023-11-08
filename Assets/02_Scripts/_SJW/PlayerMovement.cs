@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (player.state == Player.PlayerState.Trace) // 적 추적중일경우
         {
+
             if (agent.remainingDistance > player.Attack_Range) //적이 평타 사거리 밖일경우
             {
                 SetDest(player.target.transform.position);
@@ -82,10 +83,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerTargetMove(GameObject target) //적 클릭했을때
     {
-            SetDest(target.transform.position);
-            Debug.Log("남은거리 : " + agent.remainingDistance);
-             print("목표지정완료");
-            player.PlayerTrace(); // 이동 시킴
+        SetDest(target.transform.position);
+        Debug.Log("남은거리 : " + agent.remainingDistance);
+        print("목표지정완료");
+        player.PlayerTrace(); // 이동 시킴
 
     }
 
@@ -128,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    private void SetDest(Vector3 dest)
+    public void SetDest(Vector3 dest)
     {
         agent.SetDestination(dest);
         isMove = true;
