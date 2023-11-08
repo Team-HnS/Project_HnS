@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc233684b87e574196fe22b5bbfa0b4, type: 3}
-  m_Name: "\uC7AC\uB8CC1\uBC88"
+  m_Script: {fileID: 11500000, guid: eb6937f8f26c21f439586148e9c80845, type: 3}
+  m_Name: "\uCCB4\uB825 \uBB3C\uC57D"
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: "\uCCB4\uB825 \uBB3C\uC57D"
   Price: 50
-  Item_Icon: {fileID: 0}
+  Item_Icon: {fileID: 21300000, guid: a339d0daeb0e57547aba2c6a2d4b53aa, type: 3}
   item_rank: 0
   item_Color:
   - {r: 1, g: 0, b: 0, a: 1}
@@ -24,4 +24,6 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.5, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  explanation: "\uC774\uAC74\uC7AC\uB8CC\uB2E4"
+  explanation: "\uCCB4\uB825\uC744 \uD68C\uBCF5\uC2DC\uCF1C\uC8FC\uB294 \uBB3C\uC57D\uC774\uB2E4."
+  UseCode: 0
+  isGone: 0
