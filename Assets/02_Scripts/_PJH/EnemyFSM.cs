@@ -23,9 +23,9 @@ public class EnemyFSM : MonoBehaviour
     private Quaternion stopRotation;
 
     private Monster monster;
-    private bool isDead = false;
+    [HideInInspector] public bool isDead = false;
     private Collider EnemyCollider;
-    
+
 
     enum state
     {
@@ -39,7 +39,7 @@ public class EnemyFSM : MonoBehaviour
 
         playerObj = GameObject.FindGameObjectsWithTag("Player");
         player = playerObj[0].transform;
-        
+
         monster = GetComponent<Monster>();
         EnemyCollider = GetComponent<Collider>();
     }
@@ -48,7 +48,7 @@ public class EnemyFSM : MonoBehaviour
     void Update()
     {
         // 플레이어와 적 사이의 거리 측정
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);      
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         // 여기가 지옥?
         if (monster.hp <= 0 && EnemyCollider.enabled == true)
@@ -59,7 +59,7 @@ public class EnemyFSM : MonoBehaviour
             agent.enabled = false;
             EnemyCollider.enabled = false;
         }
-        
+
         // 난 살아있어
         if (isDead == false)
         {
@@ -102,10 +102,10 @@ public class EnemyFSM : MonoBehaviour
             {
                 ChangeState(state.Idle);
             }
-        }        
+        }
     }
 
-    
+
 
     private void LookMoveDirection()
     {
@@ -142,7 +142,7 @@ public class EnemyFSM : MonoBehaviour
         }
         else if (state == state.Die)
         {
-            animator.SetBool("Die", true);                     
+            animator.SetBool("Die", true);
         }
     }
 }

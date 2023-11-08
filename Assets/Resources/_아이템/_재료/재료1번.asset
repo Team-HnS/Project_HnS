@@ -13,6 +13,15 @@ MonoBehaviour:
   m_Name: "\uC7AC\uB8CC1\uBC88"
   m_EditorClassIdentifier: 
   ItemName: 
-  Price: 0
+  Price: 50
   Item_Icon: {fileID: 0}
+  item_rank: 0
+  item_Color:
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0.5, g: 0, b: 0.5, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.5, b: 0, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   explanation: "\uC774\uAC74\uC7AC\uB8CC\uB2E4"

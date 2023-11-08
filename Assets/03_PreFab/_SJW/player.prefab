@@ -128,7 +128,7 @@ Transform:
   - {fileID: 1282659420063623977}
   - {fileID: 4160564511005706811}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9020013371683213473
 MonoBehaviour:
@@ -167,6 +167,7 @@ MonoBehaviour:
   canDash: 1
   Testanim: {fileID: 7400000, guid: 19ab6d22e3f02124a85d0ab8d8df4813, type: 3}
   Testanim2: {fileID: 7400002, guid: 1b22f05997b7ad34685887f15b9f660c, type: 3}
+  Resent_Skill: {fileID: 0}
   lv: 0
   exp: 0
   max_hp: 0
@@ -204,7 +205,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &3829389936502293477
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -265,6 +266,10 @@ PrefabInstance:
     - target: {fileID: 1747438285441654, guid: 825bff9794b108642a13caab58ce3cf3, type: 3}
       propertyPath: m_Name
       value: Chr_FantasyHero_Preset_60
+      objectReference: {fileID: 0}
+    - target: {fileID: 1747438285441654, guid: 825bff9794b108642a13caab58ce3cf3, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4398373960354488, guid: 825bff9794b108642a13caab58ce3cf3, type: 3}
       propertyPath: m_RootOrder

@@ -12,4 +12,6 @@ public class Monster : MonoBehaviour
     {
         hp = data.hp;
     }
+
+    
 }
