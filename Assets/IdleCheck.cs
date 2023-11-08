@@ -9,7 +9,6 @@ public class IdleCheck : StateMachineBehaviour
     {
 
         Player player = animator.gameObject.GetComponentInParent<Player>();
-        Debug.Log(player.state + "Ω««‡¡ﬂ");
 
         if (player.state != Player.PlayerState.Idle)
         {

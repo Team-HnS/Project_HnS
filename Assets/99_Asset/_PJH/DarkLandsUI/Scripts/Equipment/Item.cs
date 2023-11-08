@@ -11,5 +11,6 @@ namespace DarkLandsUI.Scripts.Equipment
         public Sprite sprite;
         [Min(1)]
         public int stackedCount = 1;
+        internal Sprite itemImage;
     }
 }

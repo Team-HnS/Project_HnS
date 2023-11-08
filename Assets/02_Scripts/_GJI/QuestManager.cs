@@ -23,7 +23,7 @@ public class QuestManager : MonoBehaviour
         //위의 기능은 필요시 활성화
 
         //퀘스트는 10단위 이므로 다음 퀘스트는 20번으로 설정
-        questList.Add(20, new QuestData("00 찾기", new int[] { 1002 , /*찾아와야하는 오브젝트 id삽입*/ }));
+        questList.Add(20, new QuestData("00 찾기", new int[] { 1002, /*찾아와야하는 오브젝트 id삽입*/ }));
     }
 
     public int GetQuestTalkIndex(int id) // Npc Id를 받아 퀘스트 번호를 반환하는 함수 
