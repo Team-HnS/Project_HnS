@@ -4,6 +4,7 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -164,6 +165,10 @@ public class Player : MonoBehaviour
             }
         }
 
+
+        //마우스 클릭했을때 아이템이면 주으러감
+
+
         if (Input.GetKeyDown(KeyCode.W) && state != Player.PlayerState.Dash)
         {
             PlayerDash();
@@ -186,7 +191,8 @@ public class Player : MonoBehaviour
             animator.SetFloat("SkillSpeed", 5f);
             animator.runtimeAnimatorController = overrideController;
 
-            animator.CrossFade("Skill_1", 0.3f);
+            animator.CrossFade("Skill_1", 0.05f);
+
             //animator.Play("Skill_1");
 
             //-> 각 스킬 종류에 맞는 onuse사용
