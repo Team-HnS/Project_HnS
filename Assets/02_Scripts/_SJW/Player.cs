@@ -186,7 +186,8 @@ public class Player : MonoBehaviour
             animator.SetFloat("SkillSpeed", 5f);
             animator.runtimeAnimatorController = overrideController;
 
-            animator.Play("Skill_1");
+            animator.CrossFade("Skill_1", 0.3f);
+            //animator.Play("Skill_1");
 
             //-> 각 스킬 종류에 맞는 onuse사용
 
@@ -344,7 +345,8 @@ public class Player : MonoBehaviour
             var dir = new Vector3(target.transform.position.x,target.transform.position.y,target.transform.position.z) - transform.position;
             playermove.playerCharacter.transform.forward = dir;
 
-            animator.Play("Attack");
+            animator.CrossFade("Attack", 0.1f);
+            //animator.Play("Attack");
         }
     }
 
