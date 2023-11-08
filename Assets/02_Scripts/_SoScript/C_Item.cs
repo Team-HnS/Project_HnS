@@ -27,7 +27,6 @@ public class C_Item : ItemData
         case 1:
 
                 break;
-        
         }
 
     }

@@ -82,7 +82,24 @@ public class Player : MonoBehaviour
 
     public int Max_Hp {  get { return max_hp; } set { max_hp = value; } }
     public int Max_Mp { get { return max_mp; } set { max_mp = value; } }
-    public int Cur_Hp { get { return cur_hp; } set { cur_hp = value; } }
+    public int Cur_Hp
+    {
+        get { return cur_hp; }
+        set
+        {
+            if ( value <= 0)
+            {
+                cur_hp = 0;
+                print(cur_hp);
+                PlayerDie();
+            }
+            else
+            {
+                cur_hp = value;
+            }
+
+        }
+    }
     public int Cur_Mp { get { return cur_mp; } set { cur_mp = value; } }
 
 
@@ -177,8 +194,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-
-            animator.Play("Attack");
+            Damaged(20);
         }
 
         if (Input.GetKeyDown(KeyCode.C))
@@ -192,6 +208,8 @@ public class Player : MonoBehaviour
             animator.runtimeAnimatorController = overrideController;
 
             animator.CrossFade("Skill_1", 0.05f);
+
+     
 
             //animator.Play("Skill_1");
 
@@ -218,7 +236,7 @@ public class Player : MonoBehaviour
 
     private RaycastHit colhit; 
 
-    private void Checkcollider()
+    private void Checkcollider() //전방에 몬스터가 있는지 판별
     {
         if (Physics.Raycast(transform.position+new Vector3(0,1,0), playermove.playerCharacter.transform.forward, out colhit, 0.5f))
         {
@@ -288,14 +306,27 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    public void PlayerNomalAttack(GameObject target)
+     
+    public void PlayerCasting(float casttime)
     {
+        playermove.canMove = false;
+        playermove.agent.ResetPath();
 
-        print(target.name + "몬스터 클릭함!");
-        animator.Play("Attack");
+        if (state != PlayerState.Casting)
+        {
+            state = PlayerState.Casting;
+
+            Invoke("Castend", casttime);
+        }
+
     }
 
+    public void Castend()
+    {
+        playermove.canMove = true;
+        //PlayerIdle();
+        playermove.CanMove();
+    }
 
     public void PlayerRun()
     {
@@ -317,10 +348,15 @@ public class Player : MonoBehaviour
 
             if (playermove.agent.remainingDistance <= Attack_Range) //적이 평타 사거리 안일경우
             {
+                Debug.Log("목표거리 : " + playermove.agent.destination);
+                Debug.Log("남은거리 : " + playermove.agent.remainingDistance);
+                Debug.Log("사거리 : " + Attack_Range);
                 Debug.Log("바로때릴게요");
             }
             else //밖일경우
             {
+                Debug.Log("남은거리 : " + playermove.agent.remainingDistance);
+                Debug.Log("사거리 : " + Attack_Range);
                 Debug.Log("추적합니다");
                 animator.SetTrigger("DoRun");
             }
@@ -329,12 +365,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Damaged(int Damage) // 데미지 받는 함수
+    {
+        Cur_Hp -= Damage;
+    }
+
     public void PlayerIdle()
     {
         if (state != PlayerState.Idle)
         {
             state = PlayerState.Idle;
             animator.SetTrigger("DoIdle");
+        }
+    }
+
+    public void PlayerDie()
+    {
+        if (state != PlayerState.Death)
+        {
+            state = PlayerState.Death;
+            animator.SetTrigger("Die");
         }
     }
 

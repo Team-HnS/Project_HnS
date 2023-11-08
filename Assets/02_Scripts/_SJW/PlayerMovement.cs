@@ -54,11 +54,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
-    {
-     
-    }
-
     public void PlayerMove() //땅클릭했을때 호출되는 함수
     {
         RaycastHit hit;
@@ -88,18 +83,22 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerTargetMove(GameObject target) //적 클릭했을때
     {
             SetDest(target.transform.position);
-            print("목표지정완료");
+            Debug.Log("남은거리 : " + agent.remainingDistance);
+             print("목표지정완료");
             player.PlayerTrace(); // 이동 시킴
 
     }
 
-    public void CanMove() //움직임 풀때
+    public void CanMove() //평타 움직임 풀때
     {
 
         Debug.Log("공격끝!" + "세이브포스 : "+ isSavePos + " 이스넥스트 타겟"+ player.isNextTarget);
 
 
         canMove = true;
+
+
+
         if(isSavePos && !player.isNextTarget)
         {
 
@@ -119,7 +118,10 @@ public class PlayerMovement : MonoBehaviour
 
             PlayerTargetMove(player.target); //타겟팅 변경
 
-
+        }
+        else if(player.state == Player.PlayerState.Casting)
+        {
+            player.PlayerIdle();
         }
     }
 
