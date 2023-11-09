@@ -13,27 +13,44 @@ public class PlayerHPMPBar : MonoBehaviour
     public TMP_Text hpPer;
     public TMP_Text mpPer;
 
-    public Player PlayerState;
-
+    Player PlayerState;
+    private Player playerScript;
 
     void Start()
-    {
-        hp_Slider = GameObject.Find("hp_Slider").GetComponent<Slider>();
-        mp_Slider = GameObject.Find("mp_Slider").GetComponent<Slider>();
-        exp_Slider = GameObject.Find("exp_Slider").GetComponent<Slider>();
-        hpPer = GameObject.Find("hpPer").GetComponent<TMP_Text>();
-        mpPer = GameObject.Find("mpPer").GetComponent<TMP_Text>();
-        hp_Slider.minValue = 0;
-        mp_Slider.minValue = 0;
-        exp_Slider.minValue = 0;
+    {   
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            PlayerState = playerObject.GetComponent<Player>();
+        }
+        if (PlayerState != null)
+        {
+            hp_Slider = GameObject.Find("hp_Slider").GetComponent<Slider>();
+            mp_Slider = GameObject.Find("mp_Slider").GetComponent<Slider>();
+            exp_Slider = GameObject.Find("exp_Slider").GetComponent<Slider>();
+            hpPer = GameObject.Find("hpPer").GetComponent<TMP_Text>();
+            mpPer = GameObject.Find("mpPer").GetComponent<TMP_Text>();
+            hp_Slider.minValue = 0;
+            mp_Slider.minValue = 0;
+            exp_Slider.minValue = 0;
+        }
+        else
+        {
+            Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
+        }
+
 
     }
 
-public float CharHpPer()
+    public float CharHpPer()
     {
-        return (PlayerState.Cur_Hp / PlayerState.Max_Hp) * 100.0f;
+        return (PlayerState.Cur_Hp * 100.0f / PlayerState.Max_Hp);
     }
-    
+    public float CharMpPer()
+    {
+        return (PlayerState.Cur_Mp * 100.0f / PlayerState.Max_Mp) ;
+    }
+
 
 
     private void Update()
@@ -45,8 +62,11 @@ public float CharHpPer()
         hp_Slider.value = PlayerState.Cur_Hp;
         mp_Slider.value = PlayerState.Cur_Mp;
 
+        Debug.Log((PlayerState.Cur_Hp / PlayerState.Max_Hp) * 100.0f);
         float hpPercent = CharHpPer();
-        hpPer.text = hpPercent.ToString() + " %";
+        hpPer.text = hpPercent.ToString("F1") + " %"; 
+        float mpPercent = CharMpPer();
+        mpPer.text = mpPercent.ToString("F1") + " %";
 
     }
 
