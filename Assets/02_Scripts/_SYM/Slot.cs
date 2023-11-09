@@ -17,6 +17,6 @@ public class Slot : MonoBehaviour
     public void SetItem(ItemData itemData)
     {
         itemImage.sprite = itemData.Item_Icon;
-        //quantityText.text = itemData.quantity > 1 ? itemData.quantity.ToString() : "";
+        quantityText.text = itemData.quantity > 1 ? itemData.quantity.ToString() : "";
     }
 }

@@ -12,7 +12,15 @@ public class PlayerItemManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Item")
         {
-            items = itemManager.AddItem(items, collision.gameObject.GetComponent<Item>().itemData);
+            Debug.Log("Collision" + collision.gameObject.name);
+            Item itemComponent = collision.gameObject.GetComponent<Item>();
+            Debug.Log("itemComponent" + collision.gameObject.GetComponent<Item>());
+            if (itemComponent != null)
+            {
+                items = ItemManager.Instance.AddItem(items, itemComponent.itemData);
+                Debug.Log(items);
+                
+            }
         }
     }
 }

@@ -9,11 +9,17 @@ using static UnityEditor.Progress;
 
 public class ItemManager: MonoBehaviour
 {
+    public static ItemManager Instance { get; private set; }
+    
     public Transform slotPanel;
     public GameObject slotPrefab;
     public Text itemDescriptionText; // 아이템 설명 텍스트
     public Text weaponExplanationText;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
     // 아이템을 인벤토리에 추가하는 메서드
     public List<ItemData> AddItem(List<ItemData> items, ItemData newItem)
     {
@@ -21,8 +27,9 @@ public class ItemManager: MonoBehaviour
         var existingItem = items.Find(item => item.ItemName == newItem.ItemName);
         if (existingItem != null)
         {
-            // 같은 아이템이 있으면, 수량을 업데이트합니다.
-            existingItem.quantity += newItem.quantity;
+            // 같은 아이템이 있으면, 수량을 업데이트합니다. 
+            existingItem.quantity = existingItem.quantity+1;
+            Debug.Log(newItem.quantity);
         }
         else
         {
@@ -38,6 +45,10 @@ public class ItemManager: MonoBehaviour
 
     void InitializeInventory(List<ItemData> items)
     {
+        foreach (Transform child in slotPanel)
+        {
+            Destroy(child.gameObject);
+        }
         foreach (ItemData item in items)
         {
             GameObject instance = Instantiate(slotPrefab, slotPanel);
@@ -53,6 +64,7 @@ public class ItemManager: MonoBehaviour
                 instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
                 //instance.transform.Find("ItemName").GetComponent<Text>().text = item.ItemName;
                 instance1.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.explanation;
+
             }
         }
     }

@@ -62,7 +62,6 @@ public class PlayerHPMPBar : MonoBehaviour
         hp_Slider.value = PlayerState.Cur_Hp;
         mp_Slider.value = PlayerState.Cur_Mp;
 
-        Debug.Log((PlayerState.Cur_Hp / PlayerState.Max_Hp) * 100.0f);
         float hpPercent = CharHpPer();
         hpPer.text = hpPercent.ToString("F1") + " %"; 
         float mpPercent = CharMpPer();
