@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1e30307bb6260d46810cd9932e9b69a, type: 3}
-  m_Name: SkillData
+  m_Name: "\uBE60\uB978 \uCC38\uACA9"
   m_EditorClassIdentifier: 
-  skilltype: 0
-  activetype: 0
-  SkillName: "\uC544\uD5E4\uD5FF"
+  skilltype: 2
+  activetype: 2
+  SkillName: "\uBE60\uB978 \uCC38\uACA9"
   SkillCode: 1
+  SkillLV: 1
   hitcount: 00000000
+  ManaRequirement: 000000000f000000
   Coefficient:
   - 175
   Add_Coefficient: []
