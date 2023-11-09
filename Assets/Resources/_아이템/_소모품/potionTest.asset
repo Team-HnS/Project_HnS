@@ -15,6 +15,7 @@ MonoBehaviour:
   ItemName: potionTest
   Price: 50
   Item_Icon: {fileID: 21300000, guid: 1078813c32b35fb4095c32c81e58d7ed, type: 3}
+  quantity: 1
   item_rank: 1
   item_Color:
   - {r: 1, g: 0, b: 0, a: 1}
