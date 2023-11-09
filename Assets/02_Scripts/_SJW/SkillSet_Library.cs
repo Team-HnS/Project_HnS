@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SkillSet_Library : MonoBehaviour
@@ -81,19 +83,20 @@ public class SkillSet_Library : MonoBehaviour
         {
             return; // 스킬 사용불가능하면 리턴
         }
-        
-
         Player _plyaer = instance.player.GetComponent<Player>();
-        GameObject effect = Instantiate(s_data.Effect,instance.player.transform.position,instance.player_m.playerCharacter.rotation, instance.player.transform);
+        instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
+        SkillRot(s_data);//플레이어 회전
+
+        GameObject effect = Instantiate(s_data.Effect,instance.player.transform.position,instance.player_m.playerCharacter.rotation);
         SkillCollider skillCollider = effect.GetComponentInChildren<SkillCollider>();
 
-       instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
 
         print("계수 = " + s_data.Coefficient[0]);
         print("예상 데미지 = " + SkillDamageSet(instance.player_s.Atk, s_data.Coefficient[0]));
         skillCollider.damage = SkillDamageSet(instance.player_s.Atk, s_data.Coefficient[0]);
         instance.player_s.PlayerCasting(s_data.After_Delay);
-        Destroy(effect,0.5f);
+
+        Destroy(effect, s_data.Effect_maintenance_time);
 
 
         _plyaer.overrideController = new AnimatorOverrideController(_plyaer.animator.runtimeAnimatorController);
@@ -101,10 +104,27 @@ public class SkillSet_Library : MonoBehaviour
         _plyaer.animator.SetFloat("SkillSpeed", 5f);
         _plyaer.animator.runtimeAnimatorController = _plyaer.overrideController;
 
+
         _plyaer.animator.CrossFade("Skill_1", 0.05f);
     }
 
 
+
+    void SkillRot(SkillData s_data)
+    {
+
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                Vector3 hitpos = hit.point;
+                hitpos.y = instance.player.transform.position.y;
+
+                instance.player_m.playerCharacter.transform.LookAt(hitpos);
+            }
+        }
+    }
 
     IEnumerator CoolTime(Skill_LibraryData skill_Data)
     {

@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1e30307bb6260d46810cd9932e9b69a, type: 3}
-  m_Name: "\uBE60\uB978 \uCC38\uACA9"
+  m_Name: "\uAC80\uAE30 \uBC1C\uC0AC"
   m_EditorClassIdentifier: 
   skilltype: 2
   activetype: 2
-  SkillName: "\uBE60\uB978 \uCC38\uACA9"
+  SkillName: "\uAC80\uAE30 \uBC1C\uC0AC"
   SkillCode: 1
   SkillLV: 1
-  SkillCoolDown: 1
-  Effect_maintenance_time: 0.5
+  SkillCoolDown: 3
+  Effect_maintenance_time: 5
   hitcount: 00000000
-  ManaRequirement: 000000000f000000
+  ManaRequirement: 000000002d000000
   Coefficient:
-  - 175
-  Add_Coefficient: []
+  - 250
+  Add_Coefficient:
+  - 0
+  - 0
   SkillSound: {fileID: 0}
-  SkillMotion: {fileID: -203655887218126122, guid: 408beba5fe50d9c4d97392fd2697da7d, type: 3}
-  Skill_Explanation: "\uAC15\uD558\uAC8C \uB0B4\uB824\uBCA0\uC5B4 \uC8FC\uBCC0 \uC801\uC5D0\uAC8C
-    \uB370\uBBF8\uC9C0\uB97C \uC900\uB2E4"
+  SkillMotion: {fileID: 7400002, guid: a5d1663cb95209844afa7c8b3b2420bf, type: 3}
+  Skill_Explanation: "\uD788\uD788 \uAC80\uAE30 \uBC1C\uC2F8"
   SkillEvent:
     m_PersistentCalls:
       m_Calls:
@@ -45,4 +46,4 @@ MonoBehaviour:
         m_CallState: 2
   Before_Delay: 0.1
   After_Delay: 0.5
-  Effect: {fileID: 640475206144267981, guid: 23e42ea368e78f3498bbb6f6cfcdf607, type: 3}
+  Effect: {fileID: 9059956826010423946, guid: d3fdc06682fb4eb4cb8c0d9a0f2e92e2, type: 3}

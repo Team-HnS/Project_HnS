@@ -199,6 +199,12 @@ public class Player : MonoBehaviour
             Damaged(20);
         }
 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/검기 발사");
+            Resent_Skill.SkillEvent.Invoke();
+        }
+
         if (Input.GetKeyDown(KeyCode.C))
         {
             Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/빠른 참격");
