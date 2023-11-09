@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 using static UnityEditor.Progress;
@@ -10,16 +11,12 @@ using static UnityEditor.Progress;
 
 public class Slot : MonoBehaviour
 {
+    public Image itemImage;
+    public Text quantityText;
 
-   
-    public Text itemNameText; // 아이템 이름 텍스트
-    public Text itemDescriptionText; // 아이템 설명 텍스트
-
-    public void SetItem(ItemData item)
+    public void SetItem(ItemData itemData)
     {
-        
-        //itemNameText.text = item.ItemName;
-        itemDescriptionText.text = item.explanation;
+        itemImage.sprite = itemData.Item_Icon;
+        //quantityText.text = itemData.quantity > 1 ? itemData.quantity.ToString() : "";
     }
-
 }

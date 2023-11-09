@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,5 +17,28 @@ public class E_Item : ItemData
     public int IgtUp;//마법공격력
     public int DexUp;//민첩
     public int DefUp;//방어력
+
+    public int UseCode;//소모품 함수 코드
+
+    public bool isGone;// 1회용인지
+
+    public void UseEffect()
+    {
+        switch (UseCode)
+        {
+            case 0:
+                AtkUp = 10;
+                StrUp = 10;
+                DexUp = 10;
+
+                Debug.Log("0번 아이템 사용");
+                
+                break;
+
+            case 1:
+                break;
+        }
+
+    }
 
 }

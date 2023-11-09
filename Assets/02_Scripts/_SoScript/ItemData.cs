@@ -22,11 +22,13 @@ public class ItemData : ScriptableObject
     public int Price;//가격
     public Sprite Item_Icon;//아이콘
 
+    //public int quantity;//아이템 수량
+
     public Item_Rank item_rank;
     public Color[] item_Color = new Color[]
       {
             Color.red,       // 빨간색
-            Color.white,     // 흰색
+            Color.white,     // 흰색         
             Color.blue,      // 파란색
             new Color(0.5f, 0f, 0.5f), // 보라색
             Color.green,     // 초록색

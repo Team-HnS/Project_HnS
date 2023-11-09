@@ -12,10 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc233684b87e574196fe22b5bbfa0b4, type: 3}
   m_Name: "\uACE8\uB818\uC758 \uD575"
   m_EditorClassIdentifier: 
+<<<<<<< HEAD:Assets/Resources/_아이템/_소모품/potionTest.asset
+  ItemName: potionTest
+  Price: 50
+  Item_Icon: {fileID: 21300000, guid: 1078813c32b35fb4095c32c81e58d7ed, type: 3}
+  quantity: 1
+  item_rank: 1
+=======
   ItemName: "\uACE8\uB818\uC758 \uD575"
   Price: 12000
   Item_Icon: {fileID: 21300000, guid: c3b41571ba1889b4a950c662c2db5b5b, type: 3}
   item_rank: 4
+>>>>>>> 3e43f6a0ffaa44523b839bdc6c1b22b0705e7eb0:Assets/Resources/_아이템/_재료/골렘의 핵.asset
   item_Color:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
