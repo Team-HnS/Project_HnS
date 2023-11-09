@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0b59627452bebde4badb63b68ed08de6, type: 3}
-  m_Name: "\uC7A5\uBE44"
+  m_Name: "\uC7A5\uBBF8\uCE7C"
   m_EditorClassIdentifier: 
-  ItemName: 
-  Price: 0
-  Item_Icon: {fileID: 0}
-  item_rank: 0
+  ItemName: "\uC7A5\uBBF8\uCE7C"
+  Price: 2147483647
+  Item_Icon: {fileID: 21300000, guid: 64a2a9d9e9d1f7941b64f36bae9da053, type: 3}
+  item_rank: 5
   item_Color:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
@@ -24,11 +24,12 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.5, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  explanation: 
+  explanation: "\uB300\uC0C1\uC758 \uC601\uD63C\uAE4C\uC9C0\uB3C4 \uBCA8 \uC218 \uC788\uB2E4\uACE0
+    \uC804\uD574\uC9C0\uB294 \uCE7C\uC774\uB2E4."
   HpUp: 0
   MpUp: 0
-  AtkUp: 0
-  StrUp: 0
+  AtkUp: 2147483647
+  StrUp: 2147483647
   IgtUp: 0
-  DexUp: 0
-  DefUp: 0
+  DexUp: 2147483647
+  DefUp: 2147483647
