@@ -12,8 +12,10 @@ public class MonsterData : ScriptableObject
     public int hp;
     public int attack;
     public int defense;
+    public int level;
+    public int exp;
 
-    Dictionary<string, float> DropItem;
+    public List<ItemProbability> itemProbabilities = new List<ItemProbability>();
 
     public enum Rank
     {
@@ -21,4 +23,11 @@ public class MonsterData : ScriptableObject
         elite,
         boss
     }    
+}
+
+[System.Serializable]
+public class ItemProbability
+{
+    public Item item;
+    public float probability;
 }

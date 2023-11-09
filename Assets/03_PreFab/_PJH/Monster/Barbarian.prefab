@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 6641516285967675590}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1588096761069184398
 CapsuleCollider:
@@ -124,6 +124,7 @@ MonoBehaviour:
   detectionDistance: 10
   attackDistance: 5
   enemySpeed: 2
+  isDead: 0
 --- !u!114 &-8231349945864152588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: efc7396c558343f4ab811ddde614ec05, type: 2}
   hp: 100
+  itemPrefab: {fileID: 0}
+  dropProbability: 0.5
 --- !u!1001 &5388098224499005564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,7 +514,7 @@ PrefabInstance:
     - target: {fileID: 95888706063046028, guid: d9162a78a8deb714a9bddd8038021008, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 5bc985cad581a2d4689a6b30a1adb488, type: 2}
+      objectReference: {fileID: 9100000, guid: 11691daf864602548a467a2a3e31efce, type: 2}
     - target: {fileID: 95888706063046028, guid: d9162a78a8deb714a9bddd8038021008, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
