@@ -19,11 +19,18 @@ public class PlayerState : MonoBehaviour
     public TMP_Text atkSpdText;
     public TMP_Text movSpdText;
 
-    public Player player;
+    Player player;
 
     void Start()
     {
-        hpText = GameObject.Find("lvVal").GetComponent<TMP_Text>();
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.GetComponent<Player>();
+        }
+        if (player != null)
+        {
+            hpText = GameObject.Find("lvVal").GetComponent<TMP_Text>();
         hpText = GameObject.Find("expVal").GetComponent<TMP_Text>();
 
         hpText = GameObject.Find("hpVal").GetComponent<TMP_Text>();
@@ -34,6 +41,11 @@ public class PlayerState : MonoBehaviour
         defText = GameObject.Find("defVal").GetComponent<TMP_Text>();
         atkSpdText = GameObject.Find("atkSpdVal").GetComponent<TMP_Text>();
         movSpdText = GameObject.Find("movSpdVal").GetComponent<TMP_Text>();
+        }
+        else
+        {
+            Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
+        }
     }
     void Update()
     {
