@@ -22,7 +22,7 @@ public class ItemData : ScriptableObject
     public int Price;//가격
     public Sprite Item_Icon;//아이콘
 
-    //public int quantity;//아이템 수량
+    public int quantity;//아이템 수량
 
     public Item_Rank item_rank;
     public Color[] item_Color = new Color[]
