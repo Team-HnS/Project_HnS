@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 2195200176352559148}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!136 &1588096761069184398
 CapsuleCollider:
@@ -121,9 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17625ede618a9904a9c089ef6d3953b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionDistance: 10
+  detectionDistance: 15
   attackDistance: 2
-  enemySpeed: 2.5
+  enemySpeed: 4
   isDead: 0
 --- !u!114 &-8231349945864152588
 MonoBehaviour:

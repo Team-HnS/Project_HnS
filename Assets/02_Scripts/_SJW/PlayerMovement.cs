@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerTargetMove(GameObject target) //적 클릭했을때
     {
         SetDest(target.transform.position);
+        player.Attack_Range = target.GetComponent<CapsuleCollider>().radius + 1;
         Debug.Log("남은거리 : " + agent.remainingDistance);
         print("목표지정완료");
         player.PlayerTrace(); // 이동 시킴

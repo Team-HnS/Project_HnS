@@ -22,7 +22,7 @@ public class ItemManager: MonoBehaviour
         if (existingItem != null)
         {
             // 같은 아이템이 있으면, 수량을 업데이트합니다.
-            existingItem.quantity += newItem.quantity;
+            //existingItem.quantity += newItem.quantity;
         }
         else
         {

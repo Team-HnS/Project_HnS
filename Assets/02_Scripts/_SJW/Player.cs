@@ -24,7 +24,8 @@ public class Player : MonoBehaviour
 
     private Camera cam;
     private PlayerMovement playermove;
-    private Animator animator;
+    [HideInInspector]
+    public Animator animator;
     private SkinnedMeshAfterImage Afterglow;
     private Collider col;
 
@@ -200,17 +201,9 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/SkillData");
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/빠른 참격");
             Resent_Skill.SkillEvent.Invoke();
 
-            overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-            overrideController["_"] = Resent_Skill.SkillMotion;
-            animator.SetFloat("SkillSpeed", 5f);
-            animator.runtimeAnimatorController = overrideController;
-
-            animator.CrossFade("Skill_1", 0.05f);
-
-     
 
             //animator.Play("Skill_1");
 
@@ -256,14 +249,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.layer == 10)
-        {
-            Debug.Log("몬스터랑충돌함");
-            playermove.agent.velocity = Vector3.zero;
-        }
-    }
 
     public void MouseBtnUpCheck()
     {

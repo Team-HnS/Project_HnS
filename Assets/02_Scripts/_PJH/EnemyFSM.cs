@@ -15,7 +15,7 @@ public class EnemyFSM : MonoBehaviour
     private GameObject[] playerObj;
     private Transform player;
 
-    public float detectionDistance = 10f; // 플레이어 인식
+    public float detectionDistance = 15f; // 플레이어 인식
     public float attackDistance = 3f; // 공격
     public float enemySpeed = 2f; // 이동속도
 
