@@ -7,6 +7,8 @@ TagManager:
   - DialogPanel
   - Canvas
   - Npc
+  - C_item
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - 
   - 
   - Monster
-  - 
-  - 
+  - C_item
+  - Item
   - 
   - 
   - 

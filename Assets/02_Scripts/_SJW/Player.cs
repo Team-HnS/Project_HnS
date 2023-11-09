@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -23,7 +24,8 @@ public class Player : MonoBehaviour
 
     private Camera cam;
     private PlayerMovement playermove;
-    private Animator animator;
+    [HideInInspector]
+    public Animator animator;
     private SkinnedMeshAfterImage Afterglow;
     private Collider col;
 
@@ -82,7 +84,24 @@ public class Player : MonoBehaviour
 
     public int Max_Hp {  get { return max_hp; } set { max_hp = value; } }
     public int Max_Mp { get { return max_mp; } set { max_mp = value; } }
-    public int Cur_Hp { get { return cur_hp; } set { cur_hp = value; } }
+    public int Cur_Hp
+    {
+        get { return cur_hp; }
+        set
+        {
+            if ( value <= 0)
+            {
+                cur_hp = 0;
+                print(cur_hp);
+                PlayerDie();
+            }
+            else
+            {
+                cur_hp = value;
+            }
+
+        }
+    }
     public int Cur_Mp { get { return cur_mp; } set { cur_mp = value; } }
 
 
@@ -177,21 +196,14 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-
-            animator.Play("Attack");
+            Damaged(20);
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/SkillData");
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/빠른 참격");
             Resent_Skill.SkillEvent.Invoke();
 
-            overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-            overrideController["_"] = Resent_Skill.SkillMotion;
-            animator.SetFloat("SkillSpeed", 5f);
-            animator.runtimeAnimatorController = overrideController;
-
-            animator.CrossFade("Skill_1", 0.05f);
 
             //animator.Play("Skill_1");
 
@@ -218,7 +230,7 @@ public class Player : MonoBehaviour
 
     private RaycastHit colhit; 
 
-    private void Checkcollider()
+    private void Checkcollider() //전방에 몬스터가 있는지 판별
     {
         if (Physics.Raycast(transform.position+new Vector3(0,1,0), playermove.playerCharacter.transform.forward, out colhit, 0.5f))
         {
@@ -237,14 +249,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.gameObject.layer == 10)
-        {
-            Debug.Log("몬스터랑충돌함");
-            playermove.agent.velocity = Vector3.zero;
-        }
-    }
 
     public void MouseBtnUpCheck()
     {
@@ -288,14 +292,27 @@ public class Player : MonoBehaviour
             }
         }
     }
-
-    public void PlayerNomalAttack(GameObject target)
+     
+    public void PlayerCasting(float casttime)
     {
+        playermove.canMove = false;
+        playermove.agent.ResetPath();
 
-        print(target.name + "몬스터 클릭함!");
-        animator.Play("Attack");
+        if (state != PlayerState.Casting)
+        {
+            state = PlayerState.Casting;
+
+            Invoke("Castend", casttime);
+        }
+
     }
 
+    public void Castend()
+    {
+        playermove.canMove = true;
+        //PlayerIdle();
+        playermove.CanMove();
+    }
 
     public void PlayerRun()
     {
@@ -311,16 +328,25 @@ public class Player : MonoBehaviour
     {
         if (state != PlayerState.Trace)
         {
-
             print(target.name + "트레이스 온");
             state = PlayerState.Trace;
-
-            if (playermove.agent.remainingDistance <= Attack_Range) //적이 평타 사거리 안일경우
+ 
+            print( "나 아직 길찾는중이야?" + playermove.agent.pathPending);
+            //if (Vector3.Distance(playermove.playerCharacter.transform.position,target.transform.position) <= Attack_Range) //적이 평타 사거리 안일경우
+            RaycastHit hit;
+            Vector3 pos = target.transform.position - playermove.playerCharacter.position;
+            if (!Physics.Raycast(playermove.playerCharacter.position, pos, out hit, Attack_Range ) && pos.magnitude <= Attack_Range) //적이 평타 사거리 안일경우
             {
+                Debug.Log("내 거리 : " + playermove.playerCharacter.position);
+                Debug.Log("목표거리 : " + playermove.agent.destination);
+                Debug.Log("장애물  : " + hit.transform.gameObject.name);
+                Debug.Log("사거리 : " + Attack_Range);
                 Debug.Log("바로때릴게요");
             }
             else //밖일경우
             {
+                Debug.Log("남은거리 : " + playermove.agent.remainingDistance);
+                Debug.Log("사거리 : " + Attack_Range);
                 Debug.Log("추적합니다");
                 animator.SetTrigger("DoRun");
             }
@@ -329,12 +355,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void Damaged(int Damage) // 데미지 받는 함수
+    {
+        Cur_Hp -= Damage;
+    }
+
     public void PlayerIdle()
     {
         if (state != PlayerState.Idle)
         {
             state = PlayerState.Idle;
             animator.SetTrigger("DoIdle");
+        }
+    }
+
+    public void PlayerDie()
+    {
+        if (state != PlayerState.Death)
+        {
+            state = PlayerState.Death;
+            animator.SetTrigger("Die");
         }
     }
 
