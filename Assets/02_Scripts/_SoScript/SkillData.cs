@@ -31,7 +31,10 @@ public class SkillData : ScriptableObject
     public string SkillName;
     public int SkillCode;
 
+    public int SkillLV;
+    public float SkillCoolDown;
     public List<int> hitcount;
+    public List<int> ManaRequirement;
     public List<float> Coefficient;
     public List<float> Add_Coefficient;
 
