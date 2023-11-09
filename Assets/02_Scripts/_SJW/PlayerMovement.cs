@@ -13,11 +13,11 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent agent;
 
-
     public bool isMove;
 
     public bool canMove;
 
+    public LayerMask checkLand;
     public Vector3 saveMovePos;
     public bool isSavePos;
 
@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerMove() //땅클릭했을때 호출되는 함수
     {
         RaycastHit hit;
-        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit))
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity,checkLand))
         {
             if (hit.transform.gameObject.layer == 7) // 땅인지 체크
             {
@@ -78,6 +78,12 @@ public class PlayerMovement : MonoBehaviour
                 agent.velocity = agent.desiredVelocity.normalized * agent.speed;
                 player.PlayerRun(); // 이동 시킴
             }
+
+            else if (hit.transform.gameObject.layer == 10) // 만약몹이면
+            {
+                return;
+            }
+
         }
     }
 

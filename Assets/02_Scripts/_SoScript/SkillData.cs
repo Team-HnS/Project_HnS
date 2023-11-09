@@ -35,6 +35,10 @@ public class SkillData : ScriptableObject
     public float SkillCoolDown;
     public float Effect_maintenance_time;
     public bool ChangeRot;
+
+    public bool isrange = false;
+    public float skill_range;
+    public float Tick_time;
     public List<int> hitcount;
     public List<int> ManaRequirement;
     public List<float> Coefficient;

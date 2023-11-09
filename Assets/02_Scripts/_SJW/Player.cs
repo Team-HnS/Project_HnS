@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
     {
         Max_Hp = 1000;
         Max_Mp = 1000;
-        cur_hp = 50;
+        cur_hp = Max_Hp;
         cur_mp = Max_Mp;
 
         Atk = 10;
@@ -196,18 +196,24 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Damaged(20);
+            Damaged(150);
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/검기 발사");
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/02_검기 발사");
+            Resent_Skill.SkillEvent.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/03_소드 레인");
             Resent_Skill.SkillEvent.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/빠른 참격");
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/01_빠른 참격");
             Resent_Skill.SkillEvent.Invoke();
 
 
