@@ -11,7 +11,13 @@ public class Monster : MonoBehaviour
     private EnemyFSM fsm;
     public Coin coinData;
 
-    public int hp;
+    private int hp;
+
+    public int Hp
+    { 
+      get { return hp; } 
+      set { hp = value; } 
+    }
 
     private float dropRadius = 2f;
     private bool isDropped = false;
@@ -24,7 +30,7 @@ public class Monster : MonoBehaviour
     private void Start()
     {
         fsm = GetComponent<EnemyFSM>();
-        hp = data.hp;
+        Hp = data.hp;
     }
 
     private void Update()
@@ -33,6 +39,12 @@ public class Monster : MonoBehaviour
         {
             Die();
         }
+    }
+
+    public void Damaged(int Damage) // 데미지 받는 함수
+    {
+        Hp -= Damage;
+        UiCreateManager.Instance.CreateDamageFont(Damage,gameObject);
     }
 
     private void Die()

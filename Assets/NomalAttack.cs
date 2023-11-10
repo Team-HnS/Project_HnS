@@ -34,9 +34,10 @@ public class NomalAttack : StateMachineBehaviour
             check = true;
             GameObject player = animator.gameObject;
             GameObject target = player.GetComponentInParent<Player>().target;
-            target.GetComponent<Monster>().hp -= player.GetComponentInParent<Player>().Atk;
 
-            Debug.Log(target.GetComponent<Monster>().hp);
+            target.GetComponent<Monster>().Damaged(player.GetComponentInParent<Player>().Atk);
+
+            Debug.Log(target.GetComponent<Monster>().Hp);
         }
 
     }

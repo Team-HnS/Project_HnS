@@ -51,7 +51,7 @@ public class EnemyFSM : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         // 여기가 지옥?
-        if (monster.hp <= 0 && EnemyCollider.enabled == true)
+        if (monster.Hp <= 0 && EnemyCollider.enabled == true)
         {
             ChangeState(state.Die);
             isDead = true;
