@@ -128,7 +128,7 @@ Transform:
   - {fileID: 1282659420063623977}
   - {fileID: 4160564511005706811}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9020013371683213473
 MonoBehaviour:
@@ -147,7 +147,7 @@ MonoBehaviour:
   canMove: 0
   checkLand:
     serializedVersion: 2
-    m_Bits: 7295
+    m_Bits: 1152
   saveMovePos: {x: 0, y: 0, z: 0}
   isSavePos: 0
   playerCharacter: {fileID: 4160564511005706811}
