@@ -161,15 +161,34 @@ public class SkillSet_Library : MonoBehaviour
             Skill_LibraryData data = new Skill_LibraryData(s_data);
             Skill_CoolDowns.Add(s_data.SkillName, data);
         }
-
         Skill_LibraryData c_data = Skill_CoolDowns[s_data.SkillName];
 
-        if (!c_data.CanSkill) //스킬쿨 체크
+        GameObject target=null;
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, instance.player_m.checkLand))
+            {
+                if (hit.transform.gameObject.layer == 10) //맞은게 몬스터일 경우
+                {
+                    target = hit.transform.gameObject; //타겟에 저장
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+        }
+
+        if (!c_data.CanSkill || target == null) //스킬쿨,타겟쿨 체크
         {
             return; // 스킬 사용불가능하면 리턴
         }
+
         if (!SkillCostCheck(s_data.ManaRequirement[s_data.SkillLV]))
             return; //마나 딸리면 취소
+
 
         Player _plyaer = instance.player.GetComponent<Player>();
         instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
@@ -179,7 +198,7 @@ public class SkillSet_Library : MonoBehaviour
         SkillCollider skillCollider = effect.GetComponentInChildren<SkillCollider>();
 
 
-        GameObject target =  Targetting(skillCollider as TargetSkillCollider);//타겟팅하고!!
+        Targetting(skillCollider as TargetSkillCollider, target);//타겟팅하고!!
         Rush(target,5f,1f);//플레이어 발싸!!!!
 
         skillCollider.StartCoroutine(skillCollider.ColliderOn(0.5F));
@@ -219,22 +238,9 @@ public class SkillSet_Library : MonoBehaviour
         }
     }
 
-    GameObject Targetting(TargetSkillCollider tcol) 
+    void Targetting(TargetSkillCollider tcol, GameObject target) 
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, instance.player_m.checkLand))
-            {
-                if (hit.transform.gameObject.layer == 10) //맞은게 몬스터일 경우
-                {
-                   tcol.target = hit.transform.gameObject; //타겟에 저장
-                    return tcol.target;
-                }
-
-            }
-        }
-        return null;
+                   tcol.target = target; //타겟에 저장
     }
 
     void Rush(GameObject target, float dashspeed, float maintain)

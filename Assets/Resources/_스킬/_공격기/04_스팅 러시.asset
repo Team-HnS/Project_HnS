@@ -15,24 +15,39 @@ MonoBehaviour:
   skilltype: 2
   activetype: 1
   SkillName: "\uC2A4\uD305 \uB7EC\uC2DC"
-  SkillCode: 0
-  SkillLV: 0
-  SkillCoolDown: 0
-  Effect_maintenance_time: 0
-  ChangeRot: 0
-  isrange: 0
-  skill_range: 0
+  SkillCode: 4
+  SkillLV: 1
+  SkillCoolDown: 5
+  Effect_maintenance_time: 2
+  ChangeRot: 1
+  isrange: 1
+  skill_range: 7
   Tick_time: 0
-  hitcount: 
-  ManaRequirement: 
-  Coefficient: []
-  Add_Coefficient: []
+  hitcount: 00000000
+  ManaRequirement: 0000000032000000
+  Coefficient:
+  - 500
+  Add_Coefficient:
+  - 0
   SkillSound: {fileID: 0}
-  SkillMotion: {fileID: 0}
-  Skill_Explanation: 
+  SkillMotion: {fileID: 7400002, guid: 2919f332611de26428ad233e0ad47f7a, type: 3}
+  Skill_Explanation: "\uD798\uC744 \uC9D1\uC911\uD55C \uB4A4\uC5D0 \uD0C0\uAC9F\uD305
+    \uD55C \uC801\uC5D0\uAC8C \uAC15\uB825\uD55C \uB3CC\uC9C4\uACF5\uACA9\uC744 \uD55C\uB2E4"
   SkillEvent:
     m_PersistentCalls:
-      m_Calls: []
-  Before_Delay: 0
-  After_Delay: 0
-  Effect: {fileID: 0}
+      m_Calls:
+      - m_Target: {fileID: 482115212371376980, guid: 48593e0410db7e946a10d959709a398d, type: 3}
+        m_TargetAssemblyTypeName: SkillSet_Library, Assembly-CSharp
+        m_MethodName: TargetRushSkill
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000}
+          m_ObjectArgumentAssemblyTypeName: SkillData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Before_Delay: 0.5
+  After_Delay: 1
+  Effect: {fileID: 7452955254102613439, guid: 0e73cbcb1f1b96b4cb0dee10e5394f11, type: 3}
