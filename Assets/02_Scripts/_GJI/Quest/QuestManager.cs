@@ -4,64 +4,63 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    public int questId; // ÇöÀç ÁøÇà ÁßÀÎ Äù½ºÆ®ÀÇ ID
-    Dictionary<int, QuestData> questList; // Äù½ºÆ® µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â Dictionary
-    public int questActionIndex; //Äù½ºÆ® npc´ëÈ­ ¼ø¼­
+    public int questId; // í˜„ì¬ ì§„í–‰ ì¤‘ì¸ í€˜ìŠ¤íŠ¸ì˜ ID
+    Dictionary<int, QuestData> questList; // í€˜ìŠ¤íŠ¸ ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” Dictionary
+    public int questActionIndex; // í€˜ìŠ¤íŠ¸ NPCì™€ì˜ ìƒí˜¸ì‘ìš© ì¸ë±ìŠ¤
     public GameObject[] questObject;
 
     void Awake()
     {
-        questList = new Dictionary<int, QuestData>(); // Äù½ºÆ® µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ Dictionary ÃÊ±âÈ­
-        GenerateData(); // Äù½ºÆ® µ¥ÀÌÅÍ¸¦ »ı¼ºÇÏ´Â ¸Ş¼­µå È£Ãâ
+        questList = new Dictionary<int, QuestData>(); // í€˜ìŠ¤íŠ¸ ë°ì´í„°ë¥¼ ì €ì¥í•  Dictionary ì´ˆê¸°í™”
+        GenerateData(); // í€˜ìŠ¤íŠ¸ ë°ì´í„°ë¥¼ ìƒì„±í•˜ëŠ” í•¨ìˆ˜ í˜¸ì¶œ
     }
 
     void GenerateData()
     {
-        // Äù½ºÆ® µ¥ÀÌÅÍ¸¦ »ı¼ºÇÏ°í Dictionary¿¡ Ãß°¡
-        // »ı¼ºÀÚ¸¦ »ç¿ëÇÏ¿© QuestData °´Ã¼¸¦ ¸¸µé°í ID 10¿¡ Ãß°¡ÇÕ´Ï´Ù.
-        questList.Add(10, new QuestData("000À» ±¸ÇØ¿Í¶ó", new int[] { 1003, 1001/*Äù½ºÆ® ÁøÇà¼ø¼­ º°·Î »óÈ£ÀÛ¿ëÇØ¾ßÇÏ´Â npc ¼ø¼­*/ }));
-        //À§ÀÇ ±â´ÉÀº ÇÊ¿ä½Ã È°¼ºÈ­
+        // í€˜ìŠ¤íŠ¸ ë°ì´í„°ë¥¼ ìƒì„±í•˜ê³  Dictionaryì— ì¶”ê°€
+        questList.Add(10, new QuestData("000", new int[] { 1003, 1001/*í€˜ìŠ¤íŠ¸ ì§„í–‰ ì¤‘ì¸ NPCì˜ ID*/ }));
+        //í€˜ìŠ¤íŠ¸ ì§„í–‰ ì¤‘ì— í‘œì‹œë  UIë¥¼ ì¶”ê°€
 
-        //Äù½ºÆ®´Â 10´ÜÀ§ ÀÌ¹Ç·Î ´ÙÀ½ Äù½ºÆ®´Â 20¹øÀ¸·Î ¼³Á¤
-        questList.Add(20, new QuestData("00 Ã£±â", new int[] { 1002, /*Ã£¾Æ¿Í¾ßÇÏ´Â ¿ÀºêÁ§Æ® id»ğÀÔ*/ }));
+        //í€˜ìŠ¤íŠ¸ê°€ 10ë²ˆì¼ ê²½ìš° 20ë²ˆ í€˜ìŠ¤íŠ¸ë„ ì¶”ê°€
+        questList.Add(20, new QuestData("000", new int[] { 1002, /*ìˆ™ì œë¥¼ ì£¼ëŠ” NPCì˜ id*/ }));
     }
 
-    public int GetQuestTalkIndex(int id) // Npc Id¸¦ ¹Ş¾Æ Äù½ºÆ® ¹øÈ£¸¦ ¹İÈ¯ÇÏ´Â ÇÔ¼ö 
+    public int GetQuestTalkIndex(int id) // NPC IDë¥¼ ë°›ì•„ í•´ë‹¹ í€˜ìŠ¤íŠ¸ì˜ ëŒ€í™” ì¸ë±ìŠ¤ë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
     {
         return questId;
     }
-    //Äù½ºÆ®¿ë ´ëÈ­¿¡´Â obj id + quest id + questIndex¸¦ ¹øÈ£·Î ÀúÀå
+    //í€˜ìŠ¤íŠ¸ ì§„í–‰ ì¤‘ì— ëŒ€í™”ê°€ ëë‚  ë•Œ obj id + quest id + questIndexë¥¼ ì €ì¥
 
-    public string CheckQuest() //¿À¹ö·Îµù 
+    public string CheckQuest() //í€˜ìŠ¤íŠ¸ ì§„í–‰ ìƒíƒœë¥¼ ì²´í¬í•˜ëŠ” í•¨ìˆ˜
     {
-        //return Quest Name
+        //í˜„ì¬ ì§„í–‰ ì¤‘ì¸ í€˜ìŠ¤íŠ¸ì˜ ì´ë¦„ ë°˜í™˜
         return questList[questId].questName;
     }
 
     public string CheckQuest(int id)
     {
-        //ÇØ´ç Äù½ºÆ®°¡ Á¾·á ÀüÀÏ ¶§
+        //í•´ë‹¹ í€˜ìŠ¤íŠ¸ì˜ ì§„í–‰ ìƒíƒœë¥¼ ì²´í¬
         if (id == questList[questId].NpdId[questActionIndex])
-            // questList¿¡¼­ questId¿¡ ÇØ´çÇÏ´Â Äù½ºÆ®¿¡¼­ , 
-            //ÀÌ Äù½ºÆ®¿¡ Âü¿©ÇÏ´Â npcÀÇ ¼ø¼­¹øÈ£(questActionIndex)¿Í ÀÔ·Â¹ŞÀº npc id°¡ °°Àº °æ¿ì -> Äù½ºÆ® Á¾·á Àü
+            // questListì—ì„œ questIdì— í•´ë‹¹í•˜ëŠ” í€˜ìŠ¤íŠ¸ì—ì„œ , 
+            //í˜„ì¬ ì§„í–‰ ì¤‘ì¸ í€˜ìŠ¤íŠ¸ì˜ NPCì™€ì˜ ìƒí˜¸ì‘ìš© ì¸ë±ìŠ¤(questActionIndex)ì— í•´ë‹¹í•˜ëŠ” npc idê°€ ì…ë ¥ëœ npc idì™€ ê°™ë‹¤ë©´ -> í€˜ìŠ¤íŠ¸ ì§„í–‰
             questActionIndex++;
 
-        //Control Quest Object
+        //Quest Object ì œì–´
         ControlObject();
 
-        //Äù½ºÆ®°¡ Á¾·áµÇ¾úÀ» ¶§
+        //í€˜ìŠ¤íŠ¸ê°€ ì™„ë£Œë˜ì—ˆë‹¤ë©´
         if (questActionIndex == questList[questId].NpdId.Length)
-            //Äù½ºÆ® ¸®½ºÆ®¿¡ ÀÖ´Â NpcId(Äù½ºÆ®¿¡ Âü¿©ÇÏ´Â npc) ¼ö¿Í °°À» ¶§ -> Äù½ºÆ® Á¾·á
+            //í€˜ìŠ¤íŠ¸ì˜ NPC ID(í˜„ì¬ ì§„í–‰ ì¤‘ì¸ í€˜ìŠ¤íŠ¸ì— ë“±ì¥í•˜ëŠ” NPC) ê°œìˆ˜ë§Œí¼ì˜ ìƒí˜¸ì‘ìš©ì´ ì™„ë£Œë˜ë©´ -> í€˜ìŠ¤íŠ¸ ì™„ë£Œ
             NextQuest();
 
-        //return Quest Name
+        //í˜„ì¬ ì§„í–‰ ì¤‘ì¸ í€˜ìŠ¤íŠ¸ì˜ ì´ë¦„ ë°˜í™˜
         return questList[questId].questName;
     }
-    void NextQuest()// ´ÙÀ½ Äù½ºÆ®·Î ³Ñ¾î°¡Áö°Ô ÇÏ´Â ÇÔ¼ö
+
+    void NextQuest()// ë‹¤ìŒ í€˜ìŠ¤íŠ¸ë¡œ ë„˜ì–´ê°€ëŠ” í•¨ìˆ˜
     {
         questId += 10;
         questActionIndex = 0;
-
     }
 
     void ControlObject()
@@ -69,12 +68,12 @@ public class QuestManager : MonoBehaviour
         switch (questId)
         {
             case 10:
-                if (questActionIndex == 2) //10¹ø Äù½ºÆ®¸¦ ³¡¸¶Ä¡¸é ¿ÀºêÁ§Æ® µîÀå
+                if (questActionIndex == 2) //10ë²ˆ í€˜ìŠ¤íŠ¸ì—ì„œ 3ë²ˆì§¸ ìƒí˜¸ì‘ìš©ì´ ì¼ì–´ë‚  ë•Œ -> í€˜ìŠ¤íŠ¸ ì§„í–‰ ì¤‘ì— ë‚˜íƒ€ë‚˜ëŠ” UIë¥¼ í™œì„±í™”
                     questObject[0].SetActive(true);
                 break;
 
             case 20:
-                if (questActionIndex == 1)//20¹ø Äù½ºÆ®¿¡¼­ 1¹øÂ° ¼ø¼­°¡ ³¡³ª°í -> Äù½ºÆ® ÇØ°á¿¡ ÇÊ¿äÇÑ ¿ÀºêÁ§Æ® ½Àµæ½Ã »ç¶óÁü 
+                if (questActionIndex == 1)//20ë²ˆ í€˜ìŠ¤íŠ¸ì—ì„œ 2ë²ˆì§¸ ìƒí˜¸ì‘ìš©ì´ ì¼ì–´ë‚  ë•Œ -> í€˜ìŠ¤íŠ¸ ì§„í–‰ ì¤‘ì— ë‚˜íƒ€ë‚˜ëŠ” UIë¥¼ ë¹„í™œì„±í™”
                     questObject[0].SetActive(false);
                 break;
         }

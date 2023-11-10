@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class QuestData : MonoBehaviour
 {
-    public string questName; // Äù½ºÆ®ÀÇ ÀÌ¸§À» ÀúÀåÇÏ´Â º¯¼ö
-    public int[] NpdId; // Äù½ºÆ®¿Í °ü·ÃµÈ NPC ID¸¦ ÀúÀåÇÏ´Â ¹è¿­
+    public string questName; // í€˜ìŠ¤íŠ¸ì˜ ì´ë¦„ì„ ì €ì¥í•˜ëŠ” ë³€ìˆ˜
+    public int[] NpdId; // í€˜ìŠ¤íŠ¸ì—ì„œ í•„ìš”í•œ NPCì˜ IDë¥¼ ì €ì¥í•˜ëŠ” ë°°ì—´
 
     public QuestData()
     {
-        // ±âº» »ı¼ºÀÚ
-        // ¾Æ¹« µ¿ÀÛµµ ¼öÇàÇÏÁö ¾ÊÀ½
+        // ê¸°ë³¸ ìƒì„±ì
+        // ì•„ë¬´ ë™ì‘ë„ ìˆ˜í–‰í•˜ì§€ ì•ŠìŒ
     }
 
     public QuestData(string name, int[] npcid)
     {
-        // ¸Å°³º¯¼ö¸¦ ¹Ş´Â »ı¼ºÀÚ
-        questName = name; // ¸Å°³º¯¼ö·Î ¹ŞÀº ÀÌ¸§À» questName¿¡ ¼³Á¤
-        NpdId = npcid; // ¸Å°³º¯¼ö·Î ¹ŞÀº NPC ID ¹è¿­À» NpdId¿¡ ¼³Á¤
+        // ë§¤ê°œë³€ìˆ˜ë¥¼ ì‚¬ìš©í•˜ëŠ” ìƒì„±ì
+        questName = name; // ì£¼ì–´ì§„ ì´ë¦„ì„ questName ë³€ìˆ˜ì— ì €ì¥
+        NpdId = npcid; // ì£¼ì–´ì§„ NPC ID ë°°ì—´ì„ NpdId ë³€ìˆ˜ì— ì €ì¥
     }
 }
