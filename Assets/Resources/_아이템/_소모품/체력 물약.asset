@@ -15,7 +15,8 @@ MonoBehaviour:
   ItemName: "\uCCB4\uB825 \uBB3C\uC57D"
   Price: 50
   Item_Icon: {fileID: 21300000, guid: a339d0daeb0e57547aba2c6a2d4b53aa, type: 3}
-  item_rank: 0
+  quantity: 1
+  item_rank: 1
   item_Color:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}

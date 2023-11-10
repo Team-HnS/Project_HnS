@@ -20,7 +20,9 @@ MonoBehaviour:
   level: 10
   exp: 100
   itemProbabilities:
-  - item: {fileID: -2628672940741287664, guid: f4f6a821dc2b57d46a2c68a7a064ba5e, type: 3}
-    probability: 0.5
+  - item: {fileID: 7769046287762298776, guid: df2d65ed8167ee04da1c3a1dd73d382c, type: 3}
+    probability: 0.7
+  - item: {fileID: 7769046287762298776, guid: df2d65ed8167ee04da1c3a1dd73d382c, type: 3}
+    probability: 0.7
   - item: {fileID: 2928396549280381422, guid: e606568d8a4d6834fbb72d98948aa8ed, type: 3}
-    probability: 0.2
+    probability: 0.5

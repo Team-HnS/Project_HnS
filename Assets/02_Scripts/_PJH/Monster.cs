@@ -1,27 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Monster : MonoBehaviour
 {
     public MonsterData data;
+    private EnemyFSM fsm;
+    public Coin coinData;
+
     public int hp;
 
-    // 추후 data를 통해 받아오도록 구현
-    public GameObject itemPrefab; // 드랍할 아이템 프리팹
-    public float dropProbability = 0.5f; // 아이템 드랍 확률
-
-    private float dropRadius = 1.0f;
-    private EnemyFSM fsm;
+    private float dropRadius = 2f;
     private bool isDropped = false;
+
+    private GameObject droppedCoin;
+    private TMP_Text nameTag;
+
+    private float fixedY;
 
     private void Start()
     {
-        hp = data.hp;
         fsm = GetComponent<EnemyFSM>();
+        hp = data.hp;
     }
-    
+
     private void Update()
     {
         if (fsm.isDead && isDropped == false)
@@ -29,23 +34,54 @@ public class Monster : MonoBehaviour
             Die();
         }
     }
-    
+
     private void Die()
     {
-        // 아이템 드랍 확률 검사
-        if (Random.value < dropProbability)
-        {
-            // 아이템 드랍 위치 설정
-            Vector3 dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
-            dropPosition.y = 0;
+        fixedY = transform.position.y;
+        // 아이템 드랍 위치
+        Vector3 dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
+        dropPosition.y = fixedY;
 
-            // 아이템 드랍
-            if (itemPrefab != null)
+        // 드랍 아이템들에 대해
+        foreach (ItemProbability itemProbability in data.itemProbabilities)
+        {
+            // 확률에 맞게 아이템 드랍
+            if (Random.value < itemProbability.probability)
             {
-                Instantiate(itemPrefab, dropPosition, Quaternion.identity);
-                isDropped = true;
+                if (!Physics.CheckSphere(transform.position, dropRadius, 12))
+                {
+                    dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
+                    dropPosition.y = fixedY;
+                }
+                Instantiate(itemProbability.item, dropPosition, Quaternion.identity);
             }
         }
+
+        // 골드 드랍
+        coinData.coin = data.level * Random.Range(1, 11) + Random.Range(1, 11);
+
+        if (coinData.coin >= 1 && coinData.coin <= 99)
+        {
+            droppedCoin = Instantiate(coinData.copperCoins, dropPosition, Quaternion.identity);
+        }
+        else if (coinData.coin >= 100 && coinData.coin <= 999)
+        {
+            droppedCoin = Instantiate(coinData.silverCoins, dropPosition, Quaternion.identity);
+        }
+        else if (coinData.coin >= 1000)
+        {
+            droppedCoin = Instantiate(coinData.goldCoins, dropPosition, Quaternion.identity);
+        }
+        nameTag = droppedCoin.GetComponentInChildren<TMP_Text>();
+        if (nameTag != null)
+        {
+            nameTag.text = "코인 " + coinData.coin;
+            Debug.Log(nameTag.text);
+            Debug.Log(coinData.coin);
+        }
+
+        // 템 떨구기 완료
+        isDropped = true;
 
         // 몬스터 사망 처리
         Destroy(gameObject, 3);
