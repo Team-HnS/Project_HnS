@@ -4,7 +4,9 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class SkillSet_Library : MonoBehaviour
 {
@@ -149,6 +151,57 @@ public class SkillSet_Library : MonoBehaviour
         _plyaer.animator.CrossFade("Skill_1", 0.05f);
     }
 
+    public void TargetRushSkill(SkillData s_data) //타겟팅후 돌진하는 스킬
+    {
+
+        //instance.player_m.canMove = false;
+        Debug.Log(name);
+        if (!Skill_CoolDowns.ContainsKey(s_data.SkillName)) // 스킬이 라이브러리에 없으면 추가
+        {
+            Skill_LibraryData data = new Skill_LibraryData(s_data);
+            Skill_CoolDowns.Add(s_data.SkillName, data);
+        }
+
+        Skill_LibraryData c_data = Skill_CoolDowns[s_data.SkillName];
+
+        if (!c_data.CanSkill) //스킬쿨 체크
+        {
+            return; // 스킬 사용불가능하면 리턴
+        }
+        if (!SkillCostCheck(s_data.ManaRequirement[s_data.SkillLV]))
+            return; //마나 딸리면 취소
+
+        Player _plyaer = instance.player.GetComponent<Player>();
+        instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
+        SkillRot(s_data);//플레이어 회전
+
+        GameObject effect = Instantiate(s_data.Effect, instance.player.transform.position, instance.player_m.playerCharacter.rotation, instance.player.transform);//자신에 이펙트 생성
+        SkillCollider skillCollider = effect.GetComponentInChildren<SkillCollider>();
+
+
+        GameObject target =  Targetting(skillCollider as TargetSkillCollider);//타겟팅하고!!
+        Rush(target,5f,1f);//플레이어 발싸!!!!
+
+        skillCollider.StartCoroutine(skillCollider.ColliderOn(0.5F));
+
+        print("계수 = " + s_data.Coefficient[0]);
+        print("예상 데미지 = " + SkillDamageSet(instance.player_s.Atk, s_data.Coefficient[0]));
+        skillCollider.damage = SkillDamageSet(instance.player_s.Atk, s_data.Coefficient[0]);
+        instance.player_s.PlayerMoveCasting(s_data.After_Delay);
+
+        Destroy(effect, s_data.Effect_maintenance_time);
+
+
+        _plyaer.overrideController = new AnimatorOverrideController(_plyaer.animator.runtimeAnimatorController);
+        _plyaer.overrideController["_"] = _plyaer.Resent_Skill.SkillMotion;
+        _plyaer.animator.SetFloat("SkillSpeed", 2f);
+        _plyaer.animator.runtimeAnimatorController = _plyaer.overrideController;
+
+
+        _plyaer.animator.CrossFade("Skill_1", 0.05f);
+    }
+
+
     void SkillRot(SkillData s_data) //스킬쓸때 스마캐마냥 자동회전
     {
 
@@ -165,6 +218,33 @@ public class SkillSet_Library : MonoBehaviour
             }
         }
     }
+
+    GameObject Targetting(TargetSkillCollider tcol) 
+    {
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, instance.player_m.checkLand))
+            {
+                if (hit.transform.gameObject.layer == 10) //맞은게 몬스터일 경우
+                {
+                   tcol.target = hit.transform.gameObject; //타겟에 저장
+                    return tcol.target;
+                }
+
+            }
+        }
+        return null;
+    }
+
+    void Rush(GameObject target, float dashspeed, float maintain)
+    {
+        instance.player_m.agent.SetDestination(target.transform.position);
+        instance.player_m.isMove = true;
+        instance.player_s.SkillDash(dashspeed, maintain);//플레이어 발싸!
+
+    }
+
 
     void SkillDispose(SkillData s_data)
     {
