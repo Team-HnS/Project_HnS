@@ -26,4 +26,17 @@ public class SkillCollider : MonoBehaviour
             Debug.Log(other.name + "스킬히트! " + damage + "의 데미지!");
         }
     }
+
+
+    public IEnumerator ColliderOn(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (!range.enabled)
+        {
+            range.enabled = true;
+        }
+
+    }
+
 }

@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Quest 
+public class Quest
 {
-    public bool isSucess; // ¼º°ø¿©ºÎ
-    public bool Progress; // ÁøÇàÁß ¿©ºÎ
-    public int questid; // Äù½ºÆ®id
+    public bool isSucess; // í€˜ìŠ¤íŠ¸ ì„±ê³µ ì—¬ë¶€
+    public bool Progress; // í€˜ìŠ¤íŠ¸ ì§„í–‰ ì¤‘ ì—¬ë¶€
+    public int questid; // í€˜ìŠ¤íŠ¸ ID
 
-    public string goal; //Äù½ºÆ® ³»¿ë
-    public string title; //Äù½ºÆ® Á¦¸ñ
-    public string description; //Äù½ºÆ® ¼³¸í
-    //public List<Item> Rewarditems; //º¸»ó ¾ÆÀÌÅÛ
-    //public UnitCode UnitCode; //¹«½¼ ¸ó½ºÅÍ¸¦ Àâ¾Æ¾ßÇÏ´ÂÁö ¼³Á¤
-    //public QuestGoal QuestGoal // Äù½ºÆ® Å¸ÀÔ, Àâ¾Æ¾ßÇÏ´Â ¸ó½ºÅÍ¼ö, ÇöÀç ÀâÀº ¸ó½ºÅÍ ¼ö, Å¬¸®¾î npc id
+    public string goal; // í€˜ìŠ¤íŠ¸ ëª©í‘œ
+    public string title; // í€˜ìŠ¤íŠ¸ ì œëª©
+    public string description; // í€˜ìŠ¤íŠ¸ ì„¤ëª…
+    //public List<Item> Rewarditems; // ë³´ìƒ ì•„ì´í…œ ëª©ë¡
+    //public UnitCode UnitCode; // ìœ ë‹› ì½”ë“œ: íŠ¹ì • ìœ ë‹›ê³¼ ì—°ê²°í•˜ì—¬ í€˜ìŠ¤íŠ¸ ì§„í–‰í•  ë•Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŒ
+    //public QuestGoal QuestGoal // í€˜ìŠ¤íŠ¸ ëª©í‘œ: ì–´ë–¤ ì¢…ë¥˜ì˜ ëª©í‘œë¥¼ ë‹¬ì„±í•´ì•¼ í•˜ëŠ”ì§€ ë‚˜íƒ€ëƒ„, NPC ID ë“±ì„ ì‚¬ìš©í•  ìˆ˜ ìˆìŒ
 }
-   

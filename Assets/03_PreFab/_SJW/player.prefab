@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 8168475274547939822}
   - component: {fileID: 3829389936502293477}
   - component: {fileID: 129972186345995447}
+  - component: {fileID: 6558667925410070495}
   m_Layer: 0
   m_Name: player
   m_TagString: Player
@@ -128,7 +129,7 @@ Transform:
   - {fileID: 1282659420063623977}
   - {fileID: 4160564511005706811}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9020013371683213473
 MonoBehaviour:
@@ -147,7 +148,7 @@ MonoBehaviour:
   canMove: 0
   checkLand:
     serializedVersion: 2
-    m_Bits: 7295
+    m_Bits: 1152
   saveMovePos: {x: 0, y: 0, z: 0}
   isSavePos: 0
   playerCharacter: {fileID: 4160564511005706811}
@@ -259,6 +260,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!114 &6558667925410070495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2263797028891814692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb7c9ee53c38b479b399de4288a7be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemManager: {fileID: 0}
+  items: []
 --- !u!1001 &4157643985376542851
 PrefabInstance:
   m_ObjectHideFlags: 0
