@@ -204,6 +204,12 @@ public class Player : MonoBehaviour
             Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/02_검기 발사");
             Resent_Skill.SkillEvent.Invoke();
         }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            playermove.agent.ResetPath();
+            animator.Play("Root test");
+        }
+
 
         if (Input.GetKeyDown(KeyCode.S))
         {
