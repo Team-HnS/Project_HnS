@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "ItemData", menuName = "Scriptable Object/아이템/코인")]
+
 public class Coin : ItemData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject goldCoins;
+    public GameObject silverCoins;
+    public GameObject copperCoins;
+    [HideInInspector] public int coin;
 }

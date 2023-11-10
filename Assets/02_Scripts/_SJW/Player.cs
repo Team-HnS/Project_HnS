@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public Animator animator;
     private SkinnedMeshAfterImage Afterglow;
+    public Gradient[] Afterglowgradiant;
+
     private Collider col;
 
 
@@ -167,7 +169,7 @@ public class Player : MonoBehaviour
         }
         
     
-            playermove.LookMoveDirection();
+        playermove.LookMoveDirection();
 
         if (Input.GetMouseButton(0))
         {
@@ -190,7 +192,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.W) && state != Player.PlayerState.Dash)
         {
-            PlayerDash();
+            PlayerDash(3f,0.25f);
         }
 
 
@@ -206,8 +208,8 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            playermove.agent.ResetPath();
-            animator.Play("Root test");
+            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/04_스팅 러시");
+            Resent_Skill.SkillEvent.Invoke();
         }
 
 
@@ -325,9 +327,30 @@ public class Player : MonoBehaviour
 
     }
 
+    public void PlayerMoveCasting(float casttime)
+    {
+        playermove.canMove = false;
+        //playermove.isMove = true;
+        if (state != PlayerState.Casting)
+        {
+            state = PlayerState.Casting;
+
+            Invoke("MoveCastend", casttime);
+        }
+    }
+
+    public void MoveCastend()
+    {
+        playermove.canMove = true;
+        playermove.isMove = false;
+        //PlayerIdle();
+        playermove.CanMove();
+    }
+
     public void Castend()
     {
         playermove.canMove = true;
+        playermove.isMove =false;
         //PlayerIdle();
         playermove.CanMove();
     }
@@ -353,7 +376,40 @@ public class Player : MonoBehaviour
             //if (Vector3.Distance(playermove.playerCharacter.transform.position,target.transform.position) <= Attack_Range) //적이 평타 사거리 안일경우
             RaycastHit hit;
             Vector3 pos = target.transform.position - playermove.playerCharacter.position;
-            if (!Physics.Raycast(playermove.playerCharacter.position, pos, out hit, Attack_Range ) && pos.magnitude <= Attack_Range) //적이 평타 사거리 안일경우
+            int monsterLayer = 1 << 10;
+            print("조건 1 : 사거리에 레이걸림?" + Physics.Raycast(playermove.playerCharacter.position, pos, out hit, Attack_Range));
+            print("적 거리가 공격사거리야?" + (pos.magnitude <= Attack_Range));
+            //문제 => 레이캐스트에 몬스터가 걸려버림
+
+            if(pos.magnitude <= Attack_Range)
+            {
+                if(!Physics.Raycast(playermove.playerCharacter.position, pos, out hit, Attack_Range, ~monsterLayer))
+                    {
+                    Debug.Log("내 거리 : " + playermove.playerCharacter.position);
+                    Debug.Log("목표거리 : " + playermove.agent.destination);
+                    Debug.Log("사거리 : " + Attack_Range);
+                    Debug.Log("바로때릴게요");
+                }
+                else
+                {
+                    Debug.Log("장애물  : " + hit.transform.gameObject.name);
+                    Debug.Log("남은거리 : " + playermove.agent.remainingDistance);
+                    Debug.Log("사거리 : " + Attack_Range);
+                    Debug.Log("추적합니다");
+                    animator.SetTrigger("DoRun");
+                }
+            }
+            else
+            {
+                Debug.Log("남은거리 : " + playermove.agent.remainingDistance);
+                Debug.Log("사거리 : " + Attack_Range);
+                Debug.Log("추적합니다");
+                animator.SetTrigger("DoRun");
+            }
+
+
+         /*   //문제 => 레이캐스트에 몬스터가 걸려버림
+            if (!Physics.Raycast(playermove.playerCharacter.position, pos, out hit, Attack_Range, ~monsterLayer) && pos.magnitude >= Attack_Range) //적이 평타 사거리 안, 아무것도 없는 경우
             {
                 Debug.Log("내 거리 : " + playermove.playerCharacter.position);
                 Debug.Log("목표거리 : " + playermove.agent.destination);
@@ -363,12 +419,12 @@ public class Player : MonoBehaviour
             }
             else //밖일경우
             {
+                Debug.Log("장애물  : " + hit.transform.gameObject.name);
                 Debug.Log("남은거리 : " + playermove.agent.remainingDistance);
                 Debug.Log("사거리 : " + Attack_Range);
                 Debug.Log("추적합니다");
                 animator.SetTrigger("DoRun");
-            }
-
+            }*/
 
         }
     }
@@ -414,19 +470,40 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void PlayerDash()
+    public void PlayerDash(float speed , float Holdingtime)
     {
         if (state != PlayerState.Dash && canDash)
         {
             canDash = false;
             print("대쉬 시작");
+            Afterglow._afterImageGradient = Afterglowgradiant[0];
             Afterglow.enabled = true;
             state = PlayerState.Dash;
             animator.SetTrigger("DoDash");
-            playermove.agent.speed = Move_Speed * 3;
-                Invoke("DashEnd",0.25f);
+            playermove.agent.speed = Move_Speed * speed;
+                Invoke("DashEnd", Holdingtime);
         }
     }
+
+    public void SkillDash(float speed, float Holdingtime)
+    { 
+            canDash = false;
+            Afterglow._afterImageGradient = Afterglowgradiant[1];
+            Afterglow.enabled = true;
+ 
+            playermove.agent.speed = Move_Speed * speed;
+            Invoke("SkillDashEnd", Holdingtime);
+    }
+    public void SkillDashEnd()
+    {
+        canDash = true;
+        playermove.playerCharacter.localPosition = Vector3.zero;
+        Afterglow.enabled = false;
+        playermove.agent.speed = Move_Speed;
+        //PlayerIdle();
+    }
+
+
     public void DashEnd()
     {
         canDash = true;

@@ -10482,6 +10482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: {fileID: 0}
+  damage: 0
 --- !u!1 &8260282389433338687
 GameObject:
   m_ObjectHideFlags: 0

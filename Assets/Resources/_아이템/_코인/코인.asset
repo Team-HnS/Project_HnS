@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 417d794fe9739cf4a8f11a9182f0c8ae, type: 3}
+  m_Name: "\uCF54\uC778"
+  m_EditorClassIdentifier: 
+  ItemName: 
+  quantity: 0
+  Price: 0
+  Item_Icon: {fileID: 0}
+  item_rank: 0
+  item_Color: []
+  explanation: "\uBE44\uD2B8\uCF54\uC778\uC774\uAE38 \uBC14\uB790\uACA0\uC9C0\uB9CC
+    \uC544\uC27D\uAC8C\uB3C4 \uADF8\uB0E5 \uCF54\uC778\uC774\uB2E4."
+  goldCoins: {fileID: 1950871307682000, guid: 9929315ccccf021478b31142790f944a, type: 3}
+  silverCoins: {fileID: 1936242755795896, guid: 24a846f13682e24479aeae91c15c04a7, type: 3}
+  copperCoins: {fileID: 5544682685680111912, guid: 539ba41d43285c042860c1825b93203a, type: 3}
+  coin: 0
