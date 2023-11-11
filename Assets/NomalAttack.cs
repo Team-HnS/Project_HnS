@@ -51,7 +51,11 @@ public class NomalAttack : StateMachineBehaviour
         Debug.Log("공격모션 종료");
 
         // mainob.transform.LookAt(player.target.transform);
-        pm.CanMove();
+        if(player.state != Player.PlayerState.Casting)
+        {
+            pm.CanMove();
+
+        }
 
         //animator.gameObject
     }

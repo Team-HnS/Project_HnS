@@ -201,7 +201,7 @@ public class SkillSet_Library : MonoBehaviour
         Targetting(skillCollider as TargetSkillCollider, target);//타겟팅하고!!
         Rush(target,5f,1f);//플레이어 발싸!!!!
 
-        skillCollider.StartCoroutine(skillCollider.ColliderOn(0.5F));
+        skillCollider.StartCoroutine(skillCollider.ColliderOn(0.35F));
 
         print("계수 = " + s_data.Coefficient[0]);
         print("예상 데미지 = " + SkillDamageSet(instance.player_s.Atk, s_data.Coefficient[0]));

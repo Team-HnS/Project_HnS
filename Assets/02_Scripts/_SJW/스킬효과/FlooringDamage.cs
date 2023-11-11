@@ -15,7 +15,7 @@ public class FlooringDamage : SkillCollider
         {
             if (other.gameObject.layer == 10)
             {
-                other.gameObject.GetComponent<Monster>().Hp -= damage;
+                other.gameObject.GetComponent<Monster>().Damaged(damage);
                 Debug.Log(other.name + "스킬히트! " + damage + "의 데미지!");
             }
 

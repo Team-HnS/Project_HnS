@@ -24,6 +24,14 @@ public class DamageFont : MonoBehaviour
     {
         Dmgtxt.text = ((int)Damage).ToString();
     }
+
+    public void Critical_Damagesetting(float Damage)
+    {
+        Dmgtxt.color = Color.red;
+        Dmgtxt.text = ((int)Damage).ToString();
+    }
+
+
     public void Goldsetting(float result)
     {
         Dmgtxt.color = Color.yellow;
