@@ -2,16 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.Search;
 using UnityEngine;
 using static ItemData;
 
 public class Item : MonoBehaviour
-{    
+{
     public ItemData itemData;
     private TMP_Text nameTag;
+    public List<ItemData> items;
 
     private void Awake()
-    {        
+    {
         nameTag = GetComponentInChildren<TMP_Text>();
         nameTag.text = itemData.ItemName;
         InitItemNameColor();
@@ -33,10 +35,16 @@ public class Item : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {        
+    {
         if (other.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Item itemComponent = GetComponent<Item>();
+            if (itemComponent != null)
+            {
+                items = ItemManager.Instance.AddItem(items, itemComponent.itemData);
+                Destroy(gameObject);
+
+            }
         }
     }
 }

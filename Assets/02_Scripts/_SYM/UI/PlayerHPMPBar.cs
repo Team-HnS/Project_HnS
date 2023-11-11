@@ -14,7 +14,6 @@ public class PlayerHPMPBar : MonoBehaviour
     public TMP_Text mpPer;
 
     Player PlayerState;
-    private Player playerScript;
 
     void Start()
     {   

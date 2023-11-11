@@ -8,21 +8,23 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
+    ItemManager itemManager;
+
     public Transform slotPanel;
     public GameObject slotPrefab;
-    public Text itemDescriptionText; // 아이템 설명 텍스트
-    public Text weaponExplanationText;
+    //public Text itemDescriptionText; // 아이템 설명 텍스트
+    //public Text weaponExplanationText;
 
-    PlayerItemManager ItemManager;
 
     void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {
-            ItemManager = playerObject.GetComponent<PlayerItemManager>();
+            itemManager = playerObject.GetComponent<ItemManager>();
+            Debug.Log(itemManager);
         }
-        if (ItemManager != null)
+        if (itemManager != null)
         {
             InitializeInventory();
         }
@@ -34,21 +36,21 @@ public class InventoryManager : MonoBehaviour
 
     void InitializeInventory()
     {
-        foreach (ItemData item in ItemManager.items)
+        foreach (ItemData item in itemManager.items)
         {
             GameObject instance = Instantiate(slotPrefab, slotPanel);
             //슬롯 프리팹에 아이템 정보 설정
             instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
-            instance.transform.Find("ItemQuantity").GetComponent<Text>().text = item.quantity.ToString();
-            instance.transform.Find("explanation").GetComponent<Text>().text = item.explanation;
+            GameObject.Find("ItemQuantity").GetComponent<Text>().text = item.quantity.ToString();
+            GameObject.Find("explanation").GetComponent<Text>().text = item.explanation;
 
             if (item is E_Item)
             {
                 GameObject instance1 = Instantiate(slotPrefab, slotPanel);
                 //장비템일경우 스텟 상승치를 text에 띄워둠
                 instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
-                instance.transform.Find("ItemQuantity").GetComponent<Text>().text = item.quantity.ToString();
-                instance1.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.explanation;
+                GameObject.Find("ItemQuantity").GetComponent<Text>().text = item.quantity.ToString();
+                GameObject.Find("WeaponExplanation").GetComponent<Text>().text = item.explanation;
 
 
             }
