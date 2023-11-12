@@ -13,17 +13,15 @@ MonoBehaviour:
   m_Name: "\uACE8\uB818\uC758 \uD575"
   m_EditorClassIdentifier: 
   ItemName: "\uACE8\uB818\uC758 \uD575"
+  quantity: 0
   Price: 12000
   Item_Icon: {fileID: 21300000, guid: c3b41571ba1889b4a950c662c2db5b5b, type: 3}
-  quantity: 1
   item_rank: 3
   item_Color:
-  - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 0.5, g: 0, b: 0.5, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  - {r: 1, g: 0.5, b: 0, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
   explanation: "\uAC70\uB300\uD55C \uACE8\uB818\uC758 \uD575\uC774\uB2E4. \uC5C4\uCCAD\uB09C
     \uC5D0\uB108\uC9C0\uAC00 \uB290\uAEF4\uC9C4\uB2E4."

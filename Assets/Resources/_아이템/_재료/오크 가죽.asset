@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: "\uC624\uD06C \uAC00\uC8FD"
   m_EditorClassIdentifier: 
   ItemName: "\uC624\uD06C \uAC00\uC8FD"
+  quantity: 0
   Price: 500
   Item_Icon: {fileID: 21300000, guid: c3b41571ba1889b4a950c662c2db5b5b, type: 3}
-  quantity: 1
   item_rank: 1
-  item_Color: []
+  item_Color:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 0.5, g: 0, b: 0.5, a: 1}
+  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
   explanation: "\uC9C8\uAE30\uACE0 \uD2BC\uD2BC\uD55C \uC624\uD06C\uC758 \uAC00\uC8FD\uC774\uB2E4."

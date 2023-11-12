@@ -1,24 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class GuanYu : MonoBehaviour
 {
-    public E_Item e_item;
+    Player player;
+    public ItemData itemData;
+    private TMP_Text nameTag;
+    public List<ItemData> items;
 
-    public Player player;
+    //private void LoadResources()
+    //{
+    //    e_item = Resources.Load<E_Item>("_아이템/_무기/도원결의를 맺을 수 있다 (물리)");
+    //    e_item.UseEffect();
+    //}
 
-    private void LoadResources()
+    private void Awake()
     {
-        e_item = Resources.Load<E_Item>("");
-        e_item.UseEffect();
+        nameTag = GetComponentInChildren<TMP_Text>();
+        nameTag.text = itemData.ItemName;
+        InitItemNameColor();
     }
     private void Start()
     {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            player = playerObject.GetComponent<Player>();
+        }
+        if (player != null)
+        {
+            nameTag.color = itemData.item_Color[(int)itemData.item_rank];
         player.Atk += 10;
         player.Str += 10;
         player.Dex += 10;
+        }
+        else
+        {
+            Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
+        }
     }
-    
+    private void InitItemNameColor()
+    {
+        itemData.item_Color = new Color[5];
+        itemData.item_Color[0] = Color.white;
+        itemData.item_Color[1] = Color.blue;
+        itemData.item_Color[2] = new Color(0.5f, 0f, 0.5f); // 보라
+        itemData.item_Color[3] = Color.yellow;
+        itemData.item_Color[4] = Color.green;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Item itemComponent = GetComponent<Item>();
+            if (itemComponent != null)
+            {
+                items = ItemManager.Instance.AddItem(items, itemComponent.itemData);
+                Destroy(gameObject);
+
+            }
+        }
+    }
 }

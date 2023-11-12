@@ -22,6 +22,7 @@ public class InventoryUI : MonoBehaviour
         foreach (Transform child in slotPanel)
         {
             Destroy(child.gameObject);
+            Debug.Log(child.gameObject.name);
         }
 
         // 새로운 슬롯 생성
@@ -29,6 +30,7 @@ public class InventoryUI : MonoBehaviour
         {
             GameObject slot = Instantiate(slotPrefab, slotPanel);
             Image image = slot.transform.Find("ItemImage").GetComponent<Image>();
+            //slot.transform.Find("explanation").GetComponent<Text>().text = item.explanation;
             Text quantityText = slot.transform.Find("ItemQuantity").GetComponent<Text>();
 
             image.sprite = item.Item_Icon; // 아이템 아이콘 설정
