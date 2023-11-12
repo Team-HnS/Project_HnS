@@ -22,7 +22,3 @@ MonoBehaviour:
   itemProbabilities:
   - item: {fileID: 7769046287762298776, guid: df2d65ed8167ee04da1c3a1dd73d382c, type: 3}
     probability: 0.7
-  - item: {fileID: 7769046287762298776, guid: df2d65ed8167ee04da1c3a1dd73d382c, type: 3}
-    probability: 0.7
-  - item: {fileID: 2928396549280381422, guid: e606568d8a4d6834fbb72d98948aa8ed, type: 3}
-    probability: 0.5

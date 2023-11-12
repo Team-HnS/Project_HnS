@@ -19,4 +19,8 @@ MonoBehaviour:
   defense: 50
   level: 50
   exp: 1000
-  itemProbabilities: []
+  itemProbabilities:
+  - item: {fileID: -4365146043426999752, guid: 1cdd39e830d94db46a6c05ebc48d8b13, type: 3}
+    probability: 0.5
+  - item: {fileID: 2928396549280381422, guid: e606568d8a4d6834fbb72d98948aa8ed, type: 3}
+    probability: 0.5
