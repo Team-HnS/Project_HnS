@@ -60,6 +60,7 @@ public class ItemManager : MonoBehaviour
         {
             if (item.quantity <= 0)
             {
+                Debug.Log(item.quantity);
                 continue; // 다음 아이템으로 넘어감
             }
 

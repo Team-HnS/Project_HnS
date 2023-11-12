@@ -4174,7 +4174,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.31, y: 0.14885186}
   m_AnchorMax: {x: 0.3837084, y: 0.18011115}
-  m_AnchoredPosition: {x: 0, y: 0.000030517578}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: -0.31990004}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1151495947159755459
@@ -4723,6 +4723,7 @@ GameObject:
   - component: {fileID: 329100511765580892}
   - component: {fileID: 5398074702501656542}
   - component: {fileID: 5910303183390594358}
+  - component: {fileID: 8135249275472941430}
   m_Layer: 5
   m_Name: invenMenuBtn
   m_TagString: Untagged
@@ -4858,6 +4859,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 7075814388531144282}
+--- !u!114 &8135249275472941430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5308570421916555775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f3d6d3658de3d498d3ee5d87c4b50e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 5398074702501656542}
 --- !u!1 &5381327005576853451
 GameObject:
   m_ObjectHideFlags: 0
@@ -6557,8 +6571,8 @@ GameObject:
   - component: {fileID: 6400127490605018799}
   - component: {fileID: 4074359850689276696}
   - component: {fileID: 7016364004892251729}
-  - component: {fileID: 1349626452928358526}
   - component: {fileID: 6044795500713917753}
+  - component: {fileID: 4010510376554528465}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -6627,22 +6641,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1349626452928358526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7075814388531144282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3050141b2173f404daa8fdfac0633b84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slotPanel: {fileID: 8070287635767677514}
-  slotPrefab: {fileID: 1710711415459299260, guid: 7f2edf90bc854624e95ae9201b939943, type: 3}
-  itemDescriptionText: {fileID: 0}
-  weaponExplanationText: {fileID: 0}
 --- !u!114 &6044795500713917753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6655,6 +6653,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a8e258103d5004ea73146e69c31fb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4010510376554528465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075814388531144282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff745364c4ef6054ba02e1995bfbb71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotPanel: {fileID: 8070287635767677514}
+  slotPrefab: {fileID: 1710711415459299260, guid: 7f2edf90bc854624e95ae9201b939943, type: 3}
 --- !u!1 &7222073964681473032
 GameObject:
   m_ObjectHideFlags: 0
