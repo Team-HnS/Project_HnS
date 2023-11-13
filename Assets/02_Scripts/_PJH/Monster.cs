@@ -44,7 +44,7 @@ public class Monster : MonoBehaviour
     public void Damaged(int Damage) // 데미지 받는 함수
     {
         Hp -= Damage;
-        //UiCreateManager.Instance.CreateDamageFont(Damage,gameObject);
+        UiCreateManager.Instance.CreateDamageFont(Damage,gameObject);
     }
 
     public void Damaged(int Damage,Color color) // 데미지 받는 함수 색칠놀이

@@ -28,6 +28,7 @@ public class SkillData : ScriptableObject
     public Type skilltype;
 
     public TargetType activetype;
+    public Sprite skill_Icon;
     public string SkillName;
     public int SkillCode;
 

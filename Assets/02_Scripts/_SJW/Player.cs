@@ -190,61 +190,42 @@ public class Player : MonoBehaviour
         //마우스 클릭했을때 아이템이면 주으러감
 
 
-        if (Input.GetKeyDown(KeyCode.W) && state != Player.PlayerState.Dash)
-        {
-            PlayerDash(3f,0.25f);
-        }
-
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
             Damaged(150);
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/02_검기 발사");
-            Resent_Skill.SkillEvent.Invoke();
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/04_스팅 러시");
-            Resent_Skill.SkillEvent.Invoke();
-        }
+        /* 
+                if (Input.GetKeyDown(KeyCode.W) && state != Player.PlayerState.Dash)
+                {
+                    PlayerDash(3f,0.25f);
+                }
 
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/03_소드 레인");
-            Resent_Skill.SkillEvent.Invoke();
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/01_빠른 참격");
-            Resent_Skill.SkillEvent.Invoke();
-
-
-            //animator.Play("Skill_1");
-
-            //-> 각 스킬 종류에 맞는 onuse사용
+               if (Input.GetKeyDown(KeyCode.A))
+                {
+                    Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/02_검기 발사");
+                    Resent_Skill.SkillEvent.Invoke();
+                }
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/04_스팅 러시");
+                    Resent_Skill.SkillEvent.Invoke();
+                }
 
 
-            /*   if (Resent_Skill is Skill_Burst)
-               {
-                   Skill_Burst skill1Data = (Skill_Burst)Resent_Skill; // 해당 스킬에 맞게 캐스팅
-                                                                       // skill1Data의 변수 및 기능을 사용할 수 있음
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/03_소드 레인");
+                    Resent_Skill.SkillEvent.Invoke();
+                }
 
-                   overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-                   overrideController["_"] = skill1Data.SkillMotion;
-                   animator.SetFloat("SkillSpeed", 5f);
-                   animator.runtimeAnimatorController = overrideController;
-                   //skill1Data.OnUse(this);
-                   print(skill1Data.activetype);
-
-                   animator.Play("Skill_1");
-               }*/
-        }
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    Resent_Skill = Resources.Load<SkillData>("_스킬/_공격기/01_빠른 참격");
+                    Resent_Skill.SkillEvent.Invoke();
+                }*/
 
     }
 

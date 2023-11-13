@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skilltype: 2
   activetype: 2
+  skill_Icon: {fileID: 21300000, guid: c890dd06d4a350946ab11e4778bf47d8, type: 3}
   SkillName: "\uAC80\uAE30 \uBC1C\uC0AC"
   SkillCode: 1
   SkillLV: 1
   SkillCoolDown: 3
   Effect_maintenance_time: 5
+  ChangeRot: 0
+  isrange: 0
+  skill_range: 0
+  Tick_time: 0
   hitcount: 00000000
   ManaRequirement: 000000002d000000
   Coefficient:

@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
+using static Player;
+using static Unity.Burst.Intrinsics.X86;
 using static UnityEngine.GraphicsBuffer;
 
 public class SkillSet_Library : MonoBehaviour
@@ -112,6 +114,29 @@ public class SkillSet_Library : MonoBehaviour
         _plyaer.animator.CrossFade("Skill_1", 0.05f);
     }
 
+    public void Dash(SkillData s_data)
+    {
+        if (!Skill_CoolDowns.ContainsKey(s_data.SkillName)) // 스킬이 라이브러리에 없으면 추가
+        {
+            Skill_LibraryData data = new Skill_LibraryData(s_data);
+            Skill_CoolDowns.Add(s_data.SkillName, data);
+        }
+        Skill_LibraryData c_data = Skill_CoolDowns[s_data.SkillName];
+        if (!c_data.CanSkill) //스킬쿨 체크
+        {
+            return; // 스킬 사용불가능하면 리턴
+        }
+        if (!SkillCostCheck(s_data.ManaRequirement[s_data.SkillLV]))
+            return; //마나 딸리면 취소
+
+        instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
+
+        if (instance.player_s.state != Player.PlayerState.Dash)
+        {
+            instance.player_s.PlayerDash(3f, 0.25f);
+        }
+
+    }
     public void Flooring_Skill(SkillData s_data)
     {
         /////////////여기부터 스킬 기본 세팅
@@ -294,14 +319,17 @@ public class SkillSet_Library : MonoBehaviour
     }
     IEnumerator CoolTime(Skill_LibraryData skill_Data)
     {
-        skill_Data.CoolDown = skill_Data.s_data.SkillCoolDown; //쿨타임 값 초기화
+        Image coolimg = KeyInputManager.instance.ResentCheckSkill.skill_Colimg;
+        KeyInputManager.instance.ResentCheckSkill = null;
+        skill_Data.CoolDown = 0; //쿨타임 값 초기화
         skill_Data.CanSkill = false;
-        while (skill_Data.CoolDown >=0) 
+        while (skill_Data.CoolDown <= skill_Data.s_data.SkillCoolDown) 
         {
-            skill_Data.CoolDown -= Time.deltaTime;
-
+            skill_Data.CoolDown += Time.deltaTime;
+            coolimg.fillAmount = 1 - (skill_Data.CoolDown / skill_Data.s_data.SkillCoolDown);
             yield return null;
         }
+
         skill_Data.CanSkill = true;
 
     }
