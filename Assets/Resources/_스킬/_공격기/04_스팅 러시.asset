@@ -19,7 +19,7 @@ MonoBehaviour:
   SkillCode: 4
   SkillLV: 1
   SkillCoolDown: 5
-  Effect_maintenance_time: 2
+  Effect_maintenance_time: 0.7
   ChangeRot: 1
   isrange: 1
   skill_range: 7
