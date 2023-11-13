@@ -13,7 +13,9 @@ using static UnityEditor.Progress;
 public class Slot : MonoBehaviour
 {
     public Image background;
-    ItemData itemData;
+    [SerializeField]
+    public ItemData itemData; // Private ÇÊµå
+
 
     public Sprite NoneBackground;
     public Sprite RareBackground;
@@ -23,6 +25,11 @@ public class Slot : MonoBehaviour
 
     public void UpdateSlotUI()
     {
+        if (itemData == null)
+        {
+            Debug.LogError("ItemData is not assigned to the slot");
+            return;
+        }
         switch (itemData.item_rank)
         {
             case Item_Rank.None:
