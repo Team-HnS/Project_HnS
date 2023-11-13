@@ -52,17 +52,5 @@ public class GuanYu : MonoBehaviour
         itemData.item_Color[4] = Color.green;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            Item itemComponent = GetComponent<Item>();
-            if (itemComponent != null)
-            {
-                items = ItemManager.Instance.AddItem(items, itemComponent.itemData);
-                Destroy(gameObject);
-
-            }
-        }
-    }
+    
 }

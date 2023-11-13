@@ -16,7 +16,7 @@ public class ItemData : ScriptableObject
     }
 
     public string ItemName;//이름
-    public int quantity;//개수
+    public int Max_Amount;//최대 개수,장비는 무조건 하나
     public int Price;//가격    
     public Sprite Item_Icon;//아이콘
     

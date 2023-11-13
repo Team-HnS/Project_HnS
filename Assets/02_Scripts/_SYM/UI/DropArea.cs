@@ -15,12 +15,12 @@ public class DropArea : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        DragDropItem droppedItem = eventData.pointerDrag.GetComponent<DragDropItem>();
-        if (droppedItem != null)
-        {
-            slotImage.sprite = droppedItem.itemIcon; // 아이템의 아이콘으로 이미지 변경
-            SetImageAlpha(255); // 알파값 설정 (완전 불투명)
-        }
+        //DragDropItem droppedItem = eventData.pointerDrag.GetComponent<DragDropItem>();
+        //if (droppedItem != null)
+        //{
+        //    slotImage.sprite = droppedItem.itemIcon; // 아이템의 아이콘으로 이미지 변경
+        //    SetImageAlpha(255); // 알파값 설정 (완전 불투명)
+        //}
     }
 
     private void SetImageAlpha(float alpha)

@@ -1,35 +1,83 @@
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // 드래그 가능한 아이템을 나타내는 스크립트
-public class DragDropItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragDropSlot : MonoBehaviour
 {
-    public Sprite itemIcon; // 아이템의 아이콘 이미지
-    private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
+    private GraphicRaycaster _gr;
+    private PointerEventData _ped;
+    private List<RaycastResult> _rrList;
 
-    private void Awake()
+    private ItemManager _beginDragSlot; // 현재 드래그를 시작한 슬롯
+    private Transform _beginDragIconTransform; // 해당 슬롯의 아이콘 트랜스폼
+
+    private Vector3 _beginDragIconPoint;   // 드래그 시작 시 슬롯의 위치
+    private Vector3 _beginDragCursorPoint; // 드래그 시작 시 커서의 위치
+    private int _beginDragSlotSiblingIndex;
+    private void Update()
     {
-        rectTransform = GetComponent<RectTransform>();
-        canvasGroup = GetComponent<CanvasGroup>();
+        _ped.position = Input.mousePosition;
+
+        OnPointerDown();
+        OnPointerDrag();
+        OnPointerUp();
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    private T RaycastAndGetFirstComponent<T>() where T : Component
     {
-        canvasGroup.alpha = 0.6f; // 드래그 중 투명도 변경
-        canvasGroup.blocksRaycasts = false; // 드래그 중 레이캐스트 블록 해제
+        _rrList.Clear();
+
+        _gr.Raycast(_ped, _rrList);
+
+        if (_rrList.Count == 0)
+            return null;
+
+        return _rrList[0].gameObject.GetComponent<T>();
     }
 
-    public void OnDrag(PointerEventData eventData)
+    private void OnPointerUp()
     {
-        rectTransform.anchoredPosition += eventData.delta; // 아이템 위치 업데이트
+        throw new NotImplementedException();
     }
 
-    public void OnEndDrag(PointerEventData eventData)
+    private void OnPointerDrag()
     {
-        canvasGroup.alpha = 1.0f; // 드래그 종료 시 투명도 복원
-        canvasGroup.blocksRaycasts = true; // 드래그 종료 시 레이캐스트 블록 복원
+        throw new NotImplementedException();
+    }
+
+    private void OnPointerDown()
+    {
+        // Left Click : Begin Drag
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    _beginDragSlot = RaycastAndGetFirstComponent<ItemManager>();
+
+        // 아이템을 갖고 있는 슬롯만 해당
+        //if (_beginDragSlot != null && _beginDragSlot.HasItem)
+        //{
+        //    // 위치 기억, 참조 등록
+        //    _beginDragIconTransform = _beginDragSlot.IconRect.transform;
+        //    _beginDragIconPoint = _beginDragIconTransform.position;
+        //    _beginDragCursorPoint = Input.mousePosition;
+
+        //    // 맨 위에 보이기
+        //    _beginDragSlotSiblingIndex = _beginDragSlot.transform.GetSiblingIndex();
+        //    _beginDragSlot.transform.SetAsLastSibling();
+
+        //    // 해당 슬롯의 하이라이트 이미지를 아이콘보다 뒤에 위치시키기
+        //    _beginDragSlot.SetHighlightOnTop(false);
+        //}
+        //        else
+        //        {
+        //            _beginDragSlot = null;
+        //        }
+        //    }
+        //}
     }
 }
 

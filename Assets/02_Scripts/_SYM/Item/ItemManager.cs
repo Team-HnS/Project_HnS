@@ -1,4 +1,5 @@
 using DarkLandsUI.Scripts.Equipment;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -12,41 +13,74 @@ public class ItemManager : MonoBehaviour
 {
     [SerializeField]
     public List<ItemData> items;
+    public int countItem;
+
+    public Dictionary<ItemData, int> Item_data = new Dictionary<ItemData, int>();
     public static ItemManager Instance { get; private set; }
 
     public Transform slotPanel;
     public GameObject slotPrefab;
     //public Text itemDescriptionText; // 아이템 설명 텍스트
     //public Text weaponExplanationText;
-
+    
 
     private void Awake()
     {
-        Instance = this;
-    }
-    // 아이템을 인벤토리에 추가하는 메서드
-    public List<ItemData> AddItem(List<ItemData> items, ItemData newItem)
-    {
-        // 인벤토리에서 같은 아이템을 찾음
-        var existingItem = items.Find(item => item.ItemName == newItem.ItemName);
-        Debug.Log(newItem.name);
-        if (existingItem != null)
+        if (Instance == null)
         {
-            // 같은 아이템이 있으면, 수량을 업데이트
-            existingItem.quantity = existingItem.quantity + 1;
-            Debug.Log(newItem.quantity);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void AddItem(ItemData newItem, int quantity)
+    {
+        if (Item_data.ContainsKey(newItem))
+        {
+            // 아이템이 이미 존재하면, 수량을 증가시킵니다.
+            Item_data[newItem] += quantity;
+            Debug.Log(newItem.name);
         }
         else
         {
-            // 새 아이템이면 리스트에 추가
-            items.Add(newItem);
-            Debug.Log(newItem.ItemName);
+            Debug.Log(newItem.name);
+            // 새로운 아이템을 추가하고, 해당 수량을 설정합니다.
+            Item_data[newItem] = quantity;
+            items.Add(newItem); // 아이템 리스트에도 추가합니다.
         }
 
-        // UI 업데이트 로직 호출
-        InitializeInventory(items);
-        return items;
+        countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
     }
+
+    private int CalculateTotalItemCount()
+    {
+        int total = 0;
+        foreach (var item in Item_data.Values)
+        {
+            total += item;
+        }
+        return total;
+    }
+
+    public void RemoveItemQuantity(ItemData item, int quantity)
+    {
+        if (Item_data.ContainsKey(item))
+        {
+            Item_data[item] -= quantity;
+            if (Item_data[item] <= 0)
+            {
+                Item_data.Remove(item);
+                items.Remove(item); // 아이템 리스트에서도 제거
+            }
+
+            countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
+        }
+    }
+
+
 
     public void InitializeInventory(List<ItemData> items)
     {
@@ -58,9 +92,9 @@ public class ItemManager : MonoBehaviour
         }
         foreach (ItemData item in items)
         {
-            if (item.quantity <= 0)
+            if (Item_data[item] <= 0)
             {
-                Debug.Log(item.quantity);
+                Debug.Log(Item_data[item]);
                 continue; // 다음 아이템으로 넘어감
             }
 
@@ -68,8 +102,8 @@ public class ItemManager : MonoBehaviour
             GameObject instance = Instantiate(slotPrefab, slotPanel);
             // 슬롯 프리팹에 아이템 정보 설정
             instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
-            instance.transform.Find("ItemQuantity").GetComponent<Text>().text = item.quantity.ToString();
-            instance.transform.Find("explanation").GetComponent<Text>().text = item.explanation;
+            instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
+            instance.transform.Find("explanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
 
             if (item is E_Item)
             {
@@ -77,9 +111,8 @@ public class ItemManager : MonoBehaviour
                 //장비템일경우 스텟 상승치를 text에 띄워둠
                 instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
                 //instance.transform.Find("ItemName").GetComponent<Text>().text = item.ItemName;
-                instance.transform.Find("ItemQuantity").GetComponent<Text>().text = item.quantity.ToString();
-                instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.explanation;
-
+                //instance.transform.Find("ItemQuantity").GetComponent<Text>().text = item.quantity.ToString();
+                instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
             }
         }
     }
