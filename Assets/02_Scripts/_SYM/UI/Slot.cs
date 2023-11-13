@@ -11,12 +11,12 @@ using static UnityEditor.Progress;
 
 public class Slot : MonoBehaviour
 {
-    public Image itemImage;
-    public Text quantityText;
+    //public Image itemImage;
+    //public Text quantityText;
 
-    public void SetItem(ItemData itemData)
-    {
-        itemImage.sprite = itemData.Item_Icon;
-        quantityText.text = itemData.quantity > 1 ? itemData.quantity.ToString() : "";
-    }
+    //public void SetItem(ItemData itemData)
+    //{
+    //    itemImage.sprite = itemData.Item_Icon;
+    //    //quantityText.text = itemData.quantity > 1 ? itemData.quantity.ToString() : "";
+    //}
 }
