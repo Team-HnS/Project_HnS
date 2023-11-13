@@ -12,28 +12,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1e30307bb6260d46810cd9932e9b69a, type: 3}
   m_Name: "05_\uB300\uC26C"
   m_EditorClassIdentifier: 
-  skilltype: 0
+  skilltype: 2
   activetype: 0
-  skill_Icon: {fileID: 0}
-  SkillName: 
-  SkillCode: 0
-  SkillLV: 0
-  SkillCoolDown: 0
+  skill_Icon: {fileID: 21300000, guid: 0e7966e8857d9da42bd7ac9668f85ce2, type: 3}
+  SkillName: "\uB300\uC26C"
+  SkillCode: 5
+  SkillLV: 1
+  SkillCoolDown: 2
   Effect_maintenance_time: 0
   ChangeRot: 0
   isrange: 0
   skill_range: 0
   Tick_time: 0
   hitcount: 
-  ManaRequirement: 
-  Coefficient: []
-  Add_Coefficient: []
+  ManaRequirement: 0500000005000000
+  Coefficient:
+  - 0
+  Add_Coefficient:
+  - 0
   SkillSound: {fileID: 0}
   SkillMotion: {fileID: 0}
-  Skill_Explanation: 
+  Skill_Explanation: "\uC9C0\uC815 \uBAA9\uD45C\uB85C \uBE60\uB974\uAC8C \uC774\uB3D9\uD55C\uB2E4  "
   SkillEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 482115212371376980, guid: 48593e0410db7e946a10d959709a398d, type: 3}
+        m_TargetAssemblyTypeName: SkillSet_Library, Assembly-CSharp
+        m_MethodName: Dash
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000}
+          m_ObjectArgumentAssemblyTypeName: SkillData, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Before_Delay: 0
   After_Delay: 0
   Effect: {fileID: 0}

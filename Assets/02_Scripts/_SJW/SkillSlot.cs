@@ -14,6 +14,12 @@ public class SkillSlot : MonoBehaviour
     public Sprite nullimg;
     public TMP_Text text;
     public KeyCode keyCode;
+
+
+    public GameObject infopannel;
+    public TMP_Text skill_name;
+    public TMP_Text skill_info;
+    public TMP_Text skill_explain;
     // Start is called before the first frame update
 
     private void Awake()
@@ -31,13 +37,39 @@ public class SkillSlot : MonoBehaviour
         
     }
 
-    void Start()
+    private void OnMouseEnter()
     {
+        print(gameObject.name +  "이벤트 테스트");
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void infoRefresh()
     {
-        
+        string s_type;
+
+        if (_skillData != null) 
+        {
+            skill_name.text = _skillData.SkillName;
+            skill_info.text = "계수 : " + _skillData.Coefficient[0] + "\n" + "타입 : 미정";
+            skill_explain.text = _skillData.Skill_Explanation;
+        }
+
+    }
+
+    public void UiOn()
+    {
+        if (_skillData == null)
+        {
+            return;
+        }
+
+            infoRefresh();
+        infopannel.SetActive(true);
+    }
+
+    public void UiOff()
+    {
+        infoRefresh();
+        infopannel.SetActive(false);
     }
 }
