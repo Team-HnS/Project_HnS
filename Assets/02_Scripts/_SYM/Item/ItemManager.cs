@@ -7,6 +7,7 @@ using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 using UnityEngine;
 using UnityEngine.UI;
+using static ItemData;
 using static UnityEditor.Progress;
 
 public class ItemManager : MonoBehaviour
@@ -14,21 +15,35 @@ public class ItemManager : MonoBehaviour
     [SerializeField]
     public List<ItemData> items;
     public int countItem;
+    Slot slot;
 
     public Dictionary<ItemData, int> Item_data = new Dictionary<ItemData, int>();
     public static ItemManager Instance { get; private set; }
+
 
     public Transform slotPanel;
     public GameObject slotPrefab;
     //public Text itemDescriptionText; // 아이템 설명 텍스트
     //public Text weaponExplanationText;
-    
+    public Item_Rank? FindItemRankByName(string itemName)
+    {
+        foreach (var item in items)
+        {
+            if (item.ItemName == itemName)
+            {
+                return item.item_rank;
+            }
+        }
+
+        return null; // 아이템을 찾지 못한 경우
+    }
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
@@ -43,6 +58,8 @@ public class ItemManager : MonoBehaviour
             // 아이템이 이미 존재하면, 수량을 증가시킵니다.
             Item_data[newItem] += quantity;
             Debug.Log(newItem.name);
+
+            //slot.UpdateSlotUI();
         }
         else
         {
@@ -50,6 +67,8 @@ public class ItemManager : MonoBehaviour
             // 새로운 아이템을 추가하고, 해당 수량을 설정합니다.
             Item_data[newItem] = quantity;
             items.Add(newItem); // 아이템 리스트에도 추가합니다.
+
+            //slot.UpdateSlotUI();
         }
 
         countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
@@ -100,6 +119,7 @@ public class ItemManager : MonoBehaviour
 
             Debug.Log("Adding item to UI: " + item.ItemName);
             GameObject instance = Instantiate(slotPrefab, slotPanel);
+            
             // 슬롯 프리팹에 아이템 정보 설정
             instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
             instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();

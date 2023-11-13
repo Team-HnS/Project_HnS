@@ -245,8 +245,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5342b5adcae3a4da6e136660eba549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemImage: {fileID: 2200432144564327334}
-  quantityText: {fileID: 5785927049727474552}
+  background: {fileID: 4862168677799254644}
+  itemData: {fileID: 0}
+  NoneBackground: {fileID: 21300000, guid: 358c8dea2a3f92944b501717152e53fb, type: 3}
+  RareBackground: {fileID: 21300000, guid: f66f1acda17ac5c459605ea025a6a037, type: 3}
+  EpicBackground: {fileID: 21300000, guid: eede6063441a92d4699a7fccfd79fc9a, type: 3}
+  UniqueBackground: {fileID: 21300000, guid: 8e010e29cb806fd4fae4ecd96ff62474, type: 3}
+  LegendaryBackground: {fileID: 21300000, guid: bbf91f0e06b978342bb0e760e1fa1957, type: 3}
 --- !u!1 &1972860444438037278
 GameObject:
   m_ObjectHideFlags: 0
