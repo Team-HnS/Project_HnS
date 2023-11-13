@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
 
-    public static ObjectManager instance;
+    public static PlayerManager instance;
     public GameObject player;
     public Player player_s;
     public PlayerMovement player_m;
+
+    public bool OnUiInteraction = false;
 
     private void Awake()
     {

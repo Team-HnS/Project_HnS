@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Q
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2dcfe572f9ddb54caf1b91ec06165bf, type: 2}
   m_sharedMaterial: {fileID: 4134903681047103041, guid: d2dcfe572f9ddb54caf1b91ec06165bf, type: 2}
@@ -692,11 +692,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillData: {fileID: 0}
+  slotNumber: 0
   skillimg: {fileID: 2179756133670411886}
   skill_Colimg: {fileID: 3528525262768874030}
   nullimg: {fileID: 21300000, guid: 3fe61eedc6f01e44fa4d3bb136b8a839, type: 3}
   text: {fileID: 5185224551609512314}
   keyCode: 0
+  nullslot: {fileID: 4129208298676751703}
   infopannel: {fileID: 8124316535614438141}
   skill_name: {fileID: 4034687508703019501}
   skill_info: {fileID: 432984203703415277}

@@ -135,6 +135,7 @@ public class Player : MonoBehaviour
         Dex = 10;
         Def = 10;
 
+        lv = 1;
         Attack_speed = 1f;
         Move_Speed = 5f;
         Attack_Range = 1.5f;
@@ -173,11 +174,12 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (!EventSystem.current.IsPointerOverGameObject() && !PlayerManager.instance.OnUiInteraction)
             {
                 playermove.PlayerMove();
             }
         }
+
         if (Input.GetMouseButtonUp(0)) // 몬스터 클릭시
         {
             if (!EventSystem.current.IsPointerOverGameObject())

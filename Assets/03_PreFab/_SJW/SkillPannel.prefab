@@ -141,6 +141,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2818545835073413283}
     m_Modifications:
+    - target: {fileID: 1466829959611461605, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
+      propertyPath: slotNumber
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4129208298676751703, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
       propertyPath: m_Name
       value: skill
@@ -258,6 +262,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2818545835073413283}
     m_Modifications:
+    - target: {fileID: 1466829959611461605, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
+      propertyPath: slotNumber
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4129208298676751703, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
       propertyPath: m_Name
       value: skill (4)
@@ -375,6 +383,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2818545835073413283}
     m_Modifications:
+    - target: {fileID: 1466829959611461605, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
+      propertyPath: slotNumber
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4129208298676751703, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
       propertyPath: m_Name
       value: skill (2)
@@ -492,6 +504,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2818545835073413283}
     m_Modifications:
+    - target: {fileID: 1466829959611461605, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
+      propertyPath: slotNumber
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4129208298676751703, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
       propertyPath: m_Name
       value: skill (6)
@@ -609,6 +625,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2818545835073413283}
     m_Modifications:
+    - target: {fileID: 1466829959611461605, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
+      propertyPath: slotNumber
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4129208298676751703, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
       propertyPath: m_Name
       value: skill (7)
@@ -726,6 +746,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2818545835073413283}
     m_Modifications:
+    - target: {fileID: 1466829959611461605, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
+      propertyPath: slotNumber
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4129208298676751703, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
       propertyPath: m_Name
       value: skill (3)
@@ -843,6 +867,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2818545835073413283}
     m_Modifications:
+    - target: {fileID: 1466829959611461605, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
+      propertyPath: slotNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4129208298676751703, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
       propertyPath: m_Name
       value: skill (1)
@@ -960,6 +988,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2818545835073413283}
     m_Modifications:
+    - target: {fileID: 1466829959611461605, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
+      propertyPath: slotNumber
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4129208298676751703, guid: 4a8a2058cf782f9499ada316923519f7, type: 3}
       propertyPath: m_Name
       value: skill (5)
