@@ -7,7 +7,7 @@ using System.Text;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GameDevTV.Saving
+namespace Saving
 {
     /// <summary>
     /// 이 컴포넌트는 저장 시스템에 대한 인터페이스를 제공합니다. 씬을 저장하고 복원하는
@@ -40,7 +40,7 @@ namespace GameDevTV.Saving
         public void Save(string saveFile)
         {
             Dictionary<string, object> state = LoadFile(saveFile);
-            CaptureState(state);
+            //CaptureState(state);
             SaveFile(saveFile, state);
         }
 
@@ -118,7 +118,7 @@ namespace GameDevTV.Saving
         /// 현재 씬의 상태를 저장할 수 있도록 데이터를 캡처합니다.
         /// </summary>
         /// <param name="state">저장할 데이터를 담을 딕셔너리</param>
-        private void CaptureState(Dictionary<string, object> state)
+        /*private void CaptureState(Dictionary<string, object> state)
         {
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
@@ -126,7 +126,7 @@ namespace GameDevTV.Saving
             }
 
             state["lastSceneBuildIndex"] = SceneManager.GetActiveScene().buildIndex;
-        }
+        }*/
 
         /// <summary>
         /// 저장된 상태를 현재 씬에 복원합니다.

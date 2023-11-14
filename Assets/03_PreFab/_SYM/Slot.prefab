@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 5849865223504277556}
   - component: {fileID: 8990002349746291563}
   - component: {fileID: 5218934242149708443}
+  - component: {fileID: 8499362647545978602}
   m_Layer: 5
   m_Name: Slot
   m_TagString: Untagged
@@ -305,6 +306,24 @@ MonoBehaviour:
   EpicBackground: {fileID: 21300000, guid: eede6063441a92d4699a7fccfd79fc9a, type: 3}
   UniqueBackground: {fileID: 21300000, guid: 8e010e29cb806fd4fae4ecd96ff62474, type: 3}
   LegendaryBackground: {fileID: 21300000, guid: bbf91f0e06b978342bb0e760e1fa1957, type: 3}
+--- !u!114 &8499362647545978602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710711415459299260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a2e9e2207fb58a44bbe70ea7f2d15d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragSlot: {fileID: 5218934242149708443}
+  Slots: []
+  inventoryItems: []
+  currentItemData: {fileID: 0}
+  itemData: {fileID: 0}
+  imageItem: {fileID: 4862168677799254644}
 --- !u!1 &1972860444438037278
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,7 +27,7 @@ public class Slot : MonoBehaviour
     {
         if (itemData == null)
         {
-            Debug.LogError("ItemData is not assigned to the slot");
+            Debug.LogError("슬롯에 ItemData가 할당되지 않았다링");
             return;
         }
         switch (itemData.item_rank)
@@ -52,7 +52,6 @@ public class Slot : MonoBehaviour
                 background.sprite = LegendaryBackground;
                 break;
         }
-
-        // 기타 UI 업데이트 로직...
     }
+
 }
