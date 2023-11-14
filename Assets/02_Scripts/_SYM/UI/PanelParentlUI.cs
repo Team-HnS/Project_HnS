@@ -17,6 +17,6 @@ public class PanelParentlUI : MonoBehaviour, IDragHandler, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        transform.SetAsLastSibling();
+        transform.SetSiblingIndex(1);
     }
 }
