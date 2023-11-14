@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: "\uCF54\uC778"
   m_EditorClassIdentifier: 
   ItemName: 
-  quantity: 0
+  Max_Amount: 0
   Price: 0
   Item_Icon: {fileID: 0}
+  isCoin: 1
+  itemObj: {fileID: 1950871307682000, guid: 9929315ccccf021478b31142790f944a, type: 3}
   item_rank: 0
   item_Color:
   - {r: 1, g: 1, b: 1, a: 1}

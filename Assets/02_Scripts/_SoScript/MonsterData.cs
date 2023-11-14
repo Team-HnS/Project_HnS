@@ -28,6 +28,6 @@ public class MonsterData : ScriptableObject
 [System.Serializable]
 public class ItemProbability
 {
-    public Item item;
+    public ItemData itemData;
     public float probability;
 }

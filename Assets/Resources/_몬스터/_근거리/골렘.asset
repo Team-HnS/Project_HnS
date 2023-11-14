@@ -20,9 +20,11 @@ MonoBehaviour:
   level: 100
   exp: 10000
   itemProbabilities:
-  - item: {fileID: 7562987904013980655, guid: 7f85d3ce55ea67a4abe06a4bc96e18bc, type: 3}
+  - itemData: {fileID: 11400000, guid: bf4392dd81ec791419c24fb4d7be92c6, type: 2}
     probability: 0.3
-  - item: {fileID: 2928396549280381422, guid: e606568d8a4d6834fbb72d98948aa8ed, type: 3}
+  - itemData: {fileID: 11400000, guid: a5d8694a08708f941939302fe90b9c3a, type: 2}
     probability: 0.7
-  - item: {fileID: 6523587216960845713, guid: 3e7db5bea4bd4b34dbb22d2327ab0f32, type: 3}
-    probability: 0.8
+  - itemData: {fileID: 11400000, guid: b6782b1ffde230a46abb0dbbf91d9cf0, type: 2}
+    probability: 0.0001
+  - itemData: {fileID: 11400000, guid: 24bd39ceda42e6a46b863359679c5b3a, type: 2}
+    probability: 0.67

@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class E_Item : ItemData
 {
-
+    
     public int HpUp;//최대 체력 상승치
     public int MpUp;//최대 마나 상승치
 

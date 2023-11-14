@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: "\uC624\uD06C \uAC00\uC8FD"
   m_EditorClassIdentifier: 
   ItemName: "\uC624\uD06C \uAC00\uC8FD"
-  quantity: 0
+  Max_Amount: 0
   Price: 500
   Item_Icon: {fileID: 21300000, guid: c3b41571ba1889b4a950c662c2db5b5b, type: 3}
+  isCoin: 0
+  itemObj: {fileID: 555133621666883522, guid: df2d65ed8167ee04da1c3a1dd73d382c, type: 3}
   item_rank: 1
   item_Color:
   - {r: 1, g: 1, b: 1, a: 1}
