@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD018\uC2A4\uD2B8Npc"
+  m_text: "\uD29C\uD1A0\uB9AC\uC5BCNpc"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2dcfe572f9ddb54caf1b91ec06165bf, type: 2}
   m_sharedMaterial: {fileID: 4134903681047103041, guid: d2dcfe572f9ddb54caf1b91ec06165bf, type: 2}
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD018\uC2A4\uD2B8 Npc\uB791 \uB300\uD654\n"
+  m_text: "\uB300\uD654 Npc\uB791 \uB300\uD654\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 04ae44279206a8840b904f173c7ead2f, type: 2}
   m_sharedMaterial: {fileID: 8515948632781694671, guid: 04ae44279206a8840b904f173c7ead2f, type: 2}
@@ -598,7 +598,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2506350521766319593}
   m_LocalRotation: {x: -0, y: 0.7504847, z: -0, w: 0.66088784}
-  m_LocalPosition: {x: 0, y: 0, z: -9.533838}
+  m_LocalPosition: {x: 0, y: 0, z: -0.27}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -608,7 +608,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.8121171, y: 0}
+  m_AnchoredPosition: {x: 0.37, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &5759402014147679703
@@ -821,6 +821,7 @@ GameObject:
   - component: {fileID: 862502136461275259}
   - component: {fileID: 6652274623653641139}
   - component: {fileID: 4017616279517241631}
+  - component: {fileID: 2784149482884937552}
   m_Layer: 6
   m_Name: TutorailNpc
   m_TagString: Npc
@@ -846,7 +847,7 @@ Transform:
   - {fileID: 756971259606206583}
   - {fileID: 3438170222655542341}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -97.265, z: 0}
 --- !u!33 &1532678157474695562
 MeshFilter:
@@ -935,6 +936,19 @@ MonoBehaviour:
   uiObject: {fileID: 4735910696395528873}
   npcID: 
   isUIActive: 0
+--- !u!114 &2784149482884937552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3170836348131247462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 738679f066ff34c62b232dbaa327e30d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameObject: {fileID: 3977800760657973345}
 --- !u!1 &3977800760657973345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1223,7 +1237,7 @@ GameObject:
   - component: {fileID: 2119696228066482411}
   - component: {fileID: 7114541788191109478}
   m_Layer: 6
-  m_Name: QuestNpcPanel
+  m_Name: TutorialNpcPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
