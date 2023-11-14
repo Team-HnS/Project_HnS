@@ -24,8 +24,9 @@ public class NPCClickHandler : MonoBehaviour
 
     public void ToggleUI()
     {
-        Debug.Log("1111");
         isUIActive = !isUIActive;
+
+        Debug.Log(gameObject.name + ", " + (uiObject == null) );
         uiObject.SetActive(isUIActive);
 
 

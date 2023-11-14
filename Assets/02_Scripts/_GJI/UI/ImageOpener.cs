@@ -17,6 +17,10 @@ public class ImageOpener : MonoBehaviour
         image.gameObject.SetActive(isImageOpen);
     }
 
-    
+    public void DialogToggleimage()
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
   
 }
