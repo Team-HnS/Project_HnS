@@ -1241,7 +1241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &890411315
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2317,6 +2317,7 @@ MonoBehaviour:
   Resent_Skill: {fileID: 0}
   lv: 0
   exp: 0
+  skillpoint: 0
   max_hp: 0
   max_mp: 0
   cur_hp: 0

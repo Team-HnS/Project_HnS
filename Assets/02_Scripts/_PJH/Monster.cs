@@ -5,27 +5,32 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+/// <summary>
+/// 몬스터 hp 관련 메소드 포함
+/// 몬스터 사망 시 드랍하는 아이템 관련 메소드 포함
+/// </summary>
 public class Monster : MonoBehaviour
 {
     public MonsterData data;
     private EnemyFSM fsm;
-    public Coin coinData;
+    private Coin coinData;
 
     private int hp;
 
     public int Hp
-    { 
-      get { return hp; } 
-      set { hp = value; } 
+    {
+      get { return hp; }
+      set { hp = value; }
     }
 
-    private float dropRadius = 2f;
-    private bool isDropped = false;
+    private float dropRadius = 3f;
+    private bool isDropped = false; // 여러번 드랍하지 마라
 
     private GameObject droppedCoin;
     private TMP_Text nameTag;
 
-    private float fixedY;
+    private int cnt = 0; // 무한 루프 방지용
+
 
     private void Start()
     {
@@ -37,9 +42,10 @@ public class Monster : MonoBehaviour
     {
         if (fsm.isDead && isDropped == false)
         {
-            Die();
+            DieAndDrop();
         }
     }
+
 
     public void Damaged(int Damage) // 데미지 받는 함수
     {
@@ -54,49 +60,65 @@ public class Monster : MonoBehaviour
     }
 
 
-    private void Die()
+    private void DieAndDrop()
     {
-        fixedY = transform.position.y;
-        // 아이템 드랍 위치
-        Vector3 dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
-        dropPosition.y = fixedY;
+        PlayerManager.instance.player_s.Exp += data.exp;
 
-        // 드랍 아이템들에 대해
+        // 몬스터가 드랍 가능한 아이템들에 대해
         foreach (ItemProbability itemProbability in data.itemProbabilities)
         {
-            // 확률에 맞게 아이템 드랍
+            // 드랍 위치
+            Vector3 dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
+            dropPosition.y = itemProbability.itemData.itemObj.transform.position.y;
+            
+            // 확률에 따라 드랍
             if (Random.value < itemProbability.probability)
             {
-                if (!Physics.CheckSphere(transform.position, dropRadius, 12))
+                // 겹치지 않도록 위치 재설정
+                while (!Physics.CheckSphere(dropPosition, 0.5f, 12) && cnt < 500) // 일단 하드 코딩
                 {
                     dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
-                    dropPosition.y = fixedY;
+                    dropPosition.y = itemProbability.itemData.itemObj.transform.position.y;
+                    cnt++;
                 }
-                Instantiate(itemProbability.item, dropPosition, Quaternion.identity);
+                cnt = 0;
+
+
+                // 코인 드랍
+                if (itemProbability.itemData.isCoin)
+                {
+                    coinData = (Coin)itemProbability.itemData; 
+
+                    // 코인 값 계산
+                    coinData.coin = data.level * Random.Range(1, 11) + Random.Range(1, 11);
+
+                    //Debug.Log(coinData.coin);
+                    
+                    if (coinData.coin >= 1 && coinData.coin <= 99)
+                    {
+                        droppedCoin = Instantiate(coinData.copperCoins, dropPosition, Quaternion.identity);
+                    }
+                    else if (coinData.coin >= 100 && coinData.coin <= 999)
+                    {
+                        droppedCoin = Instantiate(coinData.silverCoins, dropPosition, Quaternion.identity);
+                    }
+                    else if (coinData.coin >= 1000)
+                    {
+                        droppedCoin = Instantiate(coinData.goldCoins, dropPosition, Quaternion.identity);
+                    }
+
+                    nameTag = droppedCoin.GetComponentInChildren<TMP_Text>();
+                    if (nameTag != null)
+                    {
+                        nameTag.text = "코인 " + coinData.coin;
+                    }
+                }
+                // 아이템 드랍
+                else
+                {
+                    Instantiate(itemProbability.itemData.itemObj, dropPosition, Quaternion.identity);
+                }
             }
-        }
-
-        // 골드 드랍
-        coinData.coin = data.level * Random.Range(1, 11) + Random.Range(1, 11);
-
-        if (coinData.coin >= 1 && coinData.coin <= 99)
-        {
-            droppedCoin = Instantiate(coinData.copperCoins, dropPosition, Quaternion.identity);
-        }
-        else if (coinData.coin >= 100 && coinData.coin <= 999)
-        {
-            droppedCoin = Instantiate(coinData.silverCoins, dropPosition, Quaternion.identity);
-        }
-        else if (coinData.coin >= 1000)
-        {
-            droppedCoin = Instantiate(coinData.goldCoins, dropPosition, Quaternion.identity);
-        }
-        nameTag = droppedCoin.GetComponentInChildren<TMP_Text>();
-        if (nameTag != null)
-        {
-            nameTag.text = "코인 " + coinData.coin;
-            Debug.Log(nameTag.text);
-            Debug.Log(coinData.coin);
         }
 
         // 템 떨구기 완료

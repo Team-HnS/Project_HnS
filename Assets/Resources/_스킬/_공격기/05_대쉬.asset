@@ -18,7 +18,7 @@ MonoBehaviour:
   SkillName: "\uB300\uC26C"
   SkillCode: 5
   SkillLV: 1
-  SkillCoolDown: 2
+  SkillCoolDown: 1
   Effect_maintenance_time: 0
   ChangeRot: 0
   isrange: 0
