@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1282659420063623977}
   - component: {fileID: 7064866308832096223}
   - component: {fileID: 1278229584852311194}
+  - component: {fileID: 6169240664367384022}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -73,7 +74,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 7391
+    m_Bits: 15583
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -93,6 +94,18 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901581567648767414}
   m_Enabled: 1
+--- !u!114 &6169240664367384022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 901581567648767414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd242c50d5a7fc4f8e77f5744e9f813, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2263797028891814692
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +142,7 @@ Transform:
   - {fileID: 1282659420063623977}
   - {fileID: 4160564511005706811}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9020013371683213473
 MonoBehaviour:
@@ -234,6 +247,7 @@ MonoBehaviour:
   Resent_Skill: {fileID: 0}
   lv: 0
   exp: 0
+  skillpoint: 0
   max_hp: 0
   max_mp: 0
   cur_hp: 0
