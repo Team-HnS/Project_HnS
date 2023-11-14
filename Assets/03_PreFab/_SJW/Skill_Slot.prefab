@@ -695,7 +695,7 @@ MonoBehaviour:
   slotNumber: 0
   skillimg: {fileID: 2179756133670411886}
   skill_Colimg: {fileID: 3528525262768874030}
-  nullimg: {fileID: 21300000, guid: 3fe61eedc6f01e44fa4d3bb136b8a839, type: 3}
+  nullimg: {fileID: 21300000, guid: 6da858bd69d036844aabc8e0b06001d2, type: 3}
   text: {fileID: 5185224551609512314}
   keyCode: 0
   nullslot: {fileID: 4129208298676751703}

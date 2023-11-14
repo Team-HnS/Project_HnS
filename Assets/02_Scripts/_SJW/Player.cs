@@ -49,6 +49,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private int exp;//경험치
 
+    [SerializeField]
+    private int skillpoint;//경험치
 
     [SerializeField]
     private int max_hp;
@@ -83,6 +85,7 @@ public class Player : MonoBehaviour
 
     public int Lv { get { return lv; } set { lv = value; } }
     public int Exp { get { return exp; } set { exp = value; } }
+    public int SkillPoint { get { return skillpoint; } set { skillpoint = value; } }
 
     public int Max_Hp {  get { return max_hp; } set { max_hp = value; } }
     public int Max_Mp { get { return max_mp; } set { max_mp = value; } }
@@ -140,6 +143,7 @@ public class Player : MonoBehaviour
         Move_Speed = 5f;
         Attack_Range = 1.5f;
 
+        SkillPoint = 5;
     }
 
     private void Awake()

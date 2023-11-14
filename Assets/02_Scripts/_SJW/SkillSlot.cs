@@ -42,9 +42,16 @@ public class SkillSlot : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDr
         rectTransform = GetComponent<RectTransform>();
     }
 
-    void Refresh() 
+    public void Refresh() 
     {
-        skillimg.sprite = _skillData.skill_Icon;
+        if(_skillData !=null)
+        {
+            skillimg.sprite = _skillData.skill_Icon;
+        }
+        else
+        {
+            skillimg.sprite = nullimg;
+        }
         infoRefresh();
     }
 
@@ -57,6 +64,12 @@ public class SkillSlot : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDr
 
     private void infoRefresh()
     {
+        if(_skillData==null)
+        {
+            return;
+        }
+
+
         string s_type = "";
         switch (_skillData.skilltype)
         {
@@ -133,6 +146,11 @@ public class SkillSlot : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDr
                 text.text = keyCode.ToString();
                 result.gameObject.GetComponent<SkillSlot>().text.text = temp_key.ToString();
 
+                //슬롯넘버 위치 변경
+                int changint = slotNumber;
+                slotNumber = result.gameObject.GetComponent<SkillSlot>().slotNumber;
+                result.gameObject.GetComponent<SkillSlot>().slotNumber = changint;
+
                 //자식 위치 변경
                 int childnum = transform.GetSiblingIndex();
                 int targetchidnum = result.gameObject.transform.GetSiblingIndex();
@@ -141,10 +159,17 @@ public class SkillSlot : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDr
 
                 //리스트 배열 위치 변경
                 int tempint = result.gameObject.GetComponent<SkillSlot>().slotNumber;
+                print("내위치 : "+ slotNumber + "바꿀 위치 : "+ tempint);
+                print("내위치 : " + KeyInputManager.instance.ssp.skillSlots[slotNumber].name + "바꿀 위치 : " + KeyInputManager.instance.ssp.skillSlots[tempint].name);
 
                 SkillSlot temp = KeyInputManager.instance.ssp.skillSlots[slotNumber];
-                KeyInputManager.instance.ssp.skillSlots[slotNumber] = result.gameObject.GetComponent<SkillSlot>();
+                print("템프에 : " + temp.name + "저장됨");
+                print("나는이제 : " + this.name + "넣을거임");
+                KeyInputManager.instance.ssp.skillSlots[slotNumber] = this;
+                print(slotNumber+"슬롯넘버에 : " + KeyInputManager.instance.ssp.skillSlots[slotNumber] + "저장됨");
+
                 KeyInputManager.instance.ssp.skillSlots[tempint] = temp;
+                print(tempint+"슬롯넘버에 : " + KeyInputManager.instance.ssp.skillSlots[tempint] + "저장됨");
             }
         }
     }
