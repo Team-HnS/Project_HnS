@@ -10,9 +10,17 @@ public class MainScript : MonoBehaviour
 
     void Start()
     {
-        NPCDialog = GameObject.Find("NPCDialog");
-        NPCText = GameObject.Find("NPCText").GetComponent<Text>();
-        NPCDialog.SetActive(false);
+        void Start()
+        {
+            NPCDialog = GameObject.Find("NPCDialog");
+            NPCText = GameObject.Find("NPCText")?.GetComponent<Text>(); // null일 경우 예외 발생 방지
+            if (NPCText == null)
+            {
+                Debug.LogError("NPCText not found or Text component is missing.");
+            }
+            NPCDialog.SetActive(false);
+        }
+
     }
 
     public void NPCChatEnter(string text)

@@ -42,9 +42,16 @@ public class SkillSlot : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDr
         rectTransform = GetComponent<RectTransform>();
     }
 
-    void Refresh() 
+    public void Refresh() 
     {
-        skillimg.sprite = _skillData.skill_Icon;
+        if(_skillData !=null)
+        {
+            skillimg.sprite = _skillData.skill_Icon;
+        }
+        else
+        {
+            skillimg.sprite = nullimg;
+        }
         infoRefresh();
     }
 
@@ -57,6 +64,12 @@ public class SkillSlot : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDr
 
     private void infoRefresh()
     {
+        if(_skillData==null)
+        {
+            return;
+        }
+
+
         string s_type = "";
         switch (_skillData.skilltype)
         {

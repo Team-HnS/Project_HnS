@@ -13,7 +13,7 @@ public class NpcUIManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Debug.Log("11");
-            // ¸¶¿ì½º ¿À¸¥ÂÊ ¹öÆ°ÀÌ Å¬¸¯µÇ¾ú´ÂÁö È®ÀÎ
+            // ë§ˆìš°ìŠ¤ ì˜¤ë¥¸ìª½ ë²„íŠ¼ì´ í´ë¦­ë˜ë©´ ì‹¤í–‰
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
@@ -24,17 +24,17 @@ public class NpcUIManager : MonoBehaviour
                 {
                     temp = npcClickHandler;
                     Debug.Log("13");
-                    // NPC°¡ Å¬¸¯µÇ¾úÀ» ¶§
-                    hit.transform.GetComponent<NPCClickHandler>().ToggleUI(); // UI¸¦ Åä±ÛÇÕ´Ï´Ù.
+                    // NPCì— í•´ë‹¹í•˜ëŠ” ê²½ìš°
+                    hit.transform.GetComponent<NPCClickHandler>().ToggleUI(); // UIë¥¼ í† ê¸€í•©ë‹ˆë‹¤.
                 }
                 else
                 {
                     Debug.Log("14");
-                    // ´Ù¸¥ °÷À» Å¬¸¯ÇßÀ» ¶§
+                    // ë‹¤ë¥¸ ì˜¤ë¸Œì íŠ¸ì— í•´ë‹¹í•˜ëŠ” ê²½ìš°
                     if (temp != null && temp.isUIActive)
                     {
                         Debug.Log("15");
-                        // UI°¡ È°¼ºÈ­µÈ »óÅÂ¶ó¸é UI¸¦ ºñÈ°¼ºÈ­ÇÕ´Ï´Ù.
+                        // UIê°€ í™œì„±í™”ë˜ì–´ ìˆìœ¼ë©´ UIë¥¼ ë¹„í™œì„±í™”í•©ë‹ˆë‹¤.
                         temp.ToggleUI();
                         temp = null;
                     }
