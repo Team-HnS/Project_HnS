@@ -62,7 +62,8 @@ public class Monster : MonoBehaviour
 
     private void DieAndDrop()
     {
-        
+        PlayerManager.instance.player_s.Exp += data.exp;
+
         // 몬스터가 드랍 가능한 아이템들에 대해
         foreach (ItemProbability itemProbability in data.itemProbabilities)
         {
