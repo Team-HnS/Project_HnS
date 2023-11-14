@@ -33,7 +33,7 @@ public class DropArea : MonoBehaviour, IDropHandler
             ChangeSlot();
 
         DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
-        if (droppedItemSlot != null)
+        if (droppedItemSlot.itemData != null)
         {
             // 드롭된 아이템 처리
             currentItemData = droppedItemSlot.itemData;

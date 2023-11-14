@@ -2,13 +2,23 @@ using DarkLandsUI.Scripts.Equipment;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using static UnityEditor.Progress;
 
-public class EquipmentSlot : MonoBehaviour, IDropHandler
+public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
 {
-    ItemManager itemManager;
+    public Transform slotPanel;
+    public GameObject slotPrefab;
+    public ItemManager itemManager;
     private Slot equipmentSlot;
+
+    
+    public List<Slot> Slots;
+    //슬롯에 담긴 모든 아이템 리스트
+    public List<ItemData> items;
 
     void Start()
     {
@@ -17,23 +27,130 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
+        Debug.Log("OnDrop event triggered.");
         DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
-        if (droppedItemSlot != null)
+        if (droppedItemSlot != null && droppedItemSlot.itemData != null)
         {
+            RemoveItemFromInventory(droppedItemSlot.itemData);
+            AssignItemToEquipmentSlot(droppedItemSlot.itemData);
+
             // 아이템 데이터 추가
-            itemManager.AddItem(droppedItemSlot.itemData, 1);
+           items.Add(droppedItemSlot.itemData);
+            foreach (Transform child in slotPanel)
+            {
+                Debug.Log("Destroying GameObject: " + child.gameObject.name);
+                Destroy(child.gameObject);
+            }
+            foreach (ItemData item in items)
+            {
+                if (itemManager.Item_data[item] <= 0)
+                {
+                    Debug.Log("Skipping item due to insufficient quantity: " + item.ItemName);
+                    continue;
+                }
+
+                Debug.Log("Adding item to UI: " + item.ItemName);
+                GameObject instance = Instantiate(slotPrefab, slotPanel);
+
+                Slot slotInstance = instance.GetComponent<Slot>();
+                slotInstance.itemData = item;
+                slotInstance.UpdateSlotUI();
+                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+                instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
+                instance.transform.Find("explanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+
+                if (item is E_Item)
+                {
+                    instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+                    instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+                }
+            }
 
             // 장비창 UI 업데이트
             UpdateEquipmentUI(droppedItemSlot.itemData);
+        }
+        else
+        {
+            Debug.LogError("Dropped item data is null.");
+        }
+    }
+
+    private void AssignItemToEquipmentSlot(ItemData itemData)
+    {
+        if (equipmentSlot != null)
+        {
+            equipmentSlot.itemData = itemData;
+            equipmentSlot.UpdateSlotUI();
+        }
+    }
+
+    private void RemoveItemFromInventory(ItemData itemData)
+    {
+        if (itemManager.items.Contains(itemData))
+        {
+            itemManager.items.Remove(itemData);
+            Debug.Log(itemData.ToString());
+            itemManager.UpdateAllSlots();
+        }
+        if (items.Contains(itemData))
+        {
+            items.Remove(itemData);
         }
     }
 
     private void UpdateEquipmentUI(ItemData itemData)
     {
+        foreach (var slot in Slots)
+        {
+            if (slot.itemData != null) // itemData가 설정되어 있는지 확인
+            {
+                slot.UpdateSlotUI();
+            }
+        }
         if (equipmentSlot != null && itemData != null)
         {
             equipmentSlot.itemData = itemData;
             equipmentSlot.UpdateSlotUI(); // 특정 슬롯의 UI 업데이트
+
         }
+    }
+    public void InitializeInventory(List<ItemData> items)
+    {
+        
+        Debug.Log("InitializeInventory called. Items count: " + items.Count);
+        foreach (Transform child in slotPanel)
+        {
+            Debug.Log("Destroying GameObject: " + child.gameObject.name);
+            Destroy(child.gameObject);
+        }
+        foreach (ItemData item in items)
+        {
+            if (itemManager.Item_data[item] <= 0)
+            {
+                Debug.Log("Skipping item due to insufficient quantity: " + item.ItemName);
+                continue; 
+            }
+
+            Debug.Log("Adding item to UI: " + item.ItemName);
+            GameObject instance = Instantiate(slotPrefab, slotPanel);
+
+            Slot slotInstance = instance.GetComponent<Slot>();
+            slotInstance.itemData = item;
+            slotInstance.UpdateSlotUI();  
+            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+            instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
+            instance.transform.Find("explanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+
+            if (item is E_Item)
+            {
+                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+                instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+            }
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        throw new NotImplementedException();
     }
 }
