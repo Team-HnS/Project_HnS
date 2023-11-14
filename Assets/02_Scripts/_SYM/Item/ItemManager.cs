@@ -16,7 +16,11 @@ public class ItemManager : MonoBehaviour
     public List<ItemData> items;
     public List<Slot> Slots;
     public int countItem;
+    public Coin playerCoins;
+
     Slot slot;
+
+    public Text coinCountText;
 
     public Dictionary<ItemData, int> Item_data = new Dictionary<ItemData, int>();
     public static ItemManager Instance { get; private set; }
@@ -39,9 +43,27 @@ public class ItemManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void AddCoin(int amount)
+    {
+        playerCoins.coin += amount; // 코인 수량 증가
+        UpdateCoinUI(playerCoins.coin); // 코인 UI 업데이트
+    }
+
+    private void UpdateCoinUI(int coinCount)
+    {
+        if (coinCountText != null)
+        {
+            coinCountText.text = "Coins: " + coinCount.ToString();
+        }
+    }
 
     public void AddItem(ItemData newItem, int quantity)
     {
+        if (newItem is Coin)
+        {
+            AddCoin(quantity); // 코인 아이템인 경우 AddCoin 메서드 호출
+        }
+
         if (Item_data.ContainsKey(newItem))
         {
             // 아이템이 이미 존재하면, 수량을 증가시킵니다.
