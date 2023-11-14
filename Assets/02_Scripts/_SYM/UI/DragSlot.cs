@@ -30,6 +30,8 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     void Awake()
     {
+        instance = this;
+
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
@@ -40,6 +42,9 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     void Start()
     {
         instance = this;
+        itemData = GetComponent<Slot>().itemData; // ItemManager 인스턴스 찾기
+        
+
     }
     public void DragSetImage(Image _itemImage)
     {
@@ -53,10 +58,26 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         color.a = _alpha;
         imageItem.color = color;
     }
+    public void InitializeSlotsFromItemManager(ItemManager itemManager)
+    {
+        for (int i = 0; i < itemManager.countItem; i++)
+        {
+            if (i < Slots.Count)
+            {
+                Slots[i].itemData = itemManager.items[i]; // 아이템 데이터 할당
+                Slots[i].UpdateSlotUI(); // UI 업데이트
+            }
+        }
+    }
 
     // 마우스 드래그가 시작 됐을 때 발생하는 이벤트
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (itemData == null)
+        {
+            Debug.LogError("ItemData is null on drag start.");
+            return;
+        }
         if (draggedItemClone == null)
         {
             draggedItemClone = Instantiate(gameObject, transform.parent);
