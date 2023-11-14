@@ -7,106 +7,25 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    public PlayerMovement player;//Player 스크립트 
+    //public PlayerMovement player;//Player 스크립트
+    public GameObject player;
     public TalkManager talkManager; // 대화 관리를 위한 TalkManager 스크립트
     public int talkIndex; // 대화 인덱스
     private bool isAction; // 대화 중 여부를 나타내는 플래그
     private GameObject scanObject; // 상호 작용할 대상
     public GameObject talkPanel; // 대화 패널(GameObject)을 참조하기 위한 변수
     public Text UITalkText; // 대화 내용을 표시할 UI Text 컴포넌트
-
-
-    //점수와 스테이지 이동관리하는 오브젝트(클래스)
-
-    public int totalPoint;
-    public int stagePoint;
-    public int stageIndex;
-    public int health;
-    public GameObject[] Stages; //스테이지를 오브젝트로 만들었기 문에 오브젝트 배열로 관리가능 
-
-    //UI 변수
-    public Image[] UIhealth; //이미지는 3개이므로 배열 
-    public Text UIPoint;
-    public Text UIStage;
-    public GameObject UIRestartBtn;
+    public DialogueSystem dialogueSystem;// 대화 관리를 위한
 
     //퀘스트
     public QuestManager questManager;
 
-    void Start()
+    public static GameManager instance;
+    private void Awake()
     {
-        //questManager.CheckQuest(); //게임을 시작하자마자 퀘스트 이름을 가져오기 
+        instance = this;
     }
-
-    void Update()
-    {
-       // UIPoint.text = (totalPoint + stagePoint).ToString();
-    }
-
-    public void NextStage()
-    {
-
-        if (stageIndex < Stages.Length - 1)
-        {   // 마지막 스테이지 아닌 경우 -> 다음스테이지로 
-
-            Stages[stageIndex].SetActive(false);
-            stageIndex++; //스테이지 증가 
-            Stages[stageIndex].SetActive(true); //다음 스테이지 활성화
-
-            PlayerReposition(); //시작위치에서 플레이어를 태어나게?하는 함수 
-
-
-            UIStage.text = "STAGE " + (stageIndex + 1);
-
-        }
-        else
-        { //마지막 스테이지인 경우 ->게임끝 
-
-            //플레이어 컨트롤 막기 
-            Time.timeScale = 0; //플레이어가 이동되지 않게 함 
-
-            //결과출력 
-            Debug.Log("게임 클리어");
-
-            //UI 다시시작버튼 
-            Text btnText = UIRestartBtn.GetComponentInChildren<Text>();
-            btnText.text = "GameClear!";
-            UIRestartBtn.SetActive(true);
-
-
-        }
-
-
-        //Calculate point
-        totalPoint += stagePoint; // 얻은 지역포인트 전체점수에 포함시키기 
-        stagePoint = 0; //지역 포인트 초기화
-    }
-
-    public void HealthDown()
-    {
-
-        if (health > 1)
-        {//생명이 0보다 크면 단순 생명 감소
-            health--;
-            UIhealth[health].color = new Color(1, 0, 0, 0.3f);
-        }
-        else
-        {// 생명이 0이하면 죽음
-
-            //플레이어가 죽는 모션(이팩트)-> 플레이어 구현시에 이펙트 삽입시 활성화
-            //player.OnDie();
-
-            //UI에 결과 출력
-            Debug.Log("죽었습니다.");
-
-            //다시 시작 버튼 
-            UIRestartBtn.SetActive(true);
-
-            //죽었을 경우 모든 UI가 사라지도록 해야함 -> All Health UI Off
-            UIhealth[0].color = new Color(1, 0, 0, 0.3f);
-
-        }
-    }
+    
 
     void PlayerReposition()
     {
