@@ -320,6 +320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragSlot: {fileID: 5218934242149708443}
   Slots: []
+  inventoryItems: []
+  currentItemData: {fileID: 0}
   itemData: {fileID: 0}
   imageItem: {fileID: 4862168677799254644}
 --- !u!1 &1972860444438037278

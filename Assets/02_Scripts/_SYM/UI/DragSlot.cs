@@ -59,14 +59,18 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (draggedItemClone == null)
         {
-            // 클론 생성
             draggedItemClone = Instantiate(gameObject, transform.parent);
-            CanvasGroup canvasGroupClone = draggedItemClone.AddComponent<CanvasGroup>();
-            canvasGroup.blocksRaycasts = false; // 드래그 중 Raycast 차단
+
+            CanvasGroup canvasGroupClone = draggedItemClone.GetComponent<CanvasGroup>();
+            if (canvasGroupClone == null)
+            {
+                canvasGroupClone = draggedItemClone.AddComponent<CanvasGroup>();
+            }
+            canvasGroupClone.blocksRaycasts = false;
+            // 원본 슬롯 숨기기
+            canvasGroup.alpha = 0.0f;
+            draggedItemClone.transform.SetAsLastSibling(); // 클론을 캔버스 상의 최상단에 위치
         }
-        // 원본 슬롯 숨기기
-        canvasGroup.alpha = 0.0f;
-        draggedItemClone.transform.SetAsLastSibling(); // 클론을 캔버스 상의 최상단에 위치
     }
 
     // 마우스 드래그 중일 때 계속 발생하는 이벤트
@@ -111,15 +115,15 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             // 인벤토리 UI 업데이트 (예: 슬롯 비우기)
             UpdateInventoryUI();
         }
-       
-            foreach (var slot in Slots)
+
+        foreach (var slot in Slots)
+        {
+            if (slot.itemData != null) // itemData가 설정되어 있는지 확인
             {
-                if (slot.itemData != null) // itemData가 설정되어 있는지 확인
-                {
-                    slot.UpdateSlotUI();
-                }
+                slot.UpdateSlotUI();
             }
-        
+        }
+
     }
 
     private void UpdateInventoryUI()
