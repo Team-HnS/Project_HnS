@@ -43,26 +43,34 @@ public class ItemManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void AddCoin(int amount)
-    {
-        playerCoins.coin += amount; // 코인 수량 증가
-        UpdateCoinUI(playerCoins.coin); // 코인 UI 업데이트
-    }
 
-    private void UpdateCoinUI(int coinCount)
-    {
-        if (coinCountText != null)
-        {
-            coinCountText.text = "Coins: " + coinCount.ToString();
-        }
-    }
+
+    //public void AddCoin(int amount, Coin coin)
+    //{
+    //    if(GameObject.FindObjectOfType<Coin>() != null)
+    //    {
+
+    //    }
+    //    playerCoins.coin += amount; // 코인 수량 증가
+
+    //    UpdateCoinUI(playerCoins.coin); // 코인 UI 업데이트
+    //}
+
+    //private void UpdateCoinUI(int coinCount)
+    //{
+    //    if (coinCountText != null)
+    //    {
+    //        coinCountText.text = "Coins: " + coinCount.ToString();
+    //    }
+    //}
 
     public void AddItem(ItemData newItem, int quantity)
     {
-        if (newItem is Coin)
-        {
-            AddCoin(quantity); // 코인 아이템인 경우 AddCoin 메서드 호출
-        }
+        //if (newItem is Coin)
+        //{
+        //    AddCoin(quantity); // 코인 아이템인 경우 AddCoin 메서드 호출
+        //    return;
+        //}
 
         if (Item_data.ContainsKey(newItem))
         {

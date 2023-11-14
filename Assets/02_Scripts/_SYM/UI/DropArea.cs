@@ -20,7 +20,7 @@ public class DropArea : MonoBehaviour, IDropHandler
 
     private void Awake()
     {
-        //SetImageAlpha(0); // 초기 알파값 설정 (완전 투명)
+        
     }
     public void AssignItem(ItemData newItemData)
     {
