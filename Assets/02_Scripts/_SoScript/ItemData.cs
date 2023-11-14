@@ -19,7 +19,8 @@ public class ItemData : ScriptableObject
     public int Max_Amount;//최대 개수,장비는 무조건 하나
     public int Price;//가격    
     public Sprite Item_Icon;//아이콘
-    
+    public bool isCoin;
+    public GameObject itemObj;
 
     public Item_Rank item_rank;
     [HideInInspector]

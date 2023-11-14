@@ -10,8 +10,8 @@ public class Item : MonoBehaviour
 {
     public ItemData itemData;
     private TMP_Text nameTag;
-    public List<ItemData> items;
-    public string code;
+    [HideInInspector]public List<ItemData> items;
+    public string code;    
 
     private void Awake()
     {
@@ -39,12 +39,12 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Item itemComponent = GetComponent<Item>();
-            if (itemComponent != null)
-            {
-                ItemManager.Instance.AddItem(itemComponent.itemData, 1);
-                Destroy(gameObject);
-            }
+            //Item itemComponent = GetComponent<Item>();
+            //if (itemComponent != null)
+            //{
+            //    ItemManager.Instance.AddItem(itemComponent.itemData, 1);
+            //    Destroy(gameObject);
+            //}
             Destroy(gameObject);
         }
     }
