@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace GameDevTV.Saving
+namespace Saving
 {
     /// <summary>
     /// ISaveable 컴포넌트를 가진 모든 GameObject에 배치되어야 합니다.
