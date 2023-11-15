@@ -14,13 +14,14 @@ public class Monster : MonoBehaviour
     public MonsterData data;
     private EnemyFSM fsm;
     private Coin coinData;
+    private Outline outline;
 
     private int hp;
 
     public int Hp
     {
-      get { return hp; }
-      set { hp = value; }
+        get { return hp; }
+        set { hp = value; }
     }
 
     private float dropRadius = 3f;
@@ -31,10 +32,14 @@ public class Monster : MonoBehaviour
 
     private int cnt = 0; // 무한 루프 방지용
 
+    private void Awake()
+    {
+        fsm = GetComponent<EnemyFSM>();
+        outline = GetComponent<Outline>();
+    }
 
     private void Start()
     {
-        fsm = GetComponent<EnemyFSM>();
         Hp = data.hp;
     }
 
@@ -46,14 +51,23 @@ public class Monster : MonoBehaviour
         }
     }
 
+    private void OnMouseOver()
+    {
+        outline.enabled = true;
+    }
+
+    private void OnMouseExit()
+    {
+        outline.enabled = false;
+    }
 
     public void Damaged(int Damage) // 데미지 받는 함수
     {
         Hp -= Damage;
-        UiCreateManager.Instance.CreateDamageFont(Damage,gameObject);
+        UiCreateManager.Instance.CreateDamageFont(Damage, gameObject);
     }
 
-    public void Damaged(int Damage,Color color) // 데미지 받는 함수 색칠놀이
+    public void Damaged(int Damage, Color color) // 데미지 받는 함수 색칠놀이
     {
         Hp -= Damage;
         UiCreateManager.Instance.CreateDamageFont(Damage, gameObject, color);
@@ -70,7 +84,7 @@ public class Monster : MonoBehaviour
             // 드랍 위치
             Vector3 dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
             dropPosition.y = itemProbability.itemData.itemObj.transform.position.y;
-            
+
             // 확률에 따라 드랍
             if (Random.value < itemProbability.probability)
             {
@@ -87,13 +101,13 @@ public class Monster : MonoBehaviour
                 // 코인 드랍
                 if (itemProbability.itemData.isCoin)
                 {
-                    coinData = (Coin)itemProbability.itemData; 
+                    coinData = (Coin)itemProbability.itemData;
 
                     // 코인 값 계산
                     coinData.coin = data.level * Random.Range(1, 11) + Random.Range(1, 11);
 
                     //Debug.Log(coinData.coin);
-                    
+
                     if (coinData.coin >= 1 && coinData.coin <= 99)
                     {
                         droppedCoin = Instantiate(coinData.copperCoins, dropPosition, Quaternion.identity);
