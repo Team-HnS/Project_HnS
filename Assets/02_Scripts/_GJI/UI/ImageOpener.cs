@@ -10,7 +10,7 @@ public class ImageOpener : MonoBehaviour
     private bool isImageOpen = false;
 
     // 버튼 클릭 시 호출되는 메서드
-    public void QuestToggleImage()
+    public void QuestToggleImage() //퀘스트 npc사용
     {
         //Quest Dialog Panel
         isImageOpen = !isImageOpen;
@@ -18,6 +18,12 @@ public class ImageOpener : MonoBehaviour
     }
 
     public void DialogToggleimage() // 튜토리얼 npc 사용중
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
+
+    public void restart() // 튜토리얼 npc 사용중 RE
     {
         isImageOpen = !isImageOpen;
         image.gameObject.SetActive(isImageOpen);
