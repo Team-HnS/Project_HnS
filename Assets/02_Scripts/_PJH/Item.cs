@@ -10,14 +10,15 @@ public class Item : MonoBehaviour
 {
     public ItemData itemData;
     private TMP_Text nameTag;
-    [HideInInspector]public List<ItemData> items;
-    public string code;
-    private Coin coin;
+
+    public int coinAmount; // 코인인 경우
+
+    //[HideInInspector]public List<ItemData> items;
 
     private void Awake()
     {
         nameTag = GetComponentInChildren<TMP_Text>();
-        nameTag.text = itemData.ItemName;
+        nameTag.text = itemData.itemName;
         InitItemNameColor();
     }
 
@@ -41,20 +42,9 @@ public class Item : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Item itemComponent = GetComponent<Item>();
-
             if (itemComponent != null)
             {
-                if (itemData.isCoin)
-                {
-                    coin = (Coin)itemData;
-                    ItemManager.Instance.AddCoin(coin);
-                }
-                else
-                {
-                    ItemManager.Instance.AddItem(itemComponent.itemData, 1);
-                }
-                
-
+                ItemManager.Instance.AddItem(itemComponent.itemData, 1);
                 Destroy(gameObject);
             }
             Destroy(gameObject);

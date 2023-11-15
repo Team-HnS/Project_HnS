@@ -162,7 +162,7 @@ AnimatorState:
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: AttackDelay
-  m_TimeParameter: 
+  m_TimeParameter: AttackDelay
 --- !u!1101 &-3462867177532503149
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

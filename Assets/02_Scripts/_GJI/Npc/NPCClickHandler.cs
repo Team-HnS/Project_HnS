@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class NPCClickHandler : MonoBehaviour
 {
-    public GameObject uiObject; // 활성화할 UI 요소
+    public GameObject uiObject; // ?�성?�할 UI ?�소
 
-    //public Vector3 uiOffset;   // NPC에서의 UI 오프셋
+    //public Vector3 uiOffset;   // NPC?�서??UI ?�프??
 
-    public string npcID;        // NPC의 고유한 식별자
+    public string npcID;        // NPC??고유???�별??
 
     public bool isUIActive = false;
 
     private void Start()
     {
-        // UI 요소를 초기에 비활성화
+        // UI ?�소�?초기??비활?�화
         uiObject.SetActive(false);
     }
 

@@ -10,7 +10,7 @@ using UnityEngine.XR;
 public class EnemyFSM : MonoBehaviour
 {
     private NavMeshAgent agent;
-    private Animator animator;
+    [HideInInspector] public Animator animator;
 
     private GameObject[] playerObj;
     private Transform player;

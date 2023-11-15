@@ -17,10 +17,10 @@ MonoBehaviour:
   hp: 50
   attack: 50
   defense: 50
-  level: 50
+  level: 100
   exp: 1000
   itemProbabilities:
   - itemData: {fileID: 11400000, guid: 85860cd2631b01d4cabe02cc14ac4409, type: 2}
     probability: 0.5
-  - itemData: {fileID: 11400000, guid: 24bd39ceda42e6a46b863359679c5b3a, type: 2}
+  - itemData: {fileID: 11400000, guid: c1e52fae792e7a749843218f9b4920d8, type: 2}
     probability: 0.99

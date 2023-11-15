@@ -22,7 +22,7 @@ public class MonsterData : ScriptableObject
         normal,
         elite,
         boss
-    }    
+    }
 }
 
 [System.Serializable]
