@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/01_Scenes/_GJI/SceneMaker/LoadingScene.unity.meta
 guid: 13f656c3ecb544bcbad64c84bc90f1c7
+=======
+<<<<<<<< HEAD:Assets/99_Asset/_Public/UI효과음.meta
+guid: 6c7e46b92bf660f449cf419426ef9db7
+folderAsset: yes
+>>>>>>> 621cd5608a81f66d35a0eb6030b4f305c688461b
 ========
 guid: 4b6a534d4d653c944b7275ecd8a45b38
 >>>>>>>> 621cd5608a81f66d35a0eb6030b4f305c688461b:Assets/01_Scenes/_SYM/Map_Town 1_masterYM.unity.meta

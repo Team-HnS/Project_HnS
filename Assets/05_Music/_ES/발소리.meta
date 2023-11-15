@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 <<<<<<<< HEAD:Assets/01_Scenes/_GJI/Npc.meta
 guid: b197dfaf0a7fa4044aab8b8e3424a4a5
+=======
+<<<<<<<< HEAD:Assets/99_Asset/_Public/UI효과음/MedievalSoundPack.meta
+guid: fd84b1b6050f650409913529953eab4a
+>>>>>>> 621cd5608a81f66d35a0eb6030b4f305c688461b
 ========
 guid: 7e058c00d5f92a64c93df960adb88988
 >>>>>>>> 621cd5608a81f66d35a0eb6030b4f305c688461b:Assets/05_Music/_ES/발소리.meta
