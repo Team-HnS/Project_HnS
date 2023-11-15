@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/Map_Town 1_master.unity
     guid: 789c7283e9053db42b96326dfa4e66da
+  - enabled: 1
+    path: Assets/01_Scenes/_GJI/Master/Map_BattleRoyal _master.unity
+    guid: 0ca9af367880ac84fa8d29e62f2f7434
   m_configObjects: {}

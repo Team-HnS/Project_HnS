@@ -9,4 +9,9 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene("Map_Town 1_master");
     }
+
+    public void TutorialTownNpc()
+    {
+        SceneManager.LoadScene("Map_BattleRoyal _master");
+    }
 }
