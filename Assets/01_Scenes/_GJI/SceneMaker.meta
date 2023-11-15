@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/01_Scenes/_GJI/SceneMaker.meta
 guid: c3168d8282f60404da9cb839076283b0
+========
+guid: 16a717c47ac9edf478e082fc500271fb
+>>>>>>>> 621cd5608a81f66d35a0eb6030b4f305c688461b:Assets/05_Music/_Bgm/SAGA Epic Action Music Pack.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

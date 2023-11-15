@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/03_PreFab/_SYM/Barbarian 1.prefab.meta
 guid: 09ca2a57b05de9340bd413ec2445f933
 PrefabImporter:
+========
+guid: 7e058c00d5f92a64c93df960adb88988
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> 621cd5608a81f66d35a0eb6030b4f305c688461b:Assets/05_Music/_ES/발소리.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
