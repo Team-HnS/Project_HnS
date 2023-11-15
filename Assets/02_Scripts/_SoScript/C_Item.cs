@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class C_Item : ItemData
 {
-    
+    [Header("소모품")]
     public int UseCode; //소모품 함수 코드
 
     public bool isGone; // 1회용인지

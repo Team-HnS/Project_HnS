@@ -8,26 +8,27 @@ public class ItemData : ScriptableObject
 {
     public enum Item_Rank
     {
-        None = 0,
+        Coin = 0,
         Rare = 1,
         Epic = 2,
         Unique = 3,
         Legendary = 4
     }
 
-    public string ItemName;//이름
-    public int Max_Amount;//최대 개수,장비는 무조건 하나
-    public int Price;//가격    
-    public Sprite Item_Icon;//아이콘
-    public bool isCoin;
+    [Header("기본 정보")]
+    public string itemName;
     public GameObject itemObj;
-
     public Item_Rank item_rank;
-    [HideInInspector]
-    public Color[] item_Color;
+    [HideInInspector] public Color[] item_Color;
 
+    [Header("아이템 정보")]   
+    public Sprite item_Icon; // 인벤토리에 들어갈 아이콘
+    public int Max_Amount; // 최대 개수, 장비는 1개
+    public int price;    
+    
+    [Header("코인 정보")]                    
+    public bool isCoin;
 
-    [TextArea]
-    public string explanation;
-
+    [Header("아이템 설명")]
+    [TextArea] public string explanation;
 }

@@ -32,7 +32,7 @@ public class Slot : MonoBehaviour
         }
         switch (itemData.item_rank)
         {
-            case Item_Rank.None:
+            case Item_Rank.Coin:
                 background.sprite = NoneBackground;
                 break;
 

@@ -20,7 +20,7 @@ public class GuanYu : MonoBehaviour
     private void Awake()
     {
         nameTag = GetComponentInChildren<TMP_Text>();
-        nameTag.text = itemData.ItemName;
+        nameTag.text = itemData.itemName;
         InitItemNameColor();
     }
     private void Start()
