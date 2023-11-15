@@ -7886,6 +7886,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7075814388531144282, guid: 732e0a4f275768645ace75a471772627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7198994893769581087, guid: 732e0a4f275768645ace75a471772627, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -12232,25 +12236,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1031314401245235624, guid: f65e29ef378404dcfb51287e33c39836, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.015924485
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031314401245235624, guid: f65e29ef378404dcfb51287e33c39836, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.9998732
-      objectReference: {fileID: 0}
-    - target: {fileID: 1031314401245235624, guid: f65e29ef378404dcfb51287e33c39836, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 181.825
-      objectReference: {fileID: 0}
     - target: {fileID: 3170836348131247462, guid: f65e29ef378404dcfb51287e33c39836, type: 3}
       propertyPath: m_Name
       value: TutorailNpc
-      objectReference: {fileID: 0}
-    - target: {fileID: 4017616279517241631, guid: f65e29ef378404dcfb51287e33c39836, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4299746278156015881, guid: f65e29ef378404dcfb51287e33c39836, type: 3}
       propertyPath: m_RootOrder
