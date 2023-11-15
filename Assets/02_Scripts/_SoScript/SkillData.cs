@@ -46,7 +46,7 @@ public class SkillData : ScriptableObject
     public List<float> Add_Coefficient;
 
 
-    public AudioSource SkillSound;// 시전음
+    public AudioClip SkillSound;// 시전음
     public AnimationClip SkillMotion;//스킬모션
 
     [TextArea]

@@ -30,7 +30,7 @@ MonoBehaviour:
   - 500
   Add_Coefficient:
   - 0
-  SkillSound: {fileID: 0}
+  SkillSound: {fileID: 8300000, guid: adc6d09285586c34895cca876ccd1897, type: 3}
   SkillMotion: {fileID: 7400002, guid: 2919f332611de26428ad233e0ad47f7a, type: 3}
   Skill_Explanation: "\uD798\uC744 \uC9D1\uC911\uD55C \uB4A4\uC5D0 \uD0C0\uAC9F\uD305
     \uD55C \uC801\uC5D0\uAC8C \uAC15\uB825\uD55C \uB3CC\uC9C4\uACF5\uACA9\uC744 \uD55C\uB2E4"

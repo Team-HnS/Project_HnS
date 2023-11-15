@@ -39004,18 +39004,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4457395490327913220, guid: 69afe230b40886d4c820ffa304b49574, type: 3}
       propertyPath: m_Volume
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4457395490327913220, guid: 69afe230b40886d4c820ffa304b49574, type: 3}
       propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 89ca3c1845de9ae49a27755eae399f1f, type: 3}
-    - target: {fileID: 5790235976359661069, guid: 69afe230b40886d4c820ffa304b49574, type: 3}
-      propertyPath: BGMS.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5790235976359661069, guid: 69afe230b40886d4c820ffa304b49574, type: 3}
-      propertyPath: BGMS.Array.data[0]
       value: 
       objectReference: {fileID: 8300000, guid: 89ca3c1845de9ae49a27755eae399f1f, type: 3}
     - target: {fileID: 8250476182867812776, guid: 69afe230b40886d4c820ffa304b49574, type: 3}
