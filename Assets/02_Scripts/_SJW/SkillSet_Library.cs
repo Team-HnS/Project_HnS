@@ -91,6 +91,7 @@ public class SkillSet_Library : MonoBehaviour
 
         Player _plyaer = instance.player.GetComponent<Player>();
         instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
+        SoundManager.instance.EffectPlay(s_data.SkillSound);//스킬 사용 효과음
         SkillRot(s_data);//플레이어 회전
 
         GameObject effect = Instantiate(s_data.Effect,instance.player.transform.position,instance.player_m.playerCharacter.rotation);
@@ -130,6 +131,7 @@ public class SkillSet_Library : MonoBehaviour
             return; //마나 딸리면 취소
 
         instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
+        SoundManager.instance.EffectPlay(s_data.SkillSound);//스킬 사용 이펙트
 
         if (instance.player_s.state != Player.PlayerState.Dash)
         {
@@ -157,6 +159,7 @@ public class SkillSet_Library : MonoBehaviour
 
         Player _plyaer = instance.player.GetComponent<Player>();
         instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
+        SoundManager.instance.EffectPlay(s_data.SkillSound);//스킬 사용 효과음
         SkillRot(s_data);//플레이어 회전
         /////////////여기까지
 
@@ -217,6 +220,7 @@ public class SkillSet_Library : MonoBehaviour
 
         Player _plyaer = instance.player.GetComponent<Player>();
         instance.StartCoroutine(CoolTime(c_data));//여기서부터 쿨돔
+        SoundManager.instance.EffectPlay(s_data.SkillSound);//스킬 사용 효과음
         SkillRot(s_data);//플레이어 회전
 
         GameObject effect = Instantiate(s_data.Effect, instance.player.transform.position, instance.player_m.playerCharacter.rotation, instance.player.transform);//자신에 이펙트 생성

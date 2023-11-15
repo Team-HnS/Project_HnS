@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5790235976359661069
 MonoBehaviour:
@@ -49,7 +49,8 @@ MonoBehaviour:
   bgmPlayer: {fileID: 4457395490327913220}
   effectSoundPlayer: {fileID: 1736787193420947111}
   narSoundPlayer: {fileID: 0}
-  BGMS: []
+  BGMS:
+  - {fileID: 8300000, guid: 89ca3c1845de9ae49a27755eae399f1f, type: 3}
   EffectiveClip: []
 --- !u!82 &4457395490327913220
 AudioSource:
@@ -63,7 +64,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -158,7 +159,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

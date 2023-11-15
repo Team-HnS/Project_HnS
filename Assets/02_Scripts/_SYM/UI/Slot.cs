@@ -32,7 +32,7 @@ public class Slot : MonoBehaviour
         }
         switch (itemData.item_rank)
         {
-            case Item_Rank.None:
+            case Item_Rank.Coin:
                 background.sprite = NoneBackground;
                 break;
 
@@ -54,4 +54,13 @@ public class Slot : MonoBehaviour
         }
     }
 
+    internal void AssignItem(ItemData itemToMove)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void ClearSlot()
+    {
+        itemData = null;
+    }
 }

@@ -112,6 +112,7 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             draggedItemClone = null; // 참조 초기화
         }
         canvasGroup.alpha = 1.0f; // 원본 슬롯 다시 보이게 하기
+        UpdateInventoryUI();
     }
 
     //마우스 클릭 시
@@ -126,13 +127,15 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         DropArea dropArea = eventData.pointerCurrentRaycast.gameObject.GetComponent<DropArea>();
         if (dropArea != null)
         {
+            Debug.Log(dropArea != null);
             // DropArea에 아이템 전달
             dropArea.AssignItem(currentItemData);
+            Debug.Log(currentItemData.name);
 
             // 인벤토리에서 해당 아이템 제거
             inventoryItems.Remove(currentItemData);
             currentItemData = null; // 현재 아이템 데이터 초기화
-
+            
             // 인벤토리 UI 업데이트 (예: 슬롯 비우기)
             UpdateInventoryUI();
         }

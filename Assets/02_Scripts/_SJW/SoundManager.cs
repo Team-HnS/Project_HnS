@@ -43,7 +43,6 @@ public class SoundManager : MonoBehaviour
     public void EffectPlay(AudioClip esm)
     {
         effectSoundPlayer.PlayOneShot(esm);
-
     }
 
     public void EffectPlay(int num)

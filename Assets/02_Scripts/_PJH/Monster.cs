@@ -10,25 +10,28 @@ using UnityEngine.UIElements;
 /// 몬스터 사망 시 드랍하는 아이템 관련 메소드 포함
 /// </summary>
 public class Monster : MonoBehaviour
-{
-    public MonsterData data;
+{    
+    public MonsterData data; // 드랍할 아이템 리스트 포함
+
     private EnemyFSM fsm;
-    private Coin coinData;
     private Outline outline;
 
     private int hp;
-
     public int Hp
     {
         get { return hp; }
         set { hp = value; }
     }
 
+    // 아이템 드랍
+    private bool isDropped = false; // 여러번 드랍하지 않기 위함
     private float dropRadius = 3f;
-    private bool isDropped = false; // 여러번 드랍하지 마라
 
+    // 코인 드랍
+    private int coinAmount;
     private GameObject droppedCoin;
     private TMP_Text nameTag;
+    private Coin_Item coinData;
 
     private int cnt = 0; // 무한 루프 방지용
 
@@ -74,6 +77,7 @@ public class Monster : MonoBehaviour
     }
 
 
+
     private void DieAndDrop()
     {
         PlayerManager.instance.player_s.Exp += data.exp;
@@ -100,31 +104,29 @@ public class Monster : MonoBehaviour
 
                 // 코인 드랍
                 if (itemProbability.itemData.isCoin)
-                {
-                    coinData = (Coin)itemProbability.itemData;
+                {                    
+                    coinData = (Coin_Item)itemProbability.itemData;
 
                     // 코인 값 계산
-                    coinData.coin = data.level * Random.Range(1, 11) + Random.Range(1, 11);
+                    coinAmount = data.level * Random.Range(1, 11) + Random.Range(1, 11);                    
 
-                    //Debug.Log(coinData.coin);
-
-                    if (coinData.coin >= 1 && coinData.coin <= 99)
+                    if (coinAmount >= 1 && coinAmount <= 99)
                     {
                         droppedCoin = Instantiate(coinData.copperCoins, dropPosition, Quaternion.identity);
                     }
-                    else if (coinData.coin >= 100 && coinData.coin <= 999)
+                    else if (coinAmount >= 100 && coinAmount <= 999)
                     {
                         droppedCoin = Instantiate(coinData.silverCoins, dropPosition, Quaternion.identity);
                     }
-                    else if (coinData.coin >= 1000)
+                    else if (coinAmount >= 1000)
                     {
                         droppedCoin = Instantiate(coinData.goldCoins, dropPosition, Quaternion.identity);
                     }
-
+                    droppedCoin.GetComponent<Item>().coinAmount = coinAmount;
                     nameTag = droppedCoin.GetComponentInChildren<TMP_Text>();
                     if (nameTag != null)
                     {
-                        nameTag.text = "코인 " + coinData.coin;
+                        nameTag.text = "코인 " + coinAmount;
                     }
                 }
                 // 아이템 드랍

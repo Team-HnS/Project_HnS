@@ -53,4 +53,16 @@ public class ImageOpener : MonoBehaviour
         image.gameObject.SetActive(isImageOpen);
     }
 
+    public void StartSceneOptionLoad()
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
+
+    public void StartSceneNewLoad()
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
+
 }

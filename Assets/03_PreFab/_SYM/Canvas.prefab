@@ -357,6 +357,7 @@ GameObject:
   - component: {fileID: 3529663800604908903}
   - component: {fileID: 5788813756597626263}
   - component: {fileID: 8467603446056379268}
+  - component: {fileID: 8979927992204741547}
   m_Layer: 5
   m_Name: equipment
   m_TagString: Untagged
@@ -434,6 +435,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83a8e258103d5004ea73146e69c31fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8979927992204741547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 987244042721920987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af00b9922e3b48049b0379f0ca79dbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1071082495732788076
@@ -2581,8 +2594,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: 0}
-  m_SizeDelta: {x: 300, y: 51.75}
+  m_AnchoredPosition: {x: -37.5, y: 0}
+  m_SizeDelta: {x: 262.5, y: 51.75}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1015478266709361604
 CanvasRenderer:
@@ -6188,6 +6201,7 @@ GameObject:
   - component: {fileID: 548288298663558313}
   - component: {fileID: 7426834066793671943}
   - component: {fileID: 5550967377640304407}
+  - component: {fileID: 8394929524186800322}
   m_Layer: 5
   m_Name: ExpendPanel
   m_TagString: Untagged
@@ -6294,6 +6308,18 @@ MonoBehaviour:
   itemManager: {fileID: 0}
   Slots: []
   items: []
+--- !u!114 &8394929524186800322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6965101694145223993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee09dbc51f3c29744978bfe15f7b0ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7075814388531144282
 GameObject:
   m_ObjectHideFlags: 0
@@ -6313,7 +6339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6400127490605018799
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6400,6 +6426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff745364c4ef6054ba02e1995bfbb71b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemManager: {fileID: 0}
+  inventorySlots: []
+  equipmentSlots: []
+  consumableSlots: []
 --- !u!1 &7222073964681473032
 GameObject:
   m_ObjectHideFlags: 0
