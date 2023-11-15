@@ -54,4 +54,13 @@ public class Slot : MonoBehaviour
         }
     }
 
+    internal void AssignItem(ItemData itemToMove)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void ClearSlot()
+    {
+        itemData = null;
+    }
 }

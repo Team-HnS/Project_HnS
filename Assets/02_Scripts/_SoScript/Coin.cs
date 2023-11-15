@@ -9,5 +9,5 @@ public class Coin : ItemData
     public GameObject goldCoins;
     public GameObject silverCoins;
     public GameObject copperCoins;
-    [HideInInspector] public int coin;
+    public int coin;
 }
