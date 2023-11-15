@@ -17,10 +17,34 @@ public class ImageOpener : MonoBehaviour
         image.gameObject.SetActive(isImageOpen);
     }
 
-    public void DialogToggleimage()
+    public void DialogToggleimage() // 튜토리얼 npc 사용중
     {
         isImageOpen = !isImageOpen;
         image.gameObject.SetActive(isImageOpen);
     }
-  
+
+    public void DialogOnlyToggleimage()
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
+
+    public void ToolgToggleimage()
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
+
+    public void DeongunToggleimage()
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
+
+    public void ObjectToggleimage()
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
+
 }
