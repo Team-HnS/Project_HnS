@@ -45,24 +45,24 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
             {
                 if (itemManager.Item_data[item] <= 0)
                 {
-                    Debug.Log("Skipping item due to insufficient quantity: " + item.ItemName);
+                    Debug.Log("Skipping item due to insufficient quantity: " + item.itemName);
                     continue;
                 }
 
-                Debug.Log("Adding item to UI: " + item.ItemName);
+                Debug.Log("Adding item to UI: " + item.itemName);
                 GameObject instance = Instantiate(slotPrefab, slotPanel);
 
                 Slot slotInstance = instance.GetComponent<Slot>();
                 slotInstance.itemData = item;
                 slotInstance.UpdateSlotUI();
-                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
                 instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
-                instance.transform.Find("explanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+                instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
 
                 if (item is E_Item)
                 {
-                    instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
-                    instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+                    instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+                    instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
                 }
             }
 
@@ -127,24 +127,24 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
         {
             if (itemManager.Item_data[item] <= 0)
             {
-                Debug.Log("Skipping item due to insufficient quantity: " + item.ItemName);
+                Debug.Log("Skipping item due to insufficient quantity: " + item.itemName);
                 continue; 
             }
 
-            Debug.Log("Adding item to UI: " + item.ItemName);
+            Debug.Log("Adding item to UI: " + item.itemName);
             GameObject instance = Instantiate(slotPrefab, slotPanel);
 
             Slot slotInstance = instance.GetComponent<Slot>();
             slotInstance.itemData = item;
             slotInstance.UpdateSlotUI();  
-            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
             instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
-            instance.transform.Find("explanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+            instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
 
             if (item is E_Item)
             {
-                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
-                instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+                instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
             }
         }
     }

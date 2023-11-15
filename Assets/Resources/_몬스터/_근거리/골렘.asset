@@ -26,5 +26,5 @@ MonoBehaviour:
     probability: 0.7
   - itemData: {fileID: 11400000, guid: b6782b1ffde230a46abb0dbbf91d9cf0, type: 2}
     probability: 0.0001
-  - itemData: {fileID: 11400000, guid: 24bd39ceda42e6a46b863359679c5b3a, type: 2}
+  - itemData: {fileID: 11400000, guid: c1e52fae792e7a749843218f9b4920d8, type: 2}
     probability: 0.67

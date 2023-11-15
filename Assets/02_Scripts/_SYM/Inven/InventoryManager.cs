@@ -40,14 +40,14 @@ public class InventoryManager : MonoBehaviour
         {
             GameObject instance = Instantiate(slotPrefab, slotPanel);
             //슬롯 프리팹에 아이템 정보 설정
-            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
             GameObject.Find("explanation").GetComponent<Text>().text = item.explanation;
 
             if (item is E_Item)
             {
                 GameObject instance1 = Instantiate(slotPrefab, slotPanel);
                 //장비템일경우 스텟 상승치를 text에 띄워둠
-                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
                 GameObject.Find("WeaponExplanation").GetComponent<Text>().text = item.explanation;
 
 

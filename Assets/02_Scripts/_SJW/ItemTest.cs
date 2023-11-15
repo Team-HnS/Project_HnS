@@ -10,8 +10,8 @@ public class ItemTest : MonoBehaviour
     {
         item = Resources.Load<C_Item>("_아이템/_소모품/소모품테스트");
 
-        Debug.Log(item.ItemName);
-        Debug.Log(item.Price);
+        Debug.Log(item.itemName);
+        Debug.Log(item.price);
         Debug.Log(item.explanation);
         item.UseEffect();
 

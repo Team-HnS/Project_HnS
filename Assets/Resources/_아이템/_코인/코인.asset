@@ -12,22 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 417d794fe9739cf4a8f11a9182f0c8ae, type: 3}
   m_Name: "\uCF54\uC778"
   m_EditorClassIdentifier: 
-  ItemName: 
-  Max_Amount: 0
-  Price: 0
-  Item_Icon: {fileID: 0}
-  isCoin: 1
+  itemName: "\uCF54\uC778"
   itemObj: {fileID: 1950871307682000, guid: 9929315ccccf021478b31142790f944a, type: 3}
   item_rank: 0
-  item_Color:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 0, g: 0, b: 1, a: 1}
-  - {r: 0.5, g: 0, b: 0.5, a: 1}
-  - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  - {r: 0, g: 1, b: 0, a: 1}
-  explanation: "\uBE44\uD2B8\uCF54\uC778\uC774\uAE38 \uBC14\uB790\uC9C0\uB9CC \uC544\uC27D\uAC8C\uB3C4
-    \uADF8\uB0E5 \uCF54\uC778\uC774\uB2E4."
+  item_Color: []
+  item_Icon: {fileID: 0}
+  Max_Amount: 0
+  price: 0
+  isCoin: 1
+  explanation: "\uBE44\uD2B8\uCF54\uC778\uC774\uAE38 \uBC14\uB790\uC9C0\uB9CC \uADF8\uB0E5
+    \uCF54\uC778\uC774\uB2E4."
   goldCoins: {fileID: 1950871307682000, guid: 9929315ccccf021478b31142790f944a, type: 3}
   silverCoins: {fileID: 1936242755795896, guid: 24a846f13682e24479aeae91c15c04a7, type: 3}
   copperCoins: {fileID: 5544682685680111912, guid: 539ba41d43285c042860c1825b93203a, type: 3}
-  coin: 39

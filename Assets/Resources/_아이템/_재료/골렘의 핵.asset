@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edc233684b87e574196fe22b5bbfa0b4, type: 3}
   m_Name: "\uACE8\uB818\uC758 \uD575"
   m_EditorClassIdentifier: 
-  ItemName: "\uACE8\uB818\uC758 \uD575"
-  Max_Amount: 0
-  Price: 12000
-  Item_Icon: {fileID: 21300000, guid: c3b41571ba1889b4a950c662c2db5b5b, type: 3}
-  isCoin: 0
-  itemObj: {fileID: 2918856425992379746, guid: 7f85d3ce55ea67a4abe06a4bc96e18bc, type: 3}
+  itemName: "\uACE8\uB818\uC758 \uD575"
   item_rank: 3
   item_Color:
   - {r: 1, g: 1, b: 1, a: 1}
@@ -25,5 +20,10 @@ MonoBehaviour:
   - {r: 0.5, g: 0, b: 0.5, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
+  itemObj: {fileID: 2918856425992379746, guid: 7f85d3ce55ea67a4abe06a4bc96e18bc, type: 3}
+  item_Icon: {fileID: 0}
+  Max_Amount: 0
+  price: 0
+  isCoin: 0
   explanation: "\uAC70\uB300\uD55C \uACE8\uB818\uC758 \uD575\uC774\uB2E4. \uC5C4\uCCAD\uB09C
     \uC5D0\uB108\uC9C0\uAC00 \uB290\uAEF4\uC9C4\uB2E4."

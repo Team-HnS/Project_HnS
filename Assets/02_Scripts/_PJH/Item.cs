@@ -10,13 +10,15 @@ public class Item : MonoBehaviour
 {
     public ItemData itemData;
     private TMP_Text nameTag;
-    [HideInInspector]public List<ItemData> items;
-    public string code;    
+
+    public int coinAmount; // 코인인 경우
+
+    //[HideInInspector]public List<ItemData> items;
 
     private void Awake()
     {
         nameTag = GetComponentInChildren<TMP_Text>();
-        nameTag.text = itemData.ItemName;
+        nameTag.text = itemData.itemName;
         InitItemNameColor();
     }
 

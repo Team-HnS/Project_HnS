@@ -20,7 +20,7 @@ public class DropArea : MonoBehaviour, IDropHandler
 
     private void Awake()
     {
-        
+
     }
     public void AssignItem(ItemData newItemData)
     {
@@ -43,7 +43,7 @@ public class DropArea : MonoBehaviour, IDropHandler
 
     private void ChangeSlot()
     {
-        
+
     }
 
     private void UpdateSlotUI(ItemData currentItemData)
