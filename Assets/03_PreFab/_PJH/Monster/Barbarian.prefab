@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 631129342725119860}
   - component: {fileID: -8231349945864152588}
   - component: {fileID: -3582614278568475383}
+  - component: {fileID: 6736766168275729656}
   m_Layer: 10
   m_Name: Barbarian
   m_TagString: Untagged
@@ -122,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17625ede618a9904a9c089ef6d3953b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
   detectionDistance: 15
   attackDistance: 3.5
   enemySpeed: 2.5
@@ -157,6 +159,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &6736766168275729656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864964155149467497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc767bbaf91ec1408c98d9e53e7f8f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  monsterWeapon: {fileID: 5386879977643254352}
 --- !u!1001 &5388098224499005564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -220,8 +235,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1218283935775276, guid: d13979ead615e4b449d6ff416518e728, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2547343375672114077}
   m_SourcePrefab: {fileID: 100100000, guid: d13979ead615e4b449d6ff416518e728, type: 3}
+--- !u!1 &5386879977643254352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1218283935775276, guid: d13979ead615e4b449d6ff416518e728, type: 3}
+  m_PrefabInstance: {fileID: 5388098224499005564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2547343375672114077
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386879977643254352}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: f4b94f0c6eec6c444b275399c9e54825, type: 3}
 --- !u!4 &5388995616623222868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4451096854263848, guid: d13979ead615e4b449d6ff416518e728, type: 3}
