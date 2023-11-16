@@ -2,6 +2,7 @@ using DarkLandsUI.Scripts.Equipment;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
@@ -44,7 +45,14 @@ public class ItemManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    public int GetItemQuantity(ItemData item)
+    {
+        if (Item_data.TryGetValue(item, out int quantity))
+        {
+            return quantity;
+        }
+        return 0;
+    }
     private void UpdateCoinUI()
     {
         coinCountText.text = "Coins : " + PlayerCoin.ToString();
@@ -154,11 +162,11 @@ public class ItemManager : MonoBehaviour
         if (Item_data.ContainsKey(item))
         {
             Item_data[item] -= quantity;
+            Debug.Log(Item_data[item].ToString());
             if (Item_data[item] <= 0)
             {
                 Item_data.Remove(item);
                 items.Remove(item); // 아이템 리스트에서도 제거
-
                 RemoveItemSlot(item);
             }
             countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
@@ -168,26 +176,43 @@ public class ItemManager : MonoBehaviour
 
     private void RemoveItemSlot(ItemData item)
     {
-        foreach (var slot in Slots)
+        foreach (var slot in Slots.ToList())
         {
             if (slot.itemData == item)
             {
-                // 해당 아이템을 가진 슬롯을 찾아 UI 업데이트
-                slot.itemData = null;
-                slot.UpdateSlotUI();
+                GameObject slotGameObject = slot.gameObject;
+                Debug.Log("Destroying slot: " + slotGameObject.name);
+                Destroy(slotGameObject);
+
+                Slots.Remove(slot);
+
                 break;
             }
+
         }
     }
 
     public void UseC_Item(C_Item c_Item, int c_ItemCount)
     {
-        Debug.Log("매니저 함수 실행");
         c_Item.UseEffect();
+        int currentQuantity = GetItemQuantity(c_Item);
+        if (currentQuantity > 0)
+        {
+            RemoveItemQuantity(c_Item, 1);
+            UpdateAllSlots();
 
-        //아이템 수량 감소 및 UI 업데이트
-        RemoveItemQuantity(c_Item, c_ItemCount);
-        Debug.Log(c_ItemCount.ToString());
+            if (GetItemQuantity(c_Item) == 0)
+            {
+                RemoveItemSlot(c_Item);
+                UpdateAllSlots();
+            }
+        }
+        else
+        {
+            RemoveItemSlot(c_Item);
+            Debug.Log("아이템이 없습니다.");
+        }
+
     }
 
 
@@ -197,25 +222,11 @@ public class ItemManager : MonoBehaviour
         {
             if (slot.itemData != null) // itemData가 설정되어 있는지 확인
             {
-                foreach (ItemData item in items)
-                {
-                    if (Item_data[item] <= 0)
-                    {
-                        Debug.Log(Item_data[item]);
-                        continue;
-                    }
-                    slot.UpdateSlotUI();
-
-                    GameObject instance = Instantiate(slotPrefab, slotPanel);
-                    Slot slotInstance = instance.GetComponent<Slot>();
-                    slotInstance.itemData = item; // 여기에서 itemData 설정
-                    slotInstance.UpdateSlotUI();  // UI 업데이트 호출
-
-                    // 슬롯 프리팹에 아이템 정보 설정
-                    instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-                    instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
-                    instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-                }
+                slot.UpdateSlotUI();
+            }
+            else
+            {
+                slot.ClearSlot();
             }
         }
     }
@@ -254,6 +265,7 @@ public class ItemManager : MonoBehaviour
                 //장비템일경우 스텟 상승치를 text에 띄워둠
                 instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
                 instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+
             }
         }
     }
