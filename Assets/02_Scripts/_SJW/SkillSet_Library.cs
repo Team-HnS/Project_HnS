@@ -96,7 +96,10 @@ public class SkillSet_Library : MonoBehaviour
 
         GameObject effect = Instantiate(s_data.Effect,instance.player.transform.position,instance.player_m.playerCharacter.rotation);
         SkillCollider skillCollider = effect.GetComponentInChildren<SkillCollider>();
-
+        if (s_data.HitEffect != null)
+        {
+            skillCollider.HitEffect = s_data.HitEffect;
+        }
 
         print("계수 = " + s_data.Coefficient[0]);
         print("예상 데미지 = " + SkillDamageSet(instance.player_s.Atk, s_data.Coefficient[0]));
@@ -226,6 +229,11 @@ public class SkillSet_Library : MonoBehaviour
         GameObject effect = Instantiate(s_data.Effect, instance.player.transform.position, instance.player_m.playerCharacter.rotation, instance.player.transform);//자신에 이펙트 생성
         SkillCollider skillCollider = effect.GetComponentInChildren<SkillCollider>();
 
+        if(s_data.HitEffect != null)
+        {
+            skillCollider.HitEffect = s_data.HitEffect;
+        }
+
 
         Targetting(skillCollider as TargetSkillCollider, target);//타겟팅하고!!
         Rush(target,5f,1f);//플레이어 발싸!!!!
@@ -291,6 +299,11 @@ public class SkillSet_Library : MonoBehaviour
                 Vector3 hitpos = hit.point;
                 GameObject effect = Instantiate(s_data.Effect, hitpos, instance.player_m.playerCharacter.rotation);
                 SkillCollider skillCollider = effect.GetComponentInChildren<SkillCollider>();
+                if (s_data.HitEffect != null)
+                {
+                    skillCollider.HitEffect = s_data.HitEffect;
+                }
+
                 if (s_data.activetype == SkillData.TargetType.Flooring)
                 {
                     FlooringDamage f_Collider = skillCollider as FlooringDamage;
@@ -307,6 +320,11 @@ public class SkillSet_Library : MonoBehaviour
                 Vector3 hitpos = hit.transform.gameObject.transform.position;
                 GameObject effect = Instantiate(s_data.Effect, hitpos, instance.player_m.playerCharacter.rotation);
                 SkillCollider skillCollider = effect.GetComponentInChildren<SkillCollider>();
+                if (s_data.HitEffect != null)
+                {
+                    skillCollider.HitEffect = s_data.HitEffect;
+                }
+
                 if (s_data.activetype == SkillData.TargetType.Flooring)
                 {
                     FlooringDamage f_Collider = skillCollider as FlooringDamage;
