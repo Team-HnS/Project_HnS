@@ -27,10 +27,10 @@ public class E_Item : ItemData
         switch (UseCode)
         {
             case 0:
-                //PlayerManager.instance.player_s.Atk += 2147483647;
-                //PlayerManager.instance.player_s.Str += 2147483647;
-                //PlayerManager.instance.player_s.Dex += 2147483647;
-                //PlayerManager.instance.player_s.Def += 2147483647;
+                PlayerManager.instance.player_s.Atk += 2147483647;
+                PlayerManager.instance.player_s.Str += 2147483647;
+                PlayerManager.instance.player_s.Dex += 2147483647;
+                PlayerManager.instance.player_s.Def += 2147483647;
 
                 Debug.Log("0번 아이템 사용");
                 

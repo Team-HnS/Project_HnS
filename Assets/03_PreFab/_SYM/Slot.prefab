@@ -301,6 +301,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 4862168677799254644}
   itemData: {fileID: 0}
+  consumableItem: {fileID: 0}
+  itemIcon: {fileID: 2200432144564327334}
+  quantityText: {fileID: 5785927049727474552}
   NoneBackground: {fileID: 21300000, guid: 358c8dea2a3f92944b501717152e53fb, type: 3}
   RareBackground: {fileID: 21300000, guid: f66f1acda17ac5c459605ea025a6a037, type: 3}
   EpicBackground: {fileID: 21300000, guid: eede6063441a92d4699a7fccfd79fc9a, type: 3}
