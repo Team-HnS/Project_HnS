@@ -16,8 +16,8 @@ public class ItemManager : MonoBehaviour
     public List<ItemData> items;
     public List<Slot> Slots;
     public int countItem;
-    public int PlayerCoin = 0;
 
+    public int PlayerCoin = 0;
 
     Slot slot;
 
@@ -44,12 +44,8 @@ public class ItemManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void AddCoin(Coin coin)
+    public void AddCoin(Coin_Item coin)
     {
-
-        PlayerCoin += coin.coin;
-        Debug.Log(PlayerCoin.ToString());
-
         UpdateCoinUI(PlayerCoin);
     }
 
@@ -60,10 +56,9 @@ public class ItemManager : MonoBehaviour
 
     public void AddItem(ItemData newItem, int quantity)
     {
-        if (newItem is Coin) // 코인 아이템인 경우
+        if (newItem is Coin_Item) // 코인 아이템인 경우
         {
-            Debug.Log(newItem is Coin);
-            AddCoin(newItem as Coin);
+            AddCoin(newItem as Coin_Item);
         }
         else
         {
@@ -143,23 +138,23 @@ public class ItemManager : MonoBehaviour
                 continue; // 다음 아이템으로 넘어감
             }
 
-            Debug.Log("Adding item to UI: " + item.ItemName);
+            Debug.Log("Adding item to UI: " + item.itemName);
             GameObject instance = Instantiate(slotPrefab, slotPanel);
 
             Slot slotInstance = instance.GetComponent<Slot>();
             slotInstance.itemData = item; // 여기에서 itemData 설정
             slotInstance.UpdateSlotUI();  // UI 업데이트 호출
-            // 슬롯 프리팹에 아이템 정보 설정
-            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
+            
+            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
             instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
-            instance.transform.Find("explanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+            instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
 
             if (item is E_Item)
             {
                 //GameObject instance = Instantiate(slotPrefab, slotPanel);
                 //장비템일경우 스텟 상승치를 text에 띄워둠
-                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.Item_Icon;
-                instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.ItemName + "\n" + "\n" + item.explanation;
+                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+                instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
             }
         }
     }
