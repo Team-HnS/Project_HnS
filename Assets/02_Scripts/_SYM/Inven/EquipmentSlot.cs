@@ -116,22 +116,17 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     }
     public void InitializeInventory(List<ItemData> items)
     {
-        
-        Debug.Log("InitializeInventory called. Items count: " + items.Count);
         foreach (Transform child in slotPanel)
         {
-            Debug.Log("Destroying GameObject: " + child.gameObject.name);
             Destroy(child.gameObject);
         }
         foreach (ItemData item in items)
         {
             if (itemManager.Item_data[item] <= 0)
             {
-                Debug.Log("Skipping item due to insufficient quantity: " + item.itemName);
                 continue; 
             }
 
-            Debug.Log("Adding item to UI: " + item.itemName);
             GameObject instance = Instantiate(slotPrefab, slotPanel);
 
             Slot slotInstance = instance.GetComponent<Slot>();
@@ -151,6 +146,10 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        throw new NotImplementedException();
+        if (items != null)
+        {
+            
+        }
     }
+
 }

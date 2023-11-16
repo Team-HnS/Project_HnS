@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour
     private EnemyFSM fsm;
     private Player player;
     private Collider weaponCollider;
+    private Monster monster;
 
     private bool endAttack;
 
@@ -16,6 +17,7 @@ public class Weapon : MonoBehaviour
     {
         fsm = GetComponent<EnemyFSM>();
         weaponCollider = monsterWeapon.GetComponent<Collider>();
+        monster = GetComponent<Monster>();
     }
 
     private void Start()
@@ -34,7 +36,7 @@ public class Weapon : MonoBehaviour
             player = other.GetComponent<Player>();
             if (!endAttack)
             {
-                player.Damaged(100);
+                Invoke("Damage", monster.data.hitdelay);
                 endAttack = true;
             }
         }
@@ -51,5 +53,10 @@ public class Weapon : MonoBehaviour
             weaponCollider.enabled = false;
             endAttack = false;
         }
+    }
+
+    private void Damage()
+    {
+        player.Damaged(monster.data.attack);
     }
 }

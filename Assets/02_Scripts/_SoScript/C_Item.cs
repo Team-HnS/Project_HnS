@@ -11,7 +11,6 @@ public class C_Item : ItemData
 
     public bool isGone; // 1회용인지
 
-    Player player;
 
 
     public void UseEffect()
@@ -24,7 +23,7 @@ public class C_Item : ItemData
                 break;
 
         case 1:
-                player.Cur_Hp += 50;
+                PlayerManager.instance.player_s.Cur_Hp += 50;
                 Debug.Log("1번 아이템 사용");
                 break;
         }
