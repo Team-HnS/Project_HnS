@@ -9,6 +9,7 @@ TagManager:
   - Npc
   - C_item
   - Item
+  - PunchingBag
   layers:
   - Default
   - TransparentFX

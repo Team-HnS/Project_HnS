@@ -41,12 +41,12 @@ public class Item : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Item itemComponent = GetComponent<Item>();
-            if (itemComponent != null)
-            {
-                ItemManager.Instance.AddItem(itemComponent.itemData, 1);
-                Destroy(gameObject);
-            }
+            //Item itemComponent = GetComponent<Item>();
+            //if (itemComponent != null)
+            //{
+            //    ItemManager.Instance.AddItem(itemComponent.itemData, 1);
+            //    Destroy(gameObject);
+            //}
             Destroy(gameObject);
         }
     }

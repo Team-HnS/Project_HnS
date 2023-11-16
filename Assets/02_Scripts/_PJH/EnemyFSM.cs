@@ -138,7 +138,6 @@ public class EnemyFSM : MonoBehaviour
         else if (state == state.Attack)
         {
             animator.SetBool("Attack", true);
-
         }
         else if (state == state.Die)
         {
