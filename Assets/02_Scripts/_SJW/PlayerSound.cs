@@ -7,15 +7,30 @@ public class PlayerSound : MonoBehaviour
     [SerializeField]
     private AudioClip[] footstep;
     [SerializeField]
+    private AudioClip[] nomalAttackSound;
+    [SerializeField]
+    private AudioClip[] VoiceSound;
+    [SerializeField]
+    private AudioClip[] MoveVoices;
+    [SerializeField]
+    private AudioClip[] AttackVoices;
+    [SerializeField]
     private float footstepInterval=0.35f;
 
+    float chktime;//´ë»ç ÄðÅ¸ÀÓ
+    float cooltime =3f;//´ë»ç ÄðÅ¸ÀÓ
 
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(PlayFootstepSound());
+        chktime = cooltime;
     }
 
+    private void Update()
+    {
+        chktime += Time.deltaTime;
+    }
 
     private IEnumerator PlayFootstepSound()
     {
@@ -30,5 +45,32 @@ public class PlayerSound : MonoBehaviour
             yield return new WaitForSeconds(footstepInterval);
         }
     }
+
+
+    public void PlayerNomalAttackSound()
+    {
+        SoundManager.instance.EffectPlay(nomalAttackSound[Random.Range(0, nomalAttackSound.Length)]);
+    }
+
+
+    public void MoveSound()
+    {
+        if(chktime >= cooltime && !SoundManager.instance.narSoundPlayer.isPlaying)
+        {
+            SoundManager.instance.NarPlay(MoveVoices[Random.Range(0, MoveVoices.Length)]);
+            chktime = 0;
+        }
+    }
+
+
+    public void AttackSound()
+    {
+        if (chktime >= cooltime && !SoundManager.instance.narSoundPlayer.isPlaying)
+        {
+            SoundManager.instance.NarPlay(AttackVoices[Random.Range(0, AttackVoices.Length)]);
+            chktime = 0;
+        }
+    }
+
 
 }

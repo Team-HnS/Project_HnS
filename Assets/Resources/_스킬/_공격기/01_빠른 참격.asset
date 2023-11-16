@@ -51,3 +51,4 @@ MonoBehaviour:
   Before_Delay: 0.1
   After_Delay: 0.5
   Effect: {fileID: 640475206144267981, guid: 23e42ea368e78f3498bbb6f6cfcdf607, type: 3}
+  HitEffect: {fileID: 5024009746357069194, guid: 723ecac8012714243b6d678f37c6abd6, type: 3}

@@ -205,7 +205,7 @@ Transform:
   - {fileID: 1282659420063623977}
   - {fileID: 4160564511005706811}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9020013371683213473
 MonoBehaviour:
@@ -307,6 +307,7 @@ MonoBehaviour:
   canDash: 1
   Testanim: {fileID: 7400002, guid: 165130b8a71020641b870cab32d18c5e, type: 3}
   Testanim2: {fileID: 7400002, guid: 1b22f05997b7ad34685887f15b9f660c, type: 3}
+  nomalhiteffect: {fileID: 5024009746357069194, guid: 6de94b8fca9a01b42b74f635b66e5c91, type: 3}
   Resent_Skill: {fileID: 0}
   lv: 0
   exp: 0
@@ -359,6 +360,51 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 343219f7c5c636e4797c386117f4a859, type: 3}
   - {fileID: 8300000, guid: 96cffa796d1700044b89e23c1baaf72b, type: 3}
   - {fileID: 8300000, guid: ecac20e3c590d084f87a649efe396911, type: 3}
+  nomalAttackSound:
+  - {fileID: 8300000, guid: 0a74767384c921e42ac395eebce2f717, type: 3}
+  VoiceSound:
+  - {fileID: 8300000, guid: c0988adfe8920c84192b7bf2e10f3aa3, type: 3}
+  - {fileID: 8300000, guid: 0e96d17a27cfc0a4c92593438b594447, type: 3}
+  - {fileID: 8300000, guid: aee675fcf89ed88499edfe133ec62a93, type: 3}
+  - {fileID: 8300000, guid: 7b4b9f99aa2cde045ba38dd5de8c57c5, type: 3}
+  - {fileID: 8300000, guid: 4164be93b252f0646a83f68048c66dfc, type: 3}
+  - {fileID: 8300000, guid: d7a19ab12cff6e24e99c2d27b7ab6efd, type: 3}
+  - {fileID: 8300000, guid: 0347f7721d98ced48995acd7aad58220, type: 3}
+  - {fileID: 8300000, guid: 6dfc6dfe0880f974f9ae016aee1e2f97, type: 3}
+  - {fileID: 8300000, guid: 35cbd7ce1750808449786d6bf41cd3ab, type: 3}
+  - {fileID: 8300000, guid: 35c0d4a58556fd247821ce27b1c5928f, type: 3}
+  - {fileID: 8300000, guid: fcd00af628260e441b409ad12e0d29df, type: 3}
+  - {fileID: 8300000, guid: bf350b0eea0a7c149b078fc4b270a4bc, type: 3}
+  MoveVoices:
+  - {fileID: 8300000, guid: c0988adfe8920c84192b7bf2e10f3aa3, type: 3}
+  - {fileID: 8300000, guid: 0e96d17a27cfc0a4c92593438b594447, type: 3}
+  - {fileID: 8300000, guid: aee675fcf89ed88499edfe133ec62a93, type: 3}
+  - {fileID: 8300000, guid: 7b4b9f99aa2cde045ba38dd5de8c57c5, type: 3}
+  - {fileID: 8300000, guid: 4164be93b252f0646a83f68048c66dfc, type: 3}
+  - {fileID: 8300000, guid: d7a19ab12cff6e24e99c2d27b7ab6efd, type: 3}
+  - {fileID: 8300000, guid: 0347f7721d98ced48995acd7aad58220, type: 3}
+  - {fileID: 8300000, guid: 6dfc6dfe0880f974f9ae016aee1e2f97, type: 3}
+  - {fileID: 8300000, guid: 35cbd7ce1750808449786d6bf41cd3ab, type: 3}
+  - {fileID: 8300000, guid: 35c0d4a58556fd247821ce27b1c5928f, type: 3}
+  - {fileID: 8300000, guid: fcd00af628260e441b409ad12e0d29df, type: 3}
+  - {fileID: 8300000, guid: bf350b0eea0a7c149b078fc4b270a4bc, type: 3}
+  - {fileID: 8300000, guid: e50baf913b4d0b4448465645a0a121aa, type: 3}
+  AttackVoices:
+  - {fileID: 8300000, guid: a4b610270f55abd469988718ebfc553f, type: 3}
+  - {fileID: 8300000, guid: cccc457621c6b944aae16a95f3e6e9a4, type: 3}
+  - {fileID: 8300000, guid: 166bd5d9d601ebf4095466f335bdc1fb, type: 3}
+  - {fileID: 8300000, guid: 608fb7a2258a0644e89182d855add677, type: 3}
+  - {fileID: 8300000, guid: 1827e2ddab904cb40916b6adbb63cd98, type: 3}
+  - {fileID: 8300000, guid: 14230baf3c6e0724cb4380184cbf3dbe, type: 3}
+  - {fileID: 8300000, guid: 4dcf6810953a6904e902ff5c6b47d484, type: 3}
+  - {fileID: 8300000, guid: f49403dc24b80384e86111bf9b7c218f, type: 3}
+  - {fileID: 8300000, guid: 86c99f0baaf40af4baa5613d50c1c128, type: 3}
+  - {fileID: 8300000, guid: 0c4437f6190715a4e81d4de7e9905b98, type: 3}
+  - {fileID: 8300000, guid: 4164be93b252f0646a83f68048c66dfc, type: 3}
+  - {fileID: 8300000, guid: a5b58d52d91d8564285eca49d3d74667, type: 3}
+  - {fileID: 8300000, guid: 3648284368b95a34ca68ce11a43e1819, type: 3}
+  - {fileID: 8300000, guid: c493cac6e8b1a4049a75c11f8f7e7f65, type: 3}
+  - {fileID: 8300000, guid: 074cb880218b9cf4089666bf4eab1eb1, type: 3}
   footstepInterval: 0.275
 --- !u!136 &8168475274547939822
 CapsuleCollider:
@@ -503,7 +549,7 @@ Camera:
   m_Depth: 10
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 32
+    m_Bits: 544
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

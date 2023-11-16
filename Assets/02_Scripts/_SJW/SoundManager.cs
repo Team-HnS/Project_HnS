@@ -48,7 +48,16 @@ public class SoundManager : MonoBehaviour
     public void EffectPlay(int num)
     {
         effectSoundPlayer.PlayOneShot(EffectiveClip[num]);
+    }
 
+    public void NarPlay(int num)
+    {
+        narSoundPlayer.PlayOneShot(EffectiveClip[num]);
+    }
+
+    public void NarPlay(AudioClip esm)
+    {
+        narSoundPlayer.PlayOneShot(esm);
     }
 
 

@@ -19,6 +19,16 @@ public class SkillCollider : MonoBehaviour
     }
 
 
+    public void HitEffcet(Collider other)
+    {
+           if (HitEffect != null)
+            {
+                //Vector3 contactPoint = other.ClosestPointOnBounds(transform.position);
+                //Quaternion rotation = Quaternion.FromToRotation(Vector3.up, transform.up);
+
+                Instantiate(HitEffect, other.transform.position + new Vector3(0,1,0) , other.transform.rotation , other.transform);
+            }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 10)
@@ -26,13 +36,7 @@ public class SkillCollider : MonoBehaviour
             other.gameObject.GetComponent<Monster>().Damaged(damage);
             Debug.Log(other.name + "스킬히트! " + damage + "의 데미지!");
 
-            if (HitEffect != null)
-            {
-                Vector3 contactPoint = other.ClosestPointOnBounds(transform.position);
-                Quaternion rotation = Quaternion.FromToRotation(Vector3.up, transform.up);
-
-                Instantiate(HitEffect, contactPoint, rotation);
-            }
+            HitEffcet(other);
         }
     }
 

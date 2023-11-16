@@ -36,7 +36,8 @@ public class NomalAttack : StateMachineBehaviour
             GameObject target = player.GetComponentInParent<Player>().target;
 
             target.GetComponent<Monster>().Damaged(player.GetComponentInParent<Player>().Atk);
-
+            Instantiate(player.GetComponentInParent<Player>().nomalhiteffect, target.transform.position +new Vector3(0,1f,0), target.transform.rotation);
+            player.GetComponentInParent<PlayerSound>().PlayerNomalAttackSound();
             Debug.Log(target.GetComponent<Monster>().Hp);
         }
 

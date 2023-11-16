@@ -46,7 +46,7 @@ public class SkillBuildSlot : MonoBehaviour
         }
 
 
-        if(!learnChk)
+        if(!learnChk) // 스킬 배울때 
         {
             learnChk = true;
             dispannel.SetActive(false);
@@ -56,9 +56,10 @@ public class SkillBuildSlot : MonoBehaviour
 
             PlayerManager.instance.player_s.SkillPoint--;
             Skill_Build_Pannel sbp = FindObjectOfType<Skill_Build_Pannel>();
+            SoundManager.instance.EffectPlay(1); //배우는 효과음
             sbp.Refresh();
         }
-        else if(!EquipChk)//이미 배웠으면 
+        else if(!EquipChk)//이미 배웠으면 =>장착하기
         {
             foreach(SkillSlot skillSlot in KeyInputManager.instance.ssp.skillSlots)
             {
@@ -71,11 +72,12 @@ public class SkillBuildSlot : MonoBehaviour
             }
 
             EquipChk = true;
+            SoundManager.instance.EffectPlay(2); //장착하는 효과음
             skillChkBtn.GetComponentInChildren<TMP_Text>().text = "헤제하기";
             skillChkBtn.GetComponent<Image>().color = new Color(0.5f, 1f, 0.5f);
 
         }
-        else
+        else //헤체하는 버튼
         {
             foreach (SkillSlot skillSlot in KeyInputManager.instance.ssp.skillSlots)
             {
@@ -88,6 +90,7 @@ public class SkillBuildSlot : MonoBehaviour
             }
 
             EquipChk = false;
+            SoundManager.instance.EffectPlay(3); //헤체하는 효과음
             skillChkBtn.GetComponentInChildren<TMP_Text>().text = "장착하기";
             skillChkBtn.GetComponent<Image>().color = new Color(1f, 0.5f, 0.5f);
         }
