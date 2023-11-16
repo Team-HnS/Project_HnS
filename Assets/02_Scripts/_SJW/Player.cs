@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -443,6 +444,12 @@ public class Player : MonoBehaviour
         {
             state = PlayerState.Death;
             animator.SetTrigger("Die");
+
+            GameObject ob = GameObject.Find("Canvas").transform.Find("DeadPannel").gameObject;
+            ob.SetActive(false);
+            enabled = false;
+            playermove.enabled = false;
+            playersound.enabled = false;
         }
     }
 
