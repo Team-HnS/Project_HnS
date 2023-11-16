@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/01_Scenes/_GJI/SceneMaker/LoadingScene.unity
     guid: 0ed58d007a579466580716be684f01c6
   - enabled: 1
-    path: Assets/01_Scenes/_GJI/Master/Map_BattleRoyal _master.unity
+    path: Assets/01_Scenes/Map_BattleRoyal _master.unity
     guid: 0ca9af367880ac84fa8d29e62f2f7434
   - enabled: 1
     path: Assets/01_Scenes/Map_Town 1_master.unity
@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/_GJI/Npc/Npc Interaction_Tutorial.unity
     guid: 7f4620bf4f2415e4082f784d477af5b1
+  - enabled: 1
+    path: Assets/01_Scenes/_GJI/Master/Map_InstanceDungeon_master.unity
+    guid: 99c185d284333f142a910c4dbe062808
   m_configObjects: {}

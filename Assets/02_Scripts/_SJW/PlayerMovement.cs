@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform playerCharacter;//플레이어 캐릭터
 
     Player player;
+    PlayerSound playersound;
     private void Awake()
     {
         cam = Camera.main;
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         agent.updateRotation = false;
 
         player = GetComponent<Player>();
+        playersound = GetComponent<PlayerSound>();
     }
 
     private void Update()

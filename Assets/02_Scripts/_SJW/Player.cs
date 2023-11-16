@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
 
     private Camera cam;
     private PlayerMovement playermove;
+    private PlayerSound playersound;
     [HideInInspector]
     public Animator animator;
     private SkinnedMeshAfterImage Afterglow;
@@ -39,6 +40,8 @@ public class Player : MonoBehaviour
 
     public AnimationClip Testanim;
     public AnimationClip Testanim2;
+
+    public GameObject nomalhiteffect;
 
     [HideInInspector]
     public SkillData Resent_Skill;//지금 사용중인 스킬 데이터
@@ -151,6 +154,7 @@ public class Player : MonoBehaviour
         isNextTarget = false;
         cam = Camera.main;
         playermove = GetComponent<PlayerMovement>();
+        playersound = GetComponent<PlayerSound>();
         animator = GetComponentInChildren<Animator>();
         Afterglow = GetComponentInChildren<SkinnedMeshAfterImage>();
         SetState();
@@ -301,6 +305,7 @@ public class Player : MonoBehaviour
      
     public void PlayerCasting(float casttime)
     {
+        playersound.AttackSound();
         playermove.canMove = false;
         playermove.agent.ResetPath();
 
@@ -315,6 +320,7 @@ public class Player : MonoBehaviour
 
     public void PlayerMoveCasting(float casttime)
     {
+        playersound.AttackSound();
         playermove.canMove = false;
         //playermove.isMove = true;
         if (state != PlayerState.Casting)
@@ -348,6 +354,7 @@ public class Player : MonoBehaviour
             state = PlayerState.Run;
             if(canDash)
             animator.SetTrigger("DoRun");
+            playersound.MoveSound();
         }
     }
 
@@ -355,6 +362,7 @@ public class Player : MonoBehaviour
     {
         if (state != PlayerState.Trace)
         {
+            playersound.AttackSound();
             print(target.name + "트레이스 온");
             state = PlayerState.Trace;
  
@@ -442,6 +450,7 @@ public class Player : MonoBehaviour
     {
         if (state != PlayerState.Attack)
         {
+            playersound.AttackSound();
             print("때릴게");
             state = PlayerState.Attack;
             playermove.canMove = false;

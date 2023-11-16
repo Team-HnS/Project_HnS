@@ -18,13 +18,13 @@ public class UiCreateManager : MonoBehaviour
 
     public void CreateDamageFont(int Damage,GameObject target)
     {
-        GameObject dmgfont = Instantiate(DamageFont, target.transform.position,Quaternion.identity);
+        GameObject dmgfont = Instantiate(DamageFont, target.transform.position,PlayerManager.instance.player.transform.rotation);
         dmgfont.GetComponentInChildren<TMP_Text>().text = Damage.ToString();
     }
 
     public void CreateDamageFont(int Damage, GameObject target,Color color)
     {
-        GameObject dmgfont = Instantiate(DamageFont, target.transform.position, Quaternion.identity);
+        GameObject dmgfont = Instantiate(DamageFont, target.transform.position, PlayerManager.instance.player.transform.rotation);
         TMP_Text txt = dmgfont.GetComponentInChildren<TMP_Text>();
         txt.color = color;
         txt.text = Damage.ToString();

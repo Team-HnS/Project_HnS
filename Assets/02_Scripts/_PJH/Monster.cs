@@ -16,7 +16,7 @@ public class Monster : MonoBehaviour
     private EnemyFSM fsm;
     private Outline outline;
 
-    private int hp;
+    public int hp;
     public int Hp
     {
         get { return hp; }
@@ -48,10 +48,13 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
-        if (fsm.isDead && isDropped == false)
+        if (fsm != null)
         {
-            DieAndDrop();
-        }
+            if (fsm.isDead && isDropped == false)
+            {
+                DieAndDrop();
+            }
+        }        
     }
 
     private void OnMouseOver()
@@ -66,13 +69,19 @@ public class Monster : MonoBehaviour
 
     public void Damaged(int Damage) // 데미지 받는 함수
     {
-        Hp -= Damage;
+        if (tag != "PunchingBag")
+        {
+            Hp -= Damage;
+        }        
         UiCreateManager.Instance.CreateDamageFont(Damage, gameObject);
     }
 
     public void Damaged(int Damage, Color color) // 데미지 받는 함수 색칠놀이
     {
-        Hp -= Damage;
+        if (tag != "PunchingBag")
+        {
+            Hp -= Damage;
+        }
         UiCreateManager.Instance.CreateDamageFont(Damage, gameObject, color);
     }
 

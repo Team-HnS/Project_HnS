@@ -13,6 +13,12 @@ public class Skill_Build_Pannel : MonoBehaviour
     private void OnEnable()
     {
         Refresh();
+        SoundManager.instance.EffectPlay(0); //여는 효과음
+    }
+
+    private void OnDisable()
+    {
+        SoundManager.instance.EffectPlay(0); //여는 효과음
     }
 
     public void Refresh()

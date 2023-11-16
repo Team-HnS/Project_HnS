@@ -323,6 +323,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b6d1cc4d2bc5e4ea1ac5944a8e0f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!206 &1489235637186292899
+BlendTree:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Blend Tree
+  m_Childs: []
+  m_BlendParameter: AttackDelay
+  m_BlendParameterY: AttackDelay
+  m_MinThreshold: 0
+  m_MaxThreshold: 1
+  m_UseAutomaticThresholds: 1
+  m_NormalizedBlendValues: 0
+  m_BlendType: 0
 --- !u!1102 &5759362362845856658
 AnimatorState:
   serializedVersion: 6

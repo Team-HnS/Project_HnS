@@ -41,8 +41,8 @@ public class ImageOpener : MonoBehaviour
         image.gameObject.SetActive(isImageOpen);
     }
 
-    public void DeongunToggleimage()
-    {
+    public void DeongunToggleimage() //던전npc 사용중
+    {      
         isImageOpen = !isImageOpen;
         image.gameObject.SetActive(isImageOpen);
     }
