@@ -51,7 +51,11 @@ MonoBehaviour:
   narSoundPlayer: {fileID: 0}
   BGMS:
   - {fileID: 8300000, guid: 89ca3c1845de9ae49a27755eae399f1f, type: 3}
-  EffectiveClip: []
+  EffectiveClip:
+  - {fileID: 8300000, guid: 70c0fc0467f049c44bd7d087c7331e70, type: 3}
+  - {fileID: 8300000, guid: 0e7b50052222d084393d985a2341e3f6, type: 3}
+  - {fileID: 8300000, guid: d0330246c876055479889e88eea8aa05, type: 3}
+  - {fileID: 8300000, guid: e38a218085aa2e74aac423e9ef73bf0d, type: 3}
 --- !u!82 &4457395490327913220
 AudioSource:
   m_ObjectHideFlags: 0
