@@ -59,5 +59,6 @@ public class SkillData : ScriptableObject
 
     public GameObject Effect;//스킬에 생성할 이펙트
 
+    public GameObject HitEffect;//데미지 맞을때 생성할 이펙트
 
 }
