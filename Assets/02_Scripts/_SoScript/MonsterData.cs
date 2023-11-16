@@ -8,14 +8,15 @@ using UnityEngine;
 public class MonsterData : ScriptableObject
 {
     public string MonsterName;
-    public int id;
+    public int level;
     public int hp;
     public int attack;
     public int defense;
-    public int level;
     public int exp;
-
+    public int id;
     public List<ItemProbability> itemProbabilities = new List<ItemProbability>();
+
+    public float hitdelay;
 
     public enum Rank
     {
