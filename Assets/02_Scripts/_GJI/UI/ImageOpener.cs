@@ -47,7 +47,13 @@ public class ImageOpener : MonoBehaviour
         image.gameObject.SetActive(isImageOpen);
     }
 
-    public void ObjectToggleimage()
+    public void ObjectToggleimage() //오브젝트 판매상인 대화 패널
+    {
+        isImageOpen = !isImageOpen;
+        image.gameObject.SetActive(isImageOpen);
+    }
+
+    public void ObjectShopToggleimage() //잡화상인 UI 대화 패널
     {
         isImageOpen = !isImageOpen;
         image.gameObject.SetActive(isImageOpen);
