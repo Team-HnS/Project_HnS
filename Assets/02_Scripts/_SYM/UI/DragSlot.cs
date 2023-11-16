@@ -101,7 +101,6 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             draggedItemClone.transform.position = eventData.position; // 드래그 중 클론 위치 업데이트
         }
-
     }
     // 마우스 드래그가 끝났을 때 발생하는 이벤트
     public void OnEndDrag(PointerEventData eventData)

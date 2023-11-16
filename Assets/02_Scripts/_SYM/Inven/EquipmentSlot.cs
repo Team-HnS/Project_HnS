@@ -15,7 +15,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     public ItemManager itemManager;
     private Slot equipmentSlot;
 
-    
+
     public List<Slot> Slots;
     //슬롯에 담긴 모든 아이템 리스트
     public List<ItemData> items;
@@ -35,12 +35,13 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
             AssignItemToEquipmentSlot(droppedItemSlot.itemData);
 
             // 아이템 데이터 추가
-           items.Add(droppedItemSlot.itemData);
+            items.Add(droppedItemSlot.itemData);
             foreach (Transform child in slotPanel)
             {
                 Debug.Log("Destroying GameObject: " + child.gameObject.name);
                 Destroy(child.gameObject);
             }
+
             foreach (ItemData item in items)
             {
                 if (itemManager.Item_data[item] <= 0)
@@ -55,14 +56,17 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
                 Slot slotInstance = instance.GetComponent<Slot>();
                 slotInstance.itemData = item;
                 slotInstance.UpdateSlotUI();
-                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-                instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
-                instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-
                 if (item is E_Item)
                 {
                     instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
                     instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+                }
+                else
+                {
+                    instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+                    instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
+                    instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+
                 }
             }
 
@@ -124,14 +128,14 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
         {
             if (itemManager.Item_data[item] <= 0)
             {
-                continue; 
+                continue;
             }
 
             GameObject instance = Instantiate(slotPrefab, slotPanel);
 
             Slot slotInstance = instance.GetComponent<Slot>();
             slotInstance.itemData = item;
-            slotInstance.UpdateSlotUI();  
+            slotInstance.UpdateSlotUI();
             instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
             instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
             instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
@@ -148,7 +152,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     {
         if (items != null)
         {
-            
+
         }
     }
 

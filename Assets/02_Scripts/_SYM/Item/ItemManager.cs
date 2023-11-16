@@ -165,9 +165,9 @@ public class ItemManager : MonoBehaviour
             Debug.Log(Item_data[item].ToString());
             if (Item_data[item] <= 0)
             {
+                RemoveItemSlot(item);
                 Item_data.Remove(item);
                 items.Remove(item); // 아이템 리스트에서도 제거
-                RemoveItemSlot(item);
             }
             countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
             UpdateAllSlots();
@@ -183,8 +183,8 @@ public class ItemManager : MonoBehaviour
                 GameObject slotGameObject = slot.gameObject;
                 Debug.Log("Destroying slot: " + slotGameObject.name);
                 Destroy(slotGameObject);
-
                 Slots.Remove(slot);
+                slot.UpdateSlotUI();
 
                 break;
             }

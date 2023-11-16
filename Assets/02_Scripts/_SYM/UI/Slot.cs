@@ -32,17 +32,19 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     {
         if (itemData != null)
         {
-            UpdateSlotUI(); // 슬롯 UI 업데이트
+            UpdateSlotUI();
         }
         else
         {
-            ClearSlot(); // 슬롯 초기화
+            ClearSlot();
+            return;
         }
     }
     public void UpdateSlotUI()
     {
         if (itemData == null)
         {
+            ClearSlot();
             if (itemIcon != null) itemIcon.enabled = false;
             if (quantityText != null) quantityText.text = "";
             Debug.LogError("슬롯에 ItemData가 할당되지 않았다링");
@@ -70,20 +72,23 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                 background.sprite = LegendaryBackground;
                 break;
         }
+        int quantity = ItemManager.Instance.GetItemQuantity(itemData);
+        if (quantityText != null)
+        {
+            quantityText.text = quantity > 1 ? quantity.ToString() : "";
+        }
+
+        // 수량이 0이면 슬롯을 파괴하거나 비활성화
+        if (quantity <= 0)
+        {
+            Destroy(gameObject); // 현재 슬롯의 GameObject를 파괴
+        }
+
         if (itemIcon != null)
         {
             itemIcon.sprite = itemData.item_Icon;
             itemIcon.enabled = true;  // 아이콘 활성화
         }
-
-        // 수량 표시
-        if (quantityText != null)
-        {
-            int quantity = ItemManager.Instance.GetItemQuantity(itemData);
-            quantityText.text = quantity > 1 ? quantity.ToString() : "";  // 수량이 1 이상일 때만 표시
-        }
-
-
     }
 
     internal void AssignItem(ItemData itemToMove)

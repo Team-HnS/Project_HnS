@@ -8,6 +8,7 @@ using System;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using System.Collections.Generic;
 using static UnityEditor.Progress;
+using System.Linq;
 
 public class DropArea : MonoBehaviour, IDropHandler
 {
@@ -43,7 +44,20 @@ public class DropArea : MonoBehaviour, IDropHandler
 
     private void ChangeSlot()
     {
+        ItemData tempItemData = currentItemData;
+        currentItemData = DragSlot.instance.dragSlot.itemData;
+        DragSlot.instance.dragSlot.itemData = tempItemData;
 
+        // UI 업데이트
+        foreach (var slot in Slots.ToList())
+        {
+            if (slot.itemData == currentItemData)
+            {
+                slot.UpdateSlotUI();
+                break;
+            }
+        }
+        DragSlot.instance.dragSlot.UpdateSlotUI();
     }
 
     private void UpdateSlotUI(ItemData currentItemData)
