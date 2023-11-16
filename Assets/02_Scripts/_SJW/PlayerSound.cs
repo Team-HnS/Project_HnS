@@ -24,6 +24,7 @@ public class PlayerSound : MonoBehaviour
     void Start()
     {
         StartCoroutine(PlayFootstepSound());
+        chktime = cooltime;
     }
 
     private void Update()
