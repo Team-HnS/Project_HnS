@@ -16,8 +16,8 @@ public class ItemManager : MonoBehaviour
     public List<ItemData> items;
     public List<Slot> Slots;
     public int countItem;
-
     public int PlayerCoin = 0;
+
 
     Slot slot;
 
@@ -44,8 +44,10 @@ public class ItemManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     public void AddCoin(Coin_Item coin)
     {
+
         UpdateCoinUI(PlayerCoin);
     }
 
@@ -138,13 +140,13 @@ public class ItemManager : MonoBehaviour
                 continue; // 다음 아이템으로 넘어감
             }
 
-            Debug.Log("Adding item to UI: " + item.itemName);
             GameObject instance = Instantiate(slotPrefab, slotPanel);
 
             Slot slotInstance = instance.GetComponent<Slot>();
             slotInstance.itemData = item; // 여기에서 itemData 설정
             slotInstance.UpdateSlotUI();  // UI 업데이트 호출
-            
+
+            // 슬롯 프리팹에 아이템 정보 설정
             instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
             instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
             instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
