@@ -55,8 +55,8 @@ MonoBehaviour:
   EffectiveClip:
   - {fileID: 8300000, guid: 3c12bfa1524614d49ae2cbef2a174561, type: 3}
   - {fileID: 8300000, guid: 0e7b50052222d084393d985a2341e3f6, type: 3}
-  - {fileID: 8300000, guid: d0330246c876055479889e88eea8aa05, type: 3}
   - {fileID: 8300000, guid: e38a218085aa2e74aac423e9ef73bf0d, type: 3}
+  - {fileID: 8300000, guid: d0330246c876055479889e88eea8aa05, type: 3}
 --- !u!82 &4457395490327913220
 AudioSource:
   m_ObjectHideFlags: 0

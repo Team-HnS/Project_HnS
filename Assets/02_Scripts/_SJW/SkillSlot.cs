@@ -130,7 +130,7 @@ public class SkillSlot : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDr
         }
         PlayerManager.instance.OnUiInteraction = false;
         Destroy(newslot);
-
+        SoundManager.instance.EffectPlay(3); //놓는 효과음
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, results);
         foreach (RaycastResult result in results)
@@ -180,7 +180,7 @@ public class SkillSlot : MonoBehaviour, IDragHandler, IEndDragHandler , IBeginDr
         {
             return;
         }
-
+        SoundManager.instance.EffectPlay(2); //장착하는 효과음
         UiOff();
         PlayerManager.instance.OnUiInteraction = true;
         int childnum = transform.GetSiblingIndex();
