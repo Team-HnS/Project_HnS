@@ -44,8 +44,14 @@ public class Item : MonoBehaviour
             Item itemComponent = GetComponent<Item>();
             if (itemComponent != null)
             {
-                ItemManager.Instance.AddItem(itemComponent.itemData, 1);
-                Destroy(gameObject);
+                if(coinAmount != 0)
+                {
+                    ItemManager.Instance.AddCoin(coinAmount);
+                }
+                else
+                {
+                    ItemManager.Instance.AddItem(itemComponent.itemData, 1);
+                }
             }
             Destroy(gameObject);
         }
