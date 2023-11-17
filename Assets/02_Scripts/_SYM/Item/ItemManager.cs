@@ -112,7 +112,6 @@ public class ItemManager : MonoBehaviour
         }
         else
         {
-            Debug.Log(equipmentItem.name);
             // 새로운 아이템을 추가하고, 해당 수량을 설정합니다.
             Item_data[equipmentItem] = quantity;
             items.Add(equipmentItem); // 아이템 리스트에도 추가합니다.

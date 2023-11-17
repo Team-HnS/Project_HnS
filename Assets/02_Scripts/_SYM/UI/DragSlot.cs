@@ -27,7 +27,7 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     [SerializeField]
     private Image imageItem;
-
+    EquipmentUI equipmentUI;
     void Awake()
     {
         instance = this;
@@ -80,6 +80,7 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
         if (draggedItemClone == null)
         {
+            Debug.Log("draggedItemClone is null");
             draggedItemClone = Instantiate(gameObject, transform.parent);
 
             CanvasGroup canvasGroupClone = draggedItemClone.GetComponent<CanvasGroup>();
@@ -112,6 +113,8 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
         canvasGroup.alpha = 1.0f; // 원본 슬롯 다시 보이게 하기
         UpdateInventoryUI();
+
+
     }
 
     //마우스 클릭 시
@@ -151,7 +154,7 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     private void UpdateInventoryUI()
     {
-        foreach (var slot in Slots) // inventorySlots는 모든 인벤토리 슬롯의 리스트
+        foreach (var slot in Slots)
         {
             if (slot.itemData != null)
             {
@@ -159,9 +162,7 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             }
             else
             {
-                // 아이템이 없는 경우
-                slot.GetComponent<Image>().sprite = null; // 아이콘 제거
-                                                          // 추가적인 정보 초기화
+                slot.GetComponent<Image>().sprite = null;
             }
         }
     }

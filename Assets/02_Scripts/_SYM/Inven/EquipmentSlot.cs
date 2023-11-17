@@ -28,7 +28,6 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("OnDrop event triggered.");
         DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
         if (droppedItemSlot != null && droppedItemSlot.itemData != null)
         {
@@ -47,11 +46,8 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
             {
                 if (itemManager.Item_data[item] <= 0)
                 {
-                    Debug.Log("Skipping item due to insufficient quantity: " + item.itemName);
                     continue;
                 }
-
-                Debug.Log("Adding item to UI: " + item.itemName);
                 GameObject instance = Instantiate(slotPrefab, slotPanel);
 
                 Slot slotInstance = instance.GetComponent<Slot>();
