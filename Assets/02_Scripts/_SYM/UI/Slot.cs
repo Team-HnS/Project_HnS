@@ -99,6 +99,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
     internal void ClearSlot()
     {
+        Debug.Log(itemData.name);
         itemData = null;
     }
 
