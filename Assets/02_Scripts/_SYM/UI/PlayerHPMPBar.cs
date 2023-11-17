@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHPMPBar : MonoBehaviour
@@ -43,7 +45,13 @@ public class PlayerHPMPBar : MonoBehaviour
 
     private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         Debug.Log("체력바 인애이블 호출");
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
 
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
@@ -65,7 +73,6 @@ public class PlayerHPMPBar : MonoBehaviour
         {
             Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
         }
-
 
     }
 
