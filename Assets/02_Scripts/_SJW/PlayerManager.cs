@@ -20,6 +20,14 @@ public class PlayerManager : MonoBehaviour
         player_s = player.GetComponent<Player>();
         player_m = player.GetComponent<PlayerMovement>();
     }
+
+    public void PlayerRevive()
+    {
+
+
+
+    }
+
     // Start is called before the first frame update
     void Start()
     {
