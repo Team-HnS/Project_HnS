@@ -49,8 +49,6 @@ public class InventoryManager : MonoBehaviour
                 //장비템일경우 스텟 상승치를 text에 띄워둠
                 instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
                 GameObject.Find("WeaponExplanation").GetComponent<Text>().text = item.explanation;
-
-
             }
 
 

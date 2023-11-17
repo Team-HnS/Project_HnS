@@ -31,7 +31,6 @@ public class ItemManager : MonoBehaviour
     public GameObject slotPrefab;
     //public Text weaponExplanationText;
 
-
     private void Awake()
     {
         if (Instance == null)
@@ -91,13 +90,11 @@ public class ItemManager : MonoBehaviour
     {
         PlayerCoin += amount;
         UpdateCoinUI();
-
     }
     public void UseCoin(int itemPrice)
     {
         PlayerCoin -= itemPrice;
         UpdateCoinUI();
-
     }
     private void AddEquipment(E_Item equipmentItem, int quantity)
     {
@@ -188,7 +185,6 @@ public class ItemManager : MonoBehaviour
 
                 break;
             }
-
         }
     }
 
@@ -253,20 +249,9 @@ public class ItemManager : MonoBehaviour
             Slot slotInstance = instance.GetComponent<Slot>();
             slotInstance.itemData = item; // 여기에서 itemData 설정
             slotInstance.UpdateSlotUI();  // UI 업데이트 호출
-
-            // 슬롯 프리팹에 아이템 정보 설정
             instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
             instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
             instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-
-            if (item is E_Item)
-            {
-                //GameObject instance = Instantiate(slotPrefab, slotPanel);
-                //장비템일경우 스텟 상승치를 text에 띄워둠
-                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-                instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-
-            }
         }
     }
 }

@@ -15,7 +15,7 @@ public class shop : MonoBehaviour
     public Image sel_item_image;
     public GameObject seleceted_item;
     public List<item_data> item_data_list;
-    public GameObject shopPanel; // �����۸���� �����ִ� �г�
+    public GameObject shopPanel; // �����۸����?�����ִ� �г�
     public Button buy_btn;
     public Button sell_btn;
     public Image item_icon;
@@ -24,7 +24,7 @@ public class shop : MonoBehaviour
         buy_btn.GetComponent<Button>().onClick.AddListener(buy_item);
         sell_btn.GetComponent<Button>().onClick.AddListener(sell_item);
         item_data_list = gamemanger.GetComponent<item_set>().item_data_list;
-        this.gameObject.SetActive(false);//����ȣ��ɶ� ǥ�õ����ʰ���
+        this.gameObject.SetActive(false);//����ȣ��ɶ�?ǥ�õ����ʰ���
     }
     public void buy_item()
     {
@@ -48,6 +48,6 @@ public class shop : MonoBehaviour
     }
     void Update()
     {
-        gold = player.GetComponent<Stats>().gold;
+        //gold = player.GetComponent<Stats>().gold;
     }
 }
