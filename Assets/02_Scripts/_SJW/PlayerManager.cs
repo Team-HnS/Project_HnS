@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -26,8 +28,22 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         reviveZone = GameObject.Find("ReviveZone");
+
+
     }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        reviveZone = GameObject.Find("ReviveZone");
+
+        player = FindObjectOfType<Player>().gameObject;
+        player_s = player.GetComponent<Player>();
+        player_m = player.GetComponent<PlayerMovement>();
+    }
+
     public void PlayerRevive()
     {
         player.transform.position = reviveZone.transform.position;
