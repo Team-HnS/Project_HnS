@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -20,7 +21,16 @@ public class InventoryUI : MonoBehaviour
         itemManager = FindObjectOfType<ItemManager>();
         UpdateAllUIs();
     }
-
+    private void Update()
+    {
+        foreach (var slot in inventoryItems)
+        {
+            if (slot.itemData != null) // itemData가 설정되어 있는지 확인
+            {
+                slot.UpdateSlotUI();
+            }
+        }
+    }
     // 모든 UI 업데이트
     public void UpdateAllUIs()
     {

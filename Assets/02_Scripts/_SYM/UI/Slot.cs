@@ -19,6 +19,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     public ItemData itemData;
     public C_Item consumableItem;
     Slot slotPrefab;
+    int amount = 10 ;
 
     public Image itemIcon;
     public Text quantityText;

@@ -13,10 +13,38 @@ public class PlayerHPMPBar : MonoBehaviour
     public TMP_Text hpPer;
     public TMP_Text mpPer;
 
-    Player PlayerState;
+    public Player PlayerState;
 
     void Start()
-    {   
+    {
+        GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+        if (playerObject != null)
+        {
+            PlayerState = playerObject.GetComponent<Player>();
+        }
+        if (PlayerState != null)
+        {
+            hp_Slider = GameObject.Find("hp_Slider").GetComponent<Slider>();
+            mp_Slider = GameObject.Find("mp_Slider").GetComponent<Slider>();
+            exp_Slider = GameObject.Find("exp_Slider").GetComponent<Slider>();
+            hpPer = GameObject.Find("hpPer").GetComponent<TMP_Text>();
+            mpPer = GameObject.Find("mpPer").GetComponent<TMP_Text>();
+            hp_Slider.minValue = 0;
+            mp_Slider.minValue = 0;
+            exp_Slider.minValue = 0;
+        }
+        else
+        {
+            Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
+        }
+
+
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("체력바 인애이블 호출");
+
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
         if (playerObject != null)
         {

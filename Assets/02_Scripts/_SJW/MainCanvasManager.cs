@@ -11,6 +11,8 @@ public class MainCanvasManager : MonoBehaviour
     [SerializeField]
     private GameObject optionPannel;
 
+    public GameObject SkillSlotPannel;
+
     void Awake()
     {
         if (null == instance)
@@ -21,7 +23,7 @@ public class MainCanvasManager : MonoBehaviour
             //씬 전환이 되더라도 파괴되지 않게 한다.
             //gameObject만으로도 이 스크립트가 컴포넌트로서 붙어있는 Hierarchy상의 게임오브젝트라는 뜻이지만, 
             //나는 헷갈림 방지를 위해 this를 붙여주기도 한다.
-            //DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
