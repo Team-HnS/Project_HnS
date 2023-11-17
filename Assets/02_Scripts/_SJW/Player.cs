@@ -163,6 +163,21 @@ public class Player : MonoBehaviour
         col = GetComponent<Collider>();
     }
 
+    public void PlayerRevival()
+    {
+        cur_hp = Max_Hp;
+        cur_mp = Max_Mp;
+
+        state = PlayerState.Idle;
+        animator.Play("Idle");
+
+        MainCanvasManager.Instance.DeadPannelShow();
+        enabled = true;
+        playermove.enabled = true;
+        playersound.enabled = true;
+    }
+
+
     private void Start()
     {
         state = PlayerState.Idle;
@@ -438,15 +453,20 @@ public class Player : MonoBehaviour
         }
     }
 
+
+
     public void PlayerDie()
     {
         if (state != PlayerState.Death)
         {
+            playermove.agent.ResetPath();
+
             state = PlayerState.Death;
             animator.SetTrigger("Die");
 
             MainCanvasManager.Instance.DeadPannelShow();
             enabled = false;
+            GetComponent<NavMeshAgent>().enabled = false;
             playermove.enabled = false;
             playersound.enabled = false;
         }
