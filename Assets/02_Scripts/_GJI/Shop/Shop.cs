@@ -14,8 +14,8 @@ public class shop : MonoBehaviour
     public Text sel_item_price;
     public Image sel_item_image;
     public GameObject seleceted_item;
-    private List<item_data> item_data_list;
-    public GameObject shopPanel; // ¾ÆÀÌÅÛ¸ñ·ÏÀ» º¸¿©ÁÖ´Â ÆÐ³Î
+    public List<item_data> item_data_list;
+    public GameObject shopPanel; // ï¿½ï¿½ï¿½ï¿½ï¿½Û¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ð³ï¿½
     public Button buy_btn;
     public Button sell_btn;
     public Image item_icon;
@@ -24,24 +24,7 @@ public class shop : MonoBehaviour
         buy_btn.GetComponent<Button>().onClick.AddListener(buy_item);
         sell_btn.GetComponent<Button>().onClick.AddListener(sell_item);
         item_data_list = gamemanger.GetComponent<item_set>().item_data_list;
-        int j = 0;//°¡·ÎÁÙ
-        int k = 0;//¼¼·ÎÁÙ
-        int galo = 5;//°¡·ÎÁÙ
-        //¾ÆÀÌÅÛ ¸®½ºÆ® ¸¸Å­ °´Ã¼»ý¼º
-        for (int i = 0; 2 * k < item_data_list.Count; i++)//¾ÆÀÌÅÛ°¹¼ö¸¸Å­ »ý¼º  //item_data_list.Count=3ÀÓ (ÇöÀç) ¾ÆÀÌÅÛ Ä«¿îÆ®°¡ ¸¸¾à 10°³¶ó¸é ±×¸®°í °¡·ÎÁÙ¿¡ 2°³ ÇÑ´Ù¸é  1 2 1 2 1 2 1 2 ÃÑ 5ÁÙ
-        {
-            for (j = 0; j < galo; j++)//°¡·ÎÁÙ
-            {
-                GameObject item = Instantiate(Resources.Load<GameObject>("item"));
-                item.GetComponent<item_data_update>().I_D = item_data_list[j + k * galo];
-                item.transform.SetParent(shopPanel.transform);
-                item.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-                item.transform.localPosition = new Vector3(-130 + 60 * j, -60 * k, 0);//°£°Ý »ý¼º
-                item.GetComponent<item_data_update>().item_data = item_data_list[j + k * galo];
-            }
-            k++;
-        }
-        this.gameObject.SetActive(false);//¾ÀÀÌÈ£ÃâµÉ¶§ Ç¥½ÃµÇÁö¾Ê°ÔÇÔ
+        this.gameObject.SetActive(false);//ï¿½ï¿½ï¿½ï¿½È£ï¿½ï¿½É¶ï¿½ Ç¥ï¿½Ãµï¿½ï¿½ï¿½ï¿½Ê°ï¿½ï¿½ï¿½
     }
     public void buy_item()
     {
@@ -53,12 +36,12 @@ public class shop : MonoBehaviour
         }
         else
         {
-            Debug.Log("°ñµå°¡ ºÎÁ·ÇÕ´Ï´Ù.");
+            Debug.Log(" Gold X ");
         }
     }
     public void sell_item()
     {
-        //find item in player's inventory
+        
         player.GetComponent<Stats>().sell_item_player(seleceted_item.GetComponent<item_data_update>().I_D.IDX);
         player.GetComponent<Stats>().gold += sel_price / 80;
 
