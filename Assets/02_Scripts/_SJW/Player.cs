@@ -445,8 +445,7 @@ public class Player : MonoBehaviour
             state = PlayerState.Death;
             animator.SetTrigger("Die");
 
-            GameObject ob = GameObject.Find("Canvas").transform.Find("DeadPannel").gameObject;
-            ob.SetActive(false);
+            MainCanvasManager.Instance.DeadPannelShow();
             enabled = false;
             playermove.enabled = false;
             playersound.enabled = false;
