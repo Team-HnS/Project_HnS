@@ -15,4 +15,10 @@ public class DeadPannel : MonoBehaviour
     {
         
     }
+
+
+    public void ReviveBtn()
+    {
+        PlayerManager.instance.PlayerRevive();
+    }
 }

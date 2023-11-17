@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b6d1cc4d2bc5e4ea1ac5944a8e0f53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 774d8a5b9bdd10f449d9a64b1e3c09bf, type: 3}
 --- !u!206 &1489235637186292899
 BlendTree:
   m_ObjectHideFlags: 1
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19876dba31b9a00479e58661021450ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 0}
+  attackSound: {fileID: 8300000, guid: 3ffe113dfce4c3444b17dbc25b84c437, type: 3}
 --- !u!1102 &5759362362845856658
 AnimatorState:
   serializedVersion: 6

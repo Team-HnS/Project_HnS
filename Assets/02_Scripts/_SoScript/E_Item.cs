@@ -8,38 +8,22 @@ using UnityEngine;
 
 public class E_Item : ItemData
 {
-    [Header("장비")]
-    public int HpUp;//최대 체력 상승치
-    public int MpUp;//최대 마나 상승치
-
-    public int AtkUp; // 공격력 상승치
-    public int StrUp;//힘
-    public int IgtUp;//마법공격력
-    public int DexUp;//민첩
-    public int DefUp;//방어력
-
-    public int UseCode;//소모품 함수 코드
-
-    public bool isGone;// 1회용인지
-
-    public void UseEffect()
+    public enum Equipment_Type
     {
-        switch (UseCode)
-        {
-            case 0:
-                PlayerManager.instance.player_s.Atk += 2147483647;
-                PlayerManager.instance.player_s.Str += 2147483647;
-                PlayerManager.instance.player_s.Dex += 2147483647;
-                PlayerManager.instance.player_s.Def += 2147483647;
-
-                Debug.Log("0번 아이템 사용");
-                
-                break;
-
-            case 1:
-                break;
-        }
-
+        cap,
+        top,
+        pants,
+        shoes,
+        weapon
     }
 
+    [Header("장비")]
+    public int HpUp; // 최대 체력
+    public int MpUp; // 최대 마나
+    public int AtkUp; // 물리 공격력
+    public int ItgUP; // 마법 공격력
+    public int DefUp; // 방어력
+    public int Speed; // 이동속도
+
+    public Equipment_Type Type;
 }

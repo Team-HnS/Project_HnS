@@ -49,6 +49,7 @@ public class NomalAttack : StateMachineBehaviour
         GameObject mainob = animator.gameObject;
         PlayerMovement pm = mainob.GetComponentInParent<PlayerMovement>();
         Player player = mainob.GetComponentInParent<Player>();
+        player.target = null;
         Debug.Log("공격모션 종료");
 
         // mainob.transform.LookAt(player.target.transform);
