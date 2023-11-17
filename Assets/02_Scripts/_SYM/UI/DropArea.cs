@@ -38,6 +38,7 @@ public class DropArea : MonoBehaviour, IDropHandler
         {
             // 드롭된 아이템 처리
             currentItemData = droppedItemSlot.itemData;
+            Debug.Log(currentItemData.name);
             UpdateSlotUI(currentItemData);
         }
     }
@@ -69,12 +70,5 @@ public class DropArea : MonoBehaviour, IDropHandler
                 slot.UpdateSlotUI();
             }
         }
-    }
-
-    private void SetImageAlpha(float alpha)
-    {
-        Color color = slotImage.color;
-        color.a = alpha / 255.0f;
-        slotImage.color = color;
     }
 }
