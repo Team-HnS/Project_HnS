@@ -10,4 +10,4 @@ public class EquipmentUI : MonoBehaviour
     public List<Slot> equipmentSlots;
     public List<Slot> consumableSlots;
 
-}
+}   
