@@ -24,6 +24,7 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
     {
         itemManager = FindObjectOfType<ItemManager>();
         equipmentSlot = GetComponent<Slot>();
+        Debug.Log("장비슬롯");
     }
     public void OnDrop(PointerEventData eventData)
     {
@@ -56,22 +57,16 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
                 Slot slotInstance = instance.GetComponent<Slot>();
                 slotInstance.itemData = item;
                 slotInstance.UpdateSlotUI();
-                if (item is E_Item)
-                {
-                    instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-                    instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-                }
-                else
-                {
-                    instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-                    instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
-                    instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+                instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
+                instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+                
 
-                }
             }
 
             // 장비창 UI 업데이트
             UpdateEquipmentUI(droppedItemSlot.itemData);
+            itemManager.UpdateAllSlots();
         }
         else
         {
@@ -135,15 +130,19 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
 
             Slot slotInstance = instance.GetComponent<Slot>();
             slotInstance.itemData = item;
-            slotInstance.UpdateSlotUI();
-            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-            instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
-            instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-
             if (item is E_Item)
             {
+                Debug.Log("E Item입니다");
                 instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
                 instance.transform.Find("WeaponExplanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+            }
+            else if (item is C_Item && item is M_Item)
+            {
+                Debug.Log("E Item말고");
+                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+                instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
+                instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+
             }
         }
     }
