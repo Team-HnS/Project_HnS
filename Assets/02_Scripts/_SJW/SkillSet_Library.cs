@@ -4,7 +4,6 @@ using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using static Player;
@@ -46,17 +45,6 @@ public class SkillSet_Library : MonoBehaviour
                 Destroy(this.gameObject);
             }
 
-    }
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        player = FindObjectOfType<Player>().gameObject;
-        player_s = player.GetComponent<Player>();
-        player_m = player.GetComponent<PlayerMovement>();
     }
 
     bool SkillCostCheck(int cost) //마나코스트

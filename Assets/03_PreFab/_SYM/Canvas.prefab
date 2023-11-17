@@ -4281,7 +4281,6 @@ MonoBehaviour:
   exp_Slider: {fileID: 7972735604655852249}
   hpPer: {fileID: 3370714520560522390}
   mpPer: {fileID: 7264589221817568480}
-  PlayerState: {fileID: 0}
 --- !u!1 &5287009618600414923
 GameObject:
   m_ObjectHideFlags: 0
@@ -6435,6 +6434,7 @@ GameObject:
   - component: {fileID: 132813172897064832}
   - component: {fileID: 7458513594765322964}
   - component: {fileID: 2152920715186967836}
+  - component: {fileID: 1915999698601319356}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6561,6 +6561,18 @@ MonoBehaviour:
   deadPannel: {fileID: 7277388964543868720}
   optionPannel: {fileID: 7708528377715848247}
   SkillSlotPannel: {fileID: 1208359326211173079}
+--- !u!114 &1915999698601319356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222073964681473032}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba189e577a4aef64789bb8aafb64c63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7404045631275164971
 GameObject:
   m_ObjectHideFlags: 0

@@ -29,17 +29,14 @@ public class KeyInputManager : MonoBehaviour
             //그래서 이미 전역변수인 instance에 인스턴스가 존재한다면 자신(새로운 씬의 GameMgr)을 삭제해준다.
             Destroy(this.gameObject);
         }
-        
-    }
-
-    private void Start()
-    {
         ssp = MainCanvasManager.Instance.SkillSlotPannel.GetComponent<SkillSlotPannel>();
     }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        
+        if(Input.GetKeyDown(KeyCode.Q))
         {
             if (ssp.skillSlots[0]._skillData == null) 
             {
