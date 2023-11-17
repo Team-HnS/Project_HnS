@@ -26,13 +26,10 @@ public class Weapon : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        // Debug.Log(fsm.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"));
-
+    {        
         // 1회 공격당 1회 데미지
         if (fsm.animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") && other.CompareTag("Player"))
-        {
-            Debug.Log("들어왔어!!!");
+        {            
             player = other.GetComponent<Player>();
             if (!endAttack)
             {

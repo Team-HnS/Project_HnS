@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     public void PlayerMove() //땅클릭했을때 호출되는 함수
     {
         RaycastHit hit;
-        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity,checkLand))
+        if (Physics.Raycast(cam.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity, checkLand))
         {
             if (hit.transform.gameObject.layer == 7) // 땅인지 체크
             {
@@ -91,25 +91,25 @@ public class PlayerMovement : MonoBehaviour
 
     public void PlayerTargetMove(GameObject target) //적 클릭했을때
     {
+
         SetDest(target.transform.position);
         player.Attack_Range = target.GetComponent<CapsuleCollider>().radius + 1;
         Debug.Log("남은거리 : " + agent.remainingDistance);
         print("목표지정완료");
         player.PlayerTrace(); // 이동 시킴
-
     }
 
     public void CanMove() //평타 움직임 풀때
     {
 
-        Debug.Log("공격끝!" + "세이브포스 : "+ isSavePos + " 이스넥스트 타겟"+ player.isNextTarget);
+        Debug.Log("공격끝!" + "세이브포스 : " + isSavePos + " 이스넥스트 타겟" + player.isNextTarget);
 
 
         canMove = true;
 
 
 
-        if(isSavePos && !player.isNextTarget)
+        if (isSavePos && !player.isNextTarget)
         {
 
             Debug.Log("이동합니다!");
@@ -118,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
             agent.velocity = agent.desiredVelocity.normalized * agent.speed;
             player.PlayerRun(); // 이동 시킴
         }
-        else  if(player.isNextTarget && player.next_target)
+        else if (player.isNextTarget && player.next_target)
         {
             Debug.Log("공격합니다!");
 
@@ -126,10 +126,11 @@ public class PlayerMovement : MonoBehaviour
             player.target = player.next_target;
             player.next_target = null;
 
+
             PlayerTargetMove(player.target); //타겟팅 변경
 
         }
-        else if(player.state == Player.PlayerState.Casting)
+        else if (player.state == Player.PlayerState.Casting)
         {
             player.PlayerIdle();
         }
@@ -144,21 +145,20 @@ public class PlayerMovement : MonoBehaviour
         isMove = true;
     }
 
-    public  void LookMoveDirection() // 해당위치를 바라보게 하는 함수 => 단 움직일때만
+    public void LookMoveDirection() // 해당위치를 바라보게 하는 함수 => 단 움직일때만
     {
         if (isMove)
         {
-       
+
             if (agent.remainingDistance == 0.0f && agent.velocity.sqrMagnitude < 0.1f * 0.1f && player.state == Player.PlayerState.Run)  // 움직이는 상태가 아닐때
             {
                 player.PlayerIdle();
                 isMove = false;
 
-               
                 return;
             }
 
-            if(agent.remainingDistance != 0.0f)
+            if (agent.remainingDistance != 0.0f)
             {
                 var dir = new Vector3(agent.steeringTarget.x, transform.position.y, agent.steeringTarget.z) - transform.position;
                 LerfRot(dir);

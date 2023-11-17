@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UIElements;
 
 /// <summary>
@@ -15,6 +16,7 @@ public class Monster : MonoBehaviour
 
     private EnemyFSM fsm;
     private Outline outline;
+    private NavMeshAgent agent;
 
     public int hp;
     public int Hp
@@ -39,6 +41,7 @@ public class Monster : MonoBehaviour
     {
         fsm = GetComponent<EnemyFSM>();
         outline = GetComponent<Outline>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
     private void Start()
@@ -96,8 +99,8 @@ public class Monster : MonoBehaviour
         {
             // 드랍 위치
             Vector3 dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
-            dropPosition.y = itemProbability.itemData.itemObj.transform.position.y;
-
+            dropPosition.y = agent.transform.position.y + itemProbability.itemData.itemObj.transform.position.y;
+            
             // 확률에 따라 드랍
             if (Random.value < itemProbability.probability)
             {
@@ -105,7 +108,7 @@ public class Monster : MonoBehaviour
                 while (!Physics.CheckSphere(dropPosition, 0.5f, 12) && cnt < 500) // 일단 하드 코딩
                 {
                     dropPosition = transform.position + Random.insideUnitSphere * dropRadius;
-                    dropPosition.y = itemProbability.itemData.itemObj.transform.position.y;
+                    dropPosition.y = agent.transform.position.y + itemProbability.itemData.itemObj.transform.position.y;
                     cnt++;
                 }
                 cnt = 0;

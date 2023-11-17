@@ -1234,6 +1234,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8168475274547939822, guid: de1248433c2318b45a64ec3198e0cd86, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9020013371683213473, guid: de1248433c2318b45a64ec3198e0cd86, type: 3}
       propertyPath: checkLand.m_Bits
       value: 9344
