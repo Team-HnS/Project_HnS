@@ -8187,6 +8187,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8662221872646220415, guid: 732e0a4f275768645ace75a471772627, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9060894659013585753, guid: 732e0a4f275768645ace75a471772627, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -33363,6 +33367,10 @@ PrefabInstance:
     - target: {fileID: 7651682227889770261, guid: 90638bc49971544acb896212ade980d0, type: 3}
       propertyPath: m_Name
       value: InstanceDungeonNpc_twon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651682227889770261, guid: 90638bc49971544acb896212ade980d0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7776827835168271113, guid: 90638bc49971544acb896212ade980d0, type: 3}
       propertyPath: m_Layer
