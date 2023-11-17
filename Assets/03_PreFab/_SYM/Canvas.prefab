@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 3782779999845266435}
   - component: {fileID: 9037263703123525058}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1088,6 +1088,7 @@ MonoBehaviour:
   Slots: []
   slotImage: {fileID: 3782779999845266435}
   currentItemData: {fileID: 0}
+  equipmentUI: {fileID: 0}
 --- !u!1 &2056551052565856545
 GameObject:
   m_ObjectHideFlags: 0
@@ -8130,7 +8131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c788bd16b4a5f8c49bc71dae81fe3da9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 0}
+  panel: {fileID: 8662221872646220415}
 --- !u!1001 &326359256141931004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8466,16 +8467,65 @@ PrefabInstance:
       propertyPath: m_Name
       value: equipment
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 407413800190699894, guid: c2022230c54c9bc4c938318502f9115b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8397829461718443270, guid: c2022230c54c9bc4c938318502f9115b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4221174643770514476}
+    - targetCorrespondingSourceObject: {fileID: 8397829461718443270, guid: c2022230c54c9bc4c938318502f9115b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6193898380062323886}
   m_SourcePrefab: {fileID: 100100000, guid: c2022230c54c9bc4c938318502f9115b, type: 3}
+--- !u!224 &1464619223895031960 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1796424893886304225, guid: c2022230c54c9bc4c938318502f9115b, type: 3}
+  m_PrefabInstance: {fileID: 918014697024507769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2511325043813938577 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3343770246256900840, guid: c2022230c54c9bc4c938318502f9115b, type: 3}
   m_PrefabInstance: {fileID: 918014697024507769}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8662221872646220415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8397829461718443270, guid: c2022230c54c9bc4c938318502f9115b, type: 3}
+  m_PrefabInstance: {fileID: 918014697024507769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4221174643770514476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8662221872646220415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af00b9922e3b48049b0379f0ca79dbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentItemData: {fileID: 0}
+  equipmentPanel: {fileID: 1464619223895031960}
+  slotPrefab: {fileID: 1710711415459299260, guid: 7f2edf90bc854624e95ae9201b939943, type: 3}
+--- !u!114 &6193898380062323886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8662221872646220415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee849921086dac4ab1d2a4498815f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
+  Slots: []
+  slotImage: {fileID: 4862168677799254644, guid: 7f2edf90bc854624e95ae9201b939943, type: 3}
+  currentItemData: {fileID: 0}
+  equipmentUI: {fileID: 0}
 --- !u!1001 &987670664057521429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8686,9 +8736,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4809014187176292416, guid: 6e33889243ce4e84282faf0c7ae89cd9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5057374897672248549, guid: 6e33889243ce4e84282faf0c7ae89cd9, type: 3}
       propertyPath: m_Name
       value: DeadPannel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7945097201919050444, guid: 6e33889243ce4e84282faf0c7ae89cd9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

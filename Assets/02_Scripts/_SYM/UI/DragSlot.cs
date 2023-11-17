@@ -28,6 +28,8 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     [SerializeField]
     private Image imageItem;
     EquipmentUI equipmentUI;
+
+   
     void Awake()
     {
         instance = this;
@@ -43,9 +45,10 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         instance = this;
         itemData = GetComponent<Slot>().itemData; // ItemManager 인스턴스 찾기
-        
+
 
     }
+
     public void DragSetImage(Image _itemImage)
     {
         imageItem.sprite = _itemImage.sprite;
@@ -137,7 +140,7 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             // 인벤토리에서 해당 아이템 제거
             inventoryItems.Remove(currentItemData);
             currentItemData = null; // 현재 아이템 데이터 초기화
-            
+
             // 인벤토리 UI 업데이트 (예: 슬롯 비우기)
             UpdateInventoryUI();
         }

@@ -1169,12 +1169,12 @@ RectTransform:
   - {fileID: 7341724685782911527}
   - {fileID: 1230744906534351549}
   - {fileID: 2779502448364152734}
-  - {fileID: 1796424893886304225}
   - {fileID: 7654621641403710519}
   - {fileID: 3941765714045443952}
   - {fileID: 4468687736522047447}
   - {fileID: 897119912040202363}
   - {fileID: 1792404189357739244}
+  - {fileID: 1796424893886304225}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1245,10 +1245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af00b9922e3b48049b0379f0ca79dbb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemManager: {fileID: 0}
-  inventorySlots: []
+  currentItemData: {fileID: 0}
+  equipmentPanel: {fileID: 0}
+  slotPrefab: {fileID: 0}
   equipmentSlots: []
-  consumableSlots: []
 --- !u!1 &8972466898637815869
 GameObject:
   m_ObjectHideFlags: 0

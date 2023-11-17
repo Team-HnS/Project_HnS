@@ -17,11 +17,11 @@ public class DropArea : MonoBehaviour, IDropHandler
     public List<Slot> Slots;
     public Image slotImage; // 드랍 영역의 이미지 컴포넌트
     public ItemData currentItemData;
-    ItemManager itemManager;
+    public EquipmentUI equipmentUI;
 
     private void Awake()
     {
-
+        equipmentUI = FindObjectOfType<EquipmentUI>();
     }
     public void AssignItem(ItemData newItemData)
     {
@@ -36,11 +36,31 @@ public class DropArea : MonoBehaviour, IDropHandler
         DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
         if (droppedItemSlot.itemData != null)
         {
-            // 드롭된 아이템 처리
-            currentItemData = droppedItemSlot.itemData;
-            Debug.Log(currentItemData.name);
-            UpdateSlotUI(currentItemData);
+            if (droppedItemSlot.itemData is E_Item droppedEquipment)
+            {
+                currentItemData = droppedItemSlot.itemData as E_Item;
+                Debug.Log(currentItemData.name);
+                equipmentUI.CreateEquipmentSlot(currentItemData);
+                Debug.Log(currentItemData.name+"ㅇㅇ");
+                UpdateSlotUI(currentItemData);
+            }
+            else 
+            {
+                Debug.LogError("Only E_Item types can be dropped here.");
+            }
+            if (droppedItemSlot.itemData is C_Item)
+            {
+                currentItemData = droppedItemSlot.itemData;
+                Debug.Log(currentItemData.name);
+                UpdateSlotUI(currentItemData);
+            }
+            else
+            {
+                Debug.LogError("Only C_Item types can be dropped here.");
+            }
+
         }
+
     }
 
     private void ChangeSlot()

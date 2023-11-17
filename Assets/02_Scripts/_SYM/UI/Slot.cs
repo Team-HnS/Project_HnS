@@ -18,8 +18,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     public ItemData itemData;
     public C_Item consumableItem;
-    Slot slotPrefab;
-    int amount = 10 ;
+    
 
     public Image itemIcon;
     public Text quantityText;
@@ -33,10 +32,12 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     {
         if (itemData != null)
         {
+            Debug.Log("데이터 있음");
             UpdateSlotUI();
         }
         else
         {
+            Debug.Log("데이터 얎음");
             ClearSlot();
             return;
         }
@@ -89,12 +90,23 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         {
             itemIcon.sprite = itemData.item_Icon;
             itemIcon.enabled = true;  // 아이콘 활성화
+
+            Text explanationText = transform.Find("explanation").GetComponent<Text>();
+            if (explanationText != null)
+            {
+                explanationText.text = itemData.itemName + "\n" + "\n" + itemData.explanation;
+            }
+            else
+            {
+                Debug.LogError("Explanation Text 컴포넌트를 찾을 수 없습니다.");
+            }
         }
     }
 
-    internal void AssignItem(ItemData itemToMove)
+    internal void AssignItem(ItemData newItemData)
     {
-        throw new NotImplementedException();
+        itemData = newItemData;
+        UpdateSlotUI();
     }
 
     internal void ClearSlot()
@@ -105,6 +117,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        transform.SetAsLastSibling();
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             Debug.Log(eventData);

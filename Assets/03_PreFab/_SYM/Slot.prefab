@@ -327,6 +327,8 @@ MonoBehaviour:
   currentItemData: {fileID: 0}
   itemData: {fileID: 0}
   imageItem: {fileID: 4862168677799254644}
+  slotPrefab: {fileID: 1710711415459299260}
+  canvasTransform: {fileID: 0}
 --- !u!1 &1972860444438037278
 GameObject:
   m_ObjectHideFlags: 0
