@@ -8,6 +8,8 @@ public class MainCanvasManager : MonoBehaviour
 
     [SerializeField]
     private GameObject deadPannel;
+    [SerializeField]
+    private GameObject optionPannel;
 
     void Awake()
     {
@@ -51,6 +53,19 @@ public class MainCanvasManager : MonoBehaviour
         else
         {
             deadPannel.SetActive(true);
+        }
+
+    }
+
+    public void OptionPannelShow() //¿É¼ÇÆÐ³Î ²°´Ù Ä×´Ù
+    {
+        if (optionPannel.activeSelf)
+        {
+            optionPannel.SetActive(false);
+        }
+        else
+        {
+            optionPannel.SetActive(true);
         }
 
     }

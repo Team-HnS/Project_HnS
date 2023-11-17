@@ -6232,6 +6232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deadPannel: {fileID: 7277388964543868720}
+  optionPannel: {fileID: 7708528377715848247}
 --- !u!114 &1915999698601319356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8075,6 +8076,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2488501359764604327}
     m_Modifications:
+    - target: {fileID: 3360022532826614041, guid: a31653ac10db71f41be96ed8f9267791, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2152920715186967836}
+    - target: {fileID: 3360022532826614041, guid: a31653ac10db71f41be96ed8f9267791, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OptionPannelShow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360022532826614041, guid: a31653ac10db71f41be96ed8f9267791, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MainCanvasManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4389435930863316979, guid: a31653ac10db71f41be96ed8f9267791, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -8587,6 +8600,11 @@ PrefabInstance:
 --- !u!224 &3465046589517949913 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5061261551938389503, guid: c2d03c632878fcf40a7fd4f2b97cb24b, type: 3}
+  m_PrefabInstance: {fileID: 8515012853600890406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7708528377715848247 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2076536168287132177, guid: c2d03c632878fcf40a7fd4f2b97cb24b, type: 3}
   m_PrefabInstance: {fileID: 8515012853600890406}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8734855031532430045
