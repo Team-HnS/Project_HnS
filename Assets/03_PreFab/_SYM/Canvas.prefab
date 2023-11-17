@@ -6560,6 +6560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deadPannel: {fileID: 7277388964543868720}
   optionPannel: {fileID: 7708528377715848247}
+  SkillSlotPannel: {fileID: 1208359326211173079}
 --- !u!114 &1915999698601319356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8371,6 +8372,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40d8e486a3b4bda4eb23162678125335, type: 3}
+--- !u!1 &1208359326211173079 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1460154070279441195, guid: 40d8e486a3b4bda4eb23162678125335, type: 3}
+  m_PrefabInstance: {fileID: 326359256141931004}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &2565374496994558303 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2818545835073413283, guid: 40d8e486a3b4bda4eb23162678125335, type: 3}
