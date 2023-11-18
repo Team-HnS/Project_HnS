@@ -23,8 +23,8 @@ public class ItemData : ScriptableObject
 
     [Header("아이템 정보")]   
     public Sprite item_Icon; // 인벤토리에 들어갈 아이콘
-    public int Max_Amount; // 최대 개수, 장비는 1개
-    public int price;    
+    public int quantity; // 아이템 개수
+    public int price;
     
     [Header("코인 정보")]                    
     public bool isCoin;
