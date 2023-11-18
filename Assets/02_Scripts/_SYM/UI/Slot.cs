@@ -120,12 +120,10 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         transform.SetAsLastSibling();
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log(eventData);
             if (this.itemData is C_Item consumableItem) // 슬롯의 아이템 데이터가 C_Item 형인지 확인
             {
                 ItemManager.Instance.UseC_Item(consumableItem, ItemManager.Instance.countItem);
                 UpdateSlotUI();
-                
             }
             else
             {

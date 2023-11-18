@@ -34,29 +34,31 @@ public class DropArea : MonoBehaviour, IDropHandler
             ChangeSlot();
 
         DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
-        if (droppedItemSlot.itemData != null)
+        if (droppedItemSlot.itemData != null && droppedItemSlot.itemData != null)
         {
             if (droppedItemSlot.itemData is E_Item droppedEquipment)
             {
+                equipmentUI.currentItemData = droppedItemSlot.itemData;
                 currentItemData = droppedItemSlot.itemData as E_Item;
                 Debug.Log(currentItemData.name);
                 equipmentUI.CreateEquipmentSlot(currentItemData);
+                equipmentUI.OnItemDropped(currentItemData);
                 Debug.Log(currentItemData.name+"ㅇㅇ");
-                UpdateSlotUI(currentItemData);
+                Debug.Log(equipmentUI.currentItemData.name);
+
+                ItemManager.Instance.RemoveItemQuantity(equipmentUI.currentItemData, 1);
+                Debug.Log(equipmentUI.currentItemData.name);
+                //UpdateSlotUI(currentItemData);
             }
-            else 
+            else if (droppedItemSlot.itemData is C_Item)
             {
-                Debug.LogError("Only E_Item types can be dropped here.");
-            }
-            if (droppedItemSlot.itemData is C_Item)
-            {
+                Debug.Log(currentItemData.name + "ㅇㅇ");
                 currentItemData = droppedItemSlot.itemData;
-                Debug.Log(currentItemData.name);
                 UpdateSlotUI(currentItemData);
             }
             else
             {
-                Debug.LogError("Only C_Item types can be dropped here.");
+                Debug.LogError("무기랑 소모품만");
             }
 
         }

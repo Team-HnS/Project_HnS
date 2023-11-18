@@ -164,8 +164,17 @@ public class ItemManager : MonoBehaviour
                 RemoveItemSlot(item);
                 Item_data.Remove(item);
                 items.Remove(item); // 아이템 리스트에서도 제거
+                foreach (var slot in Slots)
+                {
+                    if (slot.itemData == item)
+                    {
+                        slot.ClearSlot();
+                        break;
+                    }
+                }
             }
             countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
+            Debug.Log(countItem.ToString());
             UpdateAllSlots();
         }
     }

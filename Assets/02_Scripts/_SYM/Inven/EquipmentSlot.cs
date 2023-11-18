@@ -31,39 +31,47 @@ public class EquipmentSlot : MonoBehaviour, IDropHandler, IPointerClickHandler
         DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
         if (droppedItemSlot != null && droppedItemSlot.itemData != null)
         {
-            RemoveItemFromInventory(droppedItemSlot.itemData);
-            AssignItemToEquipmentSlot(droppedItemSlot.itemData);
-
-            // 아이템 데이터 추가
-            items.Add(droppedItemSlot.itemData);
-            foreach (Transform child in slotPanel)
+            if (droppedItemSlot.itemData is C_Item)
             {
-                Debug.Log("Destroying GameObject: " + child.gameObject.name);
-                Destroy(child.gameObject);
-            }
+                RemoveItemFromInventory(droppedItemSlot.itemData);
+                AssignItemToEquipmentSlot(droppedItemSlot.itemData);
 
-            foreach (ItemData item in items)
-            {
-                if (itemManager.Item_data[item] <= 0)
+                // 아이템 데이터 추가
+                items.Add(droppedItemSlot.itemData);
+                foreach (Transform child in slotPanel)
                 {
-                    continue;
+                    Debug.Log("Destroying GameObject: " + child.gameObject.name);
+                    Destroy(child.gameObject);
                 }
-                GameObject instance = Instantiate(slotPrefab, slotPanel);
 
-                Slot slotInstance = instance.GetComponent<Slot>();
-                slotInstance.itemData = item;
-                slotInstance.UpdateSlotUI();
-                instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-                instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
-                instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-                
+                foreach (ItemData item in items)
+                {
+                    if (itemManager.Item_data[item] <= 0)
+                    {
+                        continue;
+                    }
+                    GameObject instance = Instantiate(slotPrefab, slotPanel);
 
+                    Slot slotInstance = instance.GetComponent<Slot>();
+                    slotInstance.itemData = item;
+                    slotInstance.UpdateSlotUI();
+                    instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+                    instance.transform.Find("ItemQuantity").GetComponent<Text>().text = itemManager.Item_data[item].ToString();
+                    instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+
+
+                }
+
+                // 장비창 UI 업데이트
+                UpdateEquipmentUI(droppedItemSlot.itemData);
+                itemManager.UpdateAllSlots();
             }
-
-            // 장비창 UI 업데이트
-            UpdateEquipmentUI(droppedItemSlot.itemData);
-            itemManager.UpdateAllSlots();
+            else
+            {
+                Debug.LogError("C_item X");
+            }
         }
+
         else
         {
             Debug.LogError("Dropped item data is null.");
