@@ -16,42 +16,88 @@ public class EquipmentUI : MonoBehaviour
 
     private void Awake()
     {
-        // Equipment Slots 리스트 초기화
         equipmentSlots = new List<Slot>(GetComponentsInChildren<Slot>());
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
-        if (droppedItemSlot != null && droppedItemSlot.itemData != null)
+        if (droppedItemSlot != null && droppedItemSlot.itemData is E_Item droppedEquipment)
         {
-            currentItemData = droppedItemSlot.itemData;
-            UpdatePlayerStats(currentItemData);
-            Debug.Log(currentItemData.name);
+            if (IsItemAlreadyInEquipmentSlots(droppedEquipment))
+            {
+                Debug.Log(droppedEquipment.name + " is already equipped.");
+            }
+            else
+            {
+                ItemManager.Instance.RemoveItemQuantity(droppedEquipment, 1);
+                ItemManager.Instance.UpdateAllSlots();
+            }
         }
     }
-    public void CreateEquipmentSlot(ItemData itemData)
+
+    private bool IsItemAlreadyInEquipmentSlots(E_Item item)
     {
-        Debug.Log("CreateEquipmentSlot작동");
-        GameObject newSlot = Instantiate(slotPrefab, equipmentPanel);
-        Slot slotComponent = newSlot.GetComponent<Slot>();
-        slotComponent.AssignItem(itemData);
-        slotComponent.UpdateSlotUI();
-    }
-    internal void ProcessDroppedItem(ItemData currentItemData)
-    {
-        if (currentItemData != null && currentItemData is E_Item)
+        foreach (Slot slot in equipmentSlots)
         {
-            Debug.Log("");
+            if (slot.itemData == item)
+            {
+                return true;
+            }
         }
-
+        return false;
     }
 
-    private void UpdatePlayerStats(ItemData itemData)
+    public void OnItemDropped(ItemData itemData)
     {
         if (itemData is E_Item equipmentItem)
         {
-
+            switch (equipmentItem.Type)
+            {
+                case E_Item.Equipment_Type.cap:
+                    
+                    AssignItemToSlot(equipmentSlots[0], equipmentItem);
+                    break;
+                case E_Item.Equipment_Type.top:
+                    
+                    AssignItemToSlot(equipmentSlots[4], equipmentItem);
+                    break;
+                case E_Item.Equipment_Type.pants:
+                    
+                    AssignItemToSlot(equipmentSlots[3], equipmentItem);
+                    break;
+                case E_Item.Equipment_Type.shoes:
+                    
+                    AssignItemToSlot(equipmentSlots[2], equipmentItem);
+                    break;
+                case E_Item.Equipment_Type.weapon:
+                    
+                    AssignItemToSlot(equipmentSlots[1], equipmentItem);
+                    break;
+            }
         }
+    }
+
+    private void AssignItemToSlot(Slot slot, E_Item item)
+    {
+        if (slot.itemData != null)
+        {
+            return;
+        }
+
+        slot.itemData = item;
+        slot.UpdateSlotUI();
+
+        UpdatePlayerStats(item);
+    }
+
+    private void UpdatePlayerStats(E_Item item)
+    {
+        PlayerManager.instance.player_s.Max_Hp += item.HpUp;
+        PlayerManager.instance.player_s.Max_Mp += item.MpUp;
+        PlayerManager.instance.player_s.Atk += item.AtkUp;
+        PlayerManager.instance.player_s.Igt += item.ItgUP;
+        PlayerManager.instance.player_s.Def += item.DefUp;
+        PlayerManager.instance.player_s.Move_Speed += item.Speed;
     }
 }

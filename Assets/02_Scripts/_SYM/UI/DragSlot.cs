@@ -120,12 +120,6 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     }
 
-    //마우스 클릭 시
-    //public void OnPointerClick(PointerEventData eventData)
-    //{
-
-    //}
-
     //아이템 드롭했을 때
     public void OnDrop(PointerEventData eventData)
     {
@@ -141,7 +135,7 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             inventoryItems.Remove(currentItemData);
             currentItemData = null; // 현재 아이템 데이터 초기화
 
-            // 인벤토리 UI 업데이트 (예: 슬롯 비우기)
+            InventoryUI.Instance.UpdateInventoryUI();
             UpdateInventoryUI();
         }
 

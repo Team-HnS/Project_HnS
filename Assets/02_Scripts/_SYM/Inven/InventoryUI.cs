@@ -10,54 +10,48 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    public static InventoryUI Instance { get; private set; }
+
     [SerializeField]
     public ItemManager itemManager;
-    public List<Slot> inventoryItems;
     public List<Slot> equipmentSlots;
     public List<Slot> consumableSlots;
+    public List<Slot> inventorySlots;
 
-    void Start()
+    public GameObject slotPrefab;
+
+    public Transform slotPanel;
+
+    private void Awake()
     {
-        itemManager = FindObjectOfType<ItemManager>();
-        UpdateAllUIs();
-    }
-    private void Update()
-    {
-        foreach (var slot in inventoryItems)
+        // 싱글톤 초기화
+        if (Instance == null)
         {
-            if (slot.itemData != null) // itemData가 설정되어 있는지 확인
-            {
-                slot.UpdateSlotUI();
-            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        // 나머지 초기화 코드...
+    }
+    public void UpdateInventoryUI()
+    {
+        // 기존의 모든 슬롯을 제거합니다.
+        foreach (Transform child in slotPanel)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // 새로운 슬롯들을 생성합니다.
+        foreach (var item in ItemManager.Instance.items)
+        {
+            GameObject newSlot = Instantiate(slotPrefab, slotPanel);
+            Slot slotComponent = newSlot.GetComponent<Slot>();
+            slotComponent.AssignItem(item);
+            slotComponent.UpdateSlotUI();
         }
     }
-    // 모든 UI 업데이트
-    public void UpdateAllUIs()
-    {
-        UpdateUI(inventoryItems, itemManager.items);
-        //UpdateUI(equipmentSlots, itemManager.equipmentItems);
-        //UpdateUI(consumableSlots, itemManager.consumableItems);
-    }
-
-    // 개별 UI 업데이트
-    private void UpdateUI(List<Slot> slots, List<ItemData> items)
-    {
-        for (int i = 0; i < slots.Count; i++)
-        {
-            if (i < items.Count)
-            {
-                slots[i].itemData = items[i];
-                slots[i].UpdateSlotUI();
-            }
-            else
-            {
-                slots[i].ClearSlot();
-            }
-        }
-    }
-    
-
-    
-
-
 }

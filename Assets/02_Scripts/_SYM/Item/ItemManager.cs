@@ -164,8 +164,17 @@ public class ItemManager : MonoBehaviour
                 RemoveItemSlot(item);
                 Item_data.Remove(item);
                 items.Remove(item); // 아이템 리스트에서도 제거
+                foreach (var slot in Slots)
+                {
+                    if (slot.itemData == item)
+                    {
+                        slot.ClearSlot();
+                        break;
+                    }
+                }
             }
             countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
+            Debug.Log(countItem.ToString());
             UpdateAllSlots();
         }
     }
@@ -232,7 +241,6 @@ public class ItemManager : MonoBehaviour
         Debug.Log("InitializeInventory called. Items count: " + items.Count);
         foreach (Transform child in slotPanel)
         {
-            Debug.Log("Destroying GameObject: " + child.gameObject.name);
             Destroy(child.gameObject);
         }
         foreach (ItemData item in items)

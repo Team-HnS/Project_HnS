@@ -44,12 +44,25 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     }
     public void UpdateSlotUI()
     {
+        if (itemData != null)
+        {
+            // 아이템 아이콘 업데이트
+            itemIcon.sprite = itemData.item_Icon;
+            itemIcon.enabled = true;
+
+            // 아이템 수량 업데이트
+            quantityText.text = ItemManager.Instance.GetItemQuantity(itemData).ToString();
+        }
+        else
+        {
+            // 아이템이 없으면 UI를 초기화합니다.
+            itemIcon.enabled = false;
+            quantityText.text = "";
+        }
         if (itemData == null)
         {
-            ClearSlot();
             if (itemIcon != null) itemIcon.enabled = false;
-            if (quantityText != null) quantityText.text = "";
-            Debug.LogError("슬롯에 ItemData가 할당되지 않았다링");
+            if (quantityText != null) quantityText.enabled = false;
             return;
         }
         switch (itemData.item_rank)
@@ -74,12 +87,13 @@ public class Slot : MonoBehaviour, IPointerClickHandler
                 background.sprite = LegendaryBackground;
                 break;
         }
+
         int quantity = ItemManager.Instance.GetItemQuantity(itemData);
-        if (quantityText != null)
+
+        if (quantityText != null )
         {
             quantityText.text = quantity > 1 ? quantity.ToString() : "";
         }
-
         // 수량이 0이면 슬롯을 파괴하거나 비활성화
         if (quantity <= 0)
         {
@@ -111,7 +125,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler
 
     internal void ClearSlot()
     {
-        Debug.Log(itemData.name);
         itemData = null;
     }
 
@@ -120,12 +133,10 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         transform.SetAsLastSibling();
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            Debug.Log(eventData);
             if (this.itemData is C_Item consumableItem) // 슬롯의 아이템 데이터가 C_Item 형인지 확인
             {
                 ItemManager.Instance.UseC_Item(consumableItem, ItemManager.Instance.countItem);
                 UpdateSlotUI();
-                
             }
             else
             {
