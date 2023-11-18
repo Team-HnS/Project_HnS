@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.036734667, g: 0.15236837, b: 0.29977176, a: 1}
+  m_IndirectSpecularColor: {r: 0.03680693, g: 0.15236941, b: 0.29988793, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1211,7 +1211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MMO RPG
+  m_text: RPG GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 836313f6af373f847adaad67ecdcf43c, type: 2}
   m_sharedMaterial: {fileID: 1412564588871628121, guid: 836313f6af373f847adaad67ecdcf43c, type: 2}
