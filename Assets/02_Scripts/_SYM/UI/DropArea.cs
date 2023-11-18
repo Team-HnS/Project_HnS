@@ -40,15 +40,11 @@ public class DropArea : MonoBehaviour, IDropHandler
             {
                 equipmentUI.currentItemData = droppedItemSlot.itemData;
                 currentItemData = droppedItemSlot.itemData as E_Item;
+                Debug.Log(droppedEquipment.name);
                 Debug.Log(currentItemData.name);
-                equipmentUI.CreateEquipmentSlot(currentItemData);
                 equipmentUI.OnItemDropped(currentItemData);
-                Debug.Log(currentItemData.name+"¤·¤·");
-                Debug.Log(equipmentUI.currentItemData.name);
-
                 ItemManager.Instance.RemoveItemQuantity(equipmentUI.currentItemData, 1);
                 Debug.Log(equipmentUI.currentItemData.name);
-                //UpdateSlotUI(currentItemData);
             }
             else if (droppedItemSlot.itemData is C_Item)
             {

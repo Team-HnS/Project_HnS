@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b59627452bebde4badb63b68ed08de6, type: 3}
+  m_Name: "\uD5E4\uB974\uBA54\uC2A4\uC758 \uC2E0\uBC1C"
+  m_EditorClassIdentifier: 
+  itemName: "\uD5E4\uB974\uBA54\uC2A4\uC758 \uC2E0\uBC1C"
+  itemObj: {fileID: 0}
+  item_rank: 0
+  item_Color: []
+  item_Icon: {fileID: 21300000, guid: 22dc5c3bf70d740099182e747d8aa33b, type: 3}
+  Max_Amount: 0
+  price: 1100
+  isCoin: 0
+  explanation: "\uC5D0\uB974\uBA54\uC2A4 \uC544\uB2D9\uB2C8\uB2E4 (test)"
+  HpUp: 0
+  MpUp: 0
+  AtkUp: 0
+  ItgUP: 0
+  DefUp: 20
+  Speed: 20
+  Type: 3

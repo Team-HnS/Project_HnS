@@ -16,56 +16,42 @@ public class EquipmentUI : MonoBehaviour
 
     private void Awake()
     {
-        // Equipment Slots 리스트 초기화
         equipmentSlots = new List<Slot>(GetComponentsInChildren<Slot>());
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
-        if (droppedItemSlot != null && droppedItemSlot.itemData != null)
+        if (droppedItemSlot != null && droppedItemSlot.itemData is E_Item droppedEquipment)
         {
-            Debug.Log(currentItemData.name);
-            currentItemData = droppedItemSlot.itemData;
-            UpdatePlayerStats(currentItemData as E_Item);
-            Debug.Log(currentItemData.name);
-            ItemManager.Instance.RemoveItemQuantity(currentItemData, 1);
-            ItemManager.Instance.UpdateAllSlots();
-            Debug.Log(currentItemData.name);
-
-            OnItemDropped(currentItemData);
-            Debug.Log(currentItemData.name);
-
+            if (IsItemAlreadyInEquipmentSlots(droppedEquipment))
+            {
+                Debug.Log(droppedEquipment.name + " is already equipped.");
+            }
+            else
+            {
+                ItemManager.Instance.RemoveItemQuantity(droppedEquipment, 1);
+                ItemManager.Instance.UpdateAllSlots();
+            }
         }
     }
-    public void CreateEquipmentSlot(ItemData itemData)
+
+    private bool IsItemAlreadyInEquipmentSlots(E_Item item)
     {
-        if (IsItemAlreadyInEquipmentSlots(itemData))
+        foreach (Slot slot in equipmentSlots)
         {
-            Debug.Log("아이템이 이미 장비창에 존재합니다: " + itemData.name);
-            return;
+            if (slot.itemData == item)
+            {
+                return true;
+            }
         }
-        Debug.Log("CreateEquipmentSlot작동");
-        GameObject newSlot = Instantiate(slotPrefab, equipmentPanel);
-        Slot slotComponent = newSlot.GetComponent<Slot>();
-        slotComponent.AssignItem(itemData);
-        slotComponent.UpdateSlotUI();
-
-        equipmentSlots.Add(slotComponent);
+        return false;
     }
 
-    private bool IsItemAlreadyInEquipmentSlots(ItemData itemData)
-    {
-        return equipmentSlots.Any(slot => slot.itemData == itemData);
-    }
-    // EquipmentUI 스크립트의 일부로 가정
     public void OnItemDropped(ItemData itemData)
     {
-        // 드랍된 아이템이 E_Item 형인지 확인
         if (itemData is E_Item equipmentItem)
         {
-            Debug.Log(equipmentItem.name);
-            // E_Item의 equipmentType을 확인
             switch (equipmentItem.Type)
             {
                 case E_Item.Equipment_Type.cap:
@@ -74,15 +60,15 @@ public class EquipmentUI : MonoBehaviour
                     break;
                 case E_Item.Equipment_Type.top:
                     
-                    AssignItemToSlot(equipmentSlots[1], equipmentItem);
+                    AssignItemToSlot(equipmentSlots[4], equipmentItem);
                     break;
                 case E_Item.Equipment_Type.pants:
                     
-                    AssignItemToSlot(equipmentSlots[1], equipmentItem);
+                    AssignItemToSlot(equipmentSlots[3], equipmentItem);
                     break;
                 case E_Item.Equipment_Type.shoes:
                     
-                    AssignItemToSlot(equipmentSlots[1], equipmentItem);
+                    AssignItemToSlot(equipmentSlots[2], equipmentItem);
                     break;
                 case E_Item.Equipment_Type.weapon:
                     
@@ -95,18 +81,14 @@ public class EquipmentUI : MonoBehaviour
 
     private void AssignItemToSlot(Slot slot, E_Item item)
     {
-        // 슬롯에 이미 아이템이 있는지 확인
         if (slot.itemData != null)
         {
-            // 이미 장착된 아이템 처리 (예: 인벤토리로 되돌리기)
             return;
         }
 
-        // 슬롯에 새 아이템 할당
         slot.itemData = item;
         slot.UpdateSlotUI();
 
-        // 플레이어 통계 업데이트
         UpdatePlayerStats(item);
     }
 
@@ -119,11 +101,4 @@ public class EquipmentUI : MonoBehaviour
         PlayerManager.instance.player_s.Def += item.DefUp;
         PlayerManager.instance.player_s.Move_Speed += item.Speed;
     }
-
-    // Slot 클래스 내의 UpdateSlotUI 메서드
-    public void UpdateSlotUI()
-    {
-        
-    }
-
 }
