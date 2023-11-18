@@ -158,9 +158,9 @@ public class ItemManager : MonoBehaviour
         if (Item_data.ContainsKey(item))
         {
             Item_data[item] -= quantity;
-            Debug.Log(Item_data[item].ToString());
             if (Item_data[item] <= 0)
             {
+                Debug.Log(item.name+"tlqkf");
                 RemoveItemSlot(item);
                 Item_data.Remove(item);
                 items.Remove(item); // 아이템 리스트에서도 제거
@@ -179,9 +179,9 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    private void RemoveItemSlot(ItemData item)
+    public void RemoveItemSlot(ItemData item)
     {
-        foreach (var slot in Slots.ToList())
+        foreach (var slot in Slots)
         {
             if (slot.itemData == item)
             {

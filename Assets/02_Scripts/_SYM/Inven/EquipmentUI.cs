@@ -31,6 +31,7 @@ public class EquipmentUI : MonoBehaviour
             else
             {
                 ItemManager.Instance.RemoveItemQuantity(droppedEquipment, 1);
+                droppedItemSlot.AssignItem(droppedEquipment);
                 ItemManager.Instance.UpdateAllSlots();
             }
         }

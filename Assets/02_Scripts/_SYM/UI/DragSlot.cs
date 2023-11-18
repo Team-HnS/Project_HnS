@@ -130,13 +130,16 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             // DropArea에 아이템 전달
             dropArea.AssignItem(currentItemData);
             Debug.Log(currentItemData.name);
-
+            if (currentItemData is E_Item droppedEquipment)
+            {
+                // EquipmentUI의 슬롯에 아이템 할당
+                equipmentUI.OnItemDropped(droppedEquipment);
+            }
             // 인벤토리에서 해당 아이템 제거
-            inventoryItems.Remove(currentItemData);
-            currentItemData = null; // 현재 아이템 데이터 초기화
+            //inventoryItems.Remove(currentItemData);
+            //currentItemData = null; // 현재 아이템 데이터 초기화
 
             InventoryUI.Instance.UpdateInventoryUI();
-            UpdateInventoryUI();
         }
 
         foreach (var slot in Slots)
@@ -162,5 +165,11 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 slot.GetComponent<Image>().sprite = null;
             }
         }
+    }
+
+    internal void AssignItem(ItemData newItemData)
+    {
+        itemData = newItemData;
+        UpdateInventoryUI();
     }
 }
