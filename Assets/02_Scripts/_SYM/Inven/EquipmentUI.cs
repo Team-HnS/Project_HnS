@@ -74,7 +74,6 @@ public class EquipmentUI : MonoBehaviour
                     
                     AssignItemToSlot(equipmentSlots[1], equipmentItem);
                     break;
-
             }
         }
     }
