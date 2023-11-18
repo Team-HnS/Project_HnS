@@ -112,8 +112,8 @@ public class EquipmentUI : MonoBehaviour
 
     private void UpdatePlayerStats(E_Item item)
     {
-        PlayerManager.instance.player_s.Cur_Hp += item.HpUp;
-        PlayerManager.instance.player_s.Cur_Mp += item.MpUp;
+        PlayerManager.instance.player_s.Max_Hp += item.HpUp;
+        PlayerManager.instance.player_s.Max_Mp += item.MpUp;
         PlayerManager.instance.player_s.Atk += item.AtkUp;
         PlayerManager.instance.player_s.Igt += item.ItgUP;
         PlayerManager.instance.player_s.Def += item.DefUp;
