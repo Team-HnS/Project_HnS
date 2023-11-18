@@ -9640,6 +9640,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 413294, guid: a342473935e669649a9be973cda516c1, type: 3}
   m_PrefabInstance: {fileID: 396152466}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &397147504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 979697089146213981, guid: 732e0a4f275768645ace75a471772627, type: 3}
+  m_PrefabInstance: {fileID: 345444946}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &397747741
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41827,6 +41838,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 422898, guid: 99b22ade5e5fef24b82c5cba6e333937, type: 3}
   m_PrefabInstance: {fileID: 1847962820}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1849844668 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8282028087609232384, guid: 732e0a4f275768645ace75a471772627, type: 3}
+  m_PrefabInstance: {fileID: 345444946}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1851548789 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 413606, guid: 447936a1f1a90cd4186467e33c751882, type: 3}
@@ -47469,6 +47485,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6416496197216350188, guid: e55cd1d6389ad354ba0679bd5f124d86, type: 3}
+      propertyPath: slotPanel
+      value: 
+      objectReference: {fileID: 1849844668}
+    - target: {fileID: 6416496197216350188, guid: e55cd1d6389ad354ba0679bd5f124d86, type: 3}
+      propertyPath: coinCountText
+      value: 
+      objectReference: {fileID: 397147504}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
