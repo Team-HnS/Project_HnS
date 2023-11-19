@@ -28,11 +28,6 @@ public class InventoryUI : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
         }
 
         // 나머지 초기화 코드...
@@ -42,6 +37,7 @@ public class InventoryUI : MonoBehaviour
         // 기존의 모든 슬롯을 제거합니다.
         foreach (Transform child in slotPanel)
         {
+            Debug.Log(child.name);
             Destroy(child.gameObject);
         }
 

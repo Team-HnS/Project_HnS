@@ -12,8 +12,8 @@ using static UnityEditor.Progress;
 //아이템 슬롯에 관련된 스크립트
 
 public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
-{//IPointerClickHandler
-    static public DragSlot instance;
+{
+    //public static DragSlot instance { get; private set; }
     public Slot dragSlot;
     public List<Slot> Slots;
     public List<ItemData> inventoryItems; //인벤 아이템 리스트
@@ -29,11 +29,9 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Image imageItem;
     EquipmentUI equipmentUI;
 
-   
+
     void Awake()
     {
-        instance = this;
-
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
@@ -43,7 +41,6 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     }
     void Start()
     {
-        instance = this;
         itemData = GetComponent<Slot>().itemData; // ItemManager 인스턴스 찾기
 
 
@@ -76,27 +73,39 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     // 마우스 드래그가 시작 됐을 때 발생하는 이벤트
     public void OnBeginDrag(PointerEventData eventData)
     {
+
         if (itemData == null)
         {
             Debug.LogError("ItemData is null on drag start.");
             return;
         }
-        if (draggedItemClone == null)
-        {
-            Debug.Log("draggedItemClone is null");
-            draggedItemClone = Instantiate(gameObject, transform.parent);
 
-            CanvasGroup canvasGroupClone = draggedItemClone.GetComponent<CanvasGroup>();
-            if (canvasGroupClone == null)
-            {
-                canvasGroupClone = draggedItemClone.AddComponent<CanvasGroup>();
-            }
-            canvasGroupClone.blocksRaycasts = false;
-            // 원본 슬롯 숨기기
-            canvasGroup.alpha = 0.0f;
-            draggedItemClone.transform.SetAsLastSibling(); // 클론을 캔버스 상의 최상단에 위치
+        // 기존 클론이 있으면 제거합니다.
+        if (draggedItemClone != null)
+        {
+            Destroy(draggedItemClone);
         }
+
+        // 새 클론 생성
+        draggedItemClone = Instantiate(gameObject, transform.parent);
+
+        CanvasGroup canvasGroupClone = draggedItemClone.GetComponent<CanvasGroup>();
+        if (canvasGroupClone == null)
+        {
+            canvasGroupClone = draggedItemClone.AddComponent<CanvasGroup>();
+        }
+        canvasGroupClone.blocksRaycasts = false;
+
+        // 클론을 투명하게 하여 드래그 중임을 나타냅니다.
+        canvasGroupClone.alpha = 1f;
+
+        // 원본 슬롯 숨기기
+        canvasGroup.alpha = 0.0f;
+
+        // 드래그 중인 클론의 위치를 마우스 커서 위치로 설정
+        draggedItemClone.transform.position = eventData.position;
     }
+
 
     // 마우스 드래그 중일 때 계속 발생하는 이벤트
     public void OnDrag(PointerEventData eventData)
@@ -116,8 +125,6 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
         canvasGroup.alpha = 1.0f; // 원본 슬롯 다시 보이게 하기
         UpdateInventoryUI();
-
-
     }
 
     //아이템 드롭했을 때
@@ -130,13 +137,16 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             // DropArea에 아이템 전달
             dropArea.AssignItem(currentItemData);
             Debug.Log(currentItemData.name);
-
+            if (currentItemData is E_Item droppedEquipment)
+            {
+                // EquipmentUI의 슬롯에 아이템 할당
+                equipmentUI.OnItemDropped(droppedEquipment);
+            }
             // 인벤토리에서 해당 아이템 제거
-            inventoryItems.Remove(currentItemData);
-            currentItemData = null; // 현재 아이템 데이터 초기화
+            //inventoryItems.Remove(currentItemData);
+            //currentItemData = null; // 현재 아이템 데이터 초기화
 
             InventoryUI.Instance.UpdateInventoryUI();
-            UpdateInventoryUI();
         }
 
         foreach (var slot in Slots)
@@ -162,5 +172,11 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 slot.GetComponent<Image>().sprite = null;
             }
         }
+    }
+
+    internal void AssignItem(ItemData newItemData)
+    {
+        itemData = newItemData;
+        UpdateInventoryUI();
     }
 }

@@ -37,11 +37,10 @@ public class ItemManager : MonoBehaviour
         {
             Instance = this;
             UpdateCoinUI();
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
         {
-            Destroy(gameObject);
         }
     }
     public int GetItemQuantity(ItemData item)
@@ -141,6 +140,7 @@ public class ItemManager : MonoBehaviour
         }
 
         countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
+        Debug.Log(countItem.ToString());
     }
 
     private int CalculateTotalItemCount()
@@ -158,12 +158,9 @@ public class ItemManager : MonoBehaviour
         if (Item_data.ContainsKey(item))
         {
             Item_data[item] -= quantity;
-            Debug.Log(Item_data[item].ToString());
             if (Item_data[item] <= 0)
             {
-                RemoveItemSlot(item);
-                Item_data.Remove(item);
-                items.Remove(item); // 아이템 리스트에서도 제거
+                Debug.Log(item.name+"수량감소");
                 foreach (var slot in Slots)
                 {
                     if (slot.itemData == item)
@@ -172,16 +169,17 @@ public class ItemManager : MonoBehaviour
                         break;
                     }
                 }
+                Item_data.Remove(item);
+                items.Remove(item); // 아이템 리스트에서 제거
             }
             countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
             Debug.Log(countItem.ToString());
-            UpdateAllSlots();
         }
     }
 
-    private void RemoveItemSlot(ItemData item)
+    public void RemoveItemSlot(ItemData item)
     {
-        foreach (var slot in Slots.ToList())
+        foreach (var slot in Slots)
         {
             if (slot.itemData == item)
             {
@@ -189,7 +187,7 @@ public class ItemManager : MonoBehaviour
                 Debug.Log("Destroying slot: " + slotGameObject.name);
                 Destroy(slotGameObject);
                 Slots.Remove(slot);
-                slot.UpdateSlotUI();
+                //slot.UpdateSlotUI();
 
                 break;
             }
@@ -239,6 +237,7 @@ public class ItemManager : MonoBehaviour
     public void InitializeInventory(List<ItemData> items)
     {
         Debug.Log("InitializeInventory called. Items count: " + items.Count);
+        Debug.Log(items.ToString());
         foreach (Transform child in slotPanel)
         {
             Destroy(child.gameObject);
