@@ -29302,7 +29302,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "\uC548\uB155\uD558\uC138\uC694 \uC6A9\uC0AC\uB2D8! \n\uD29C\uD1A0\uB9AC\uC5BC
-    \uD2B8\uB9AC\uC774\uB108 \uB9AC\uC544\uC785\uB2C8\uB2E4!\n\uC9C0\uAE08\uBD80\uD130
+    \uD2B8\uB808\uC774\uB108 \uB9AC\uC544\uC785\uB2C8\uB2E4!\n\uC9C0\uAE08\uBD80\uD130
     \uC870\uC791\uBC95\uC5D0 \uB300\uD574 \uC54C\uB824\uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d2dcfe572f9ddb54caf1b91ec06165bf, type: 2}
