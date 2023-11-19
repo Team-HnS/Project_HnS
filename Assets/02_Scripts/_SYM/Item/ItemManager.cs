@@ -263,8 +263,6 @@ public class ItemManager : MonoBehaviour
     }
     public void InitializeShopSlots()
     {
-        Debug.Log("InitializeInventory called. Items count: " + items.Count);
-        Debug.Log(items);
         foreach (Transform child in slotPanel)
         {
             Destroy(child.gameObject);

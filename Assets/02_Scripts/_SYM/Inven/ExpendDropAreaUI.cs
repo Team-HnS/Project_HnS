@@ -26,12 +26,10 @@ public class ExpendDropAreaUI : MonoBehaviour, IDropHandler
     }
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log(eventData);
-        Slot droppedItemSlot = eventData.pointerDrag.GetComponent<Slot>();
-        if (droppedItemSlot != null && droppedItemSlot.itemData is C_Item)
+        DragSlot droppedItemSlot = eventData.pointerDrag.GetComponent<DragSlot>();
+        if (droppedItemSlot != null && droppedItemSlot.itemData is C_Item consumableItem)
         {
-            ProcessDroppedItem(droppedItemSlot.itemData as C_Item);
-
+            ProcessDroppedItem(consumableItem);
         }
     }
 
@@ -48,10 +46,9 @@ public class ExpendDropAreaUI : MonoBehaviour, IDropHandler
             UpdateExpendSlotQuantity(consumableItem);
         }
 
-        // 인벤토리에서 아이템을 삭제합니다.
-        //DeleteItemSlotFromInventory(consumableItem);
         int totalQuantity = ItemManager.Instance.GetItemQuantity(consumableItem);
-        ItemManager.Instance.RemoveItemQuantity(consumableItem, 1);
+        //ItemManager.Instance.RemoveItemQuantity(consumableItem, totalQuantity);
+        DeleteItemSlotFromInventory(consumableItem);
     }
 
     private void CreateExpendSlot(C_Item consumableItem)
@@ -68,6 +65,7 @@ public class ExpendDropAreaUI : MonoBehaviour, IDropHandler
         slotComponent.UpdateSlotUI();  // UI 업데이트 호출
         newSlot.transform.Find("ItemImage").GetComponent<Image>().sprite = consumableItem.item_Icon;
         newSlot.transform.Find("ItemQuantity").GetComponent<Text>().text = ItemManager.Instance.Item_data[consumableItem].ToString();
+        Debug.Log(ItemManager.Instance.Item_data[consumableItem]);
         newSlot.transform.Find("explanation").GetComponent<Text>().text = consumableItem.itemName + "\n" + "\n" + consumableItem.explanation;
     }
 
@@ -125,14 +123,12 @@ public class ExpendDropAreaUI : MonoBehaviour, IDropHandler
     }
     private void DeleteItemSlotFromInventory(C_Item consumableItem)
     {
-        Slot[] inventorySlots = FindObjectsOfType<Slot>();
-        Debug.Log(consumableItem.name);
-
-        foreach (Slot slot in inventorySlots)
+        //Slot[] inventorySlots = FindObjectsOfType<Slot>();
+        foreach (Slot slot in expendSlots)
         {
             if (slot.itemData == consumableItem)
             {
-//                Destroy(slot.gameObject);
+                Destroy(slot.gameObject);
                 break;
             }
         }
