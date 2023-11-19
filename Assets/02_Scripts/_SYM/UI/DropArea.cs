@@ -3,13 +3,9 @@
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.UI;
-using DarkLandsUI.Scripts.Equipment;
-using System;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
+
 using System.Collections.Generic;
-using static UnityEditor.Progress;
-using System.Linq;
-using UnityEditor.VersionControl;
+
 
 public class DropArea : MonoBehaviour, IDropHandler
 {
