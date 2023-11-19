@@ -220,6 +220,11 @@ public class Player : MonoBehaviour
         {
             Damaged(150);
         }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Cur_Hp = Max_Hp;
+            Cur_Mp = Max_Mp;
+        }
 
         /* 
                 if (Input.GetKeyDown(KeyCode.W) && state != Player.PlayerState.Dash)
