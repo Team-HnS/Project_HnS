@@ -29,6 +29,7 @@ public class ItemManager : MonoBehaviour
 
     public Transform slotPanel;
     public GameObject slotPrefab;
+    public Transform shopSlotPanel;
     //public Text weaponExplanationText;
     public List<ItemData> GetConsumableItems()
     {
@@ -41,9 +42,6 @@ public class ItemManager : MonoBehaviour
             Instance = this;
             UpdateCoinUI();
             //DontDestroyOnLoad(gameObject);
-        }
-        else if (Instance != this)
-        {
         }
     }
     public int GetItemQuantity(ItemData item)
@@ -163,7 +161,7 @@ public class ItemManager : MonoBehaviour
             Item_data[item] -= quantity;
             if (Item_data[item] <= 0)
             {
-                Debug.Log(item.name+"수량감소");
+                Debug.Log(item.name + "수량감소");
                 foreach (var slot in Slots)
                 {
                     if (slot.itemData == item)
@@ -254,6 +252,32 @@ public class ItemManager : MonoBehaviour
             }
 
             GameObject instance = Instantiate(slotPrefab, slotPanel);
+
+            Slot slotInstance = instance.GetComponent<Slot>();
+            slotInstance.itemData = item; // 여기에서 itemData 설정
+            slotInstance.UpdateSlotUI();  // UI 업데이트 호출
+            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+            instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
+            instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+        }
+    }
+    public void InitializeShopSlots()
+    {
+        Debug.Log("InitializeInventory called. Items count: " + items.Count);
+        Debug.Log(items);
+        foreach (Transform child in slotPanel)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (ItemData item in items)
+        {
+            if (Item_data[item] <= 0)
+            {
+                Debug.Log(Item_data[item]);
+                continue;
+            }
+
+            GameObject instance = Instantiate(slotPrefab, shopSlotPanel);
 
             Slot slotInstance = instance.GetComponent<Slot>();
             slotInstance.itemData = item; // 여기에서 itemData 설정
