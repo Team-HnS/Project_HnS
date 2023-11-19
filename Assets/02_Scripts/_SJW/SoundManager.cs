@@ -40,7 +40,11 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(StartVolumeUp()); //시작 브금 키기
+        //StartCoroutine(StartVolumeUp()); //시작 브금 키기
+        bgmPlayer.volume = PlayerPrefs.GetFloat("BgmVol", 0.5f);
+        effectSoundPlayer.volume = PlayerPrefs.GetFloat("EffectVol", 0.5f);
+        narSoundPlayer.volume = PlayerPrefs.GetFloat("NarVol", 0.5f);
+
     }
 
     public void BgmPlay(AudioClip bgm)
