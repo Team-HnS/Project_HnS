@@ -1,58 +1,69 @@
 using UnityEngine;
-using TMPro;
-using System.Collections;
+using UnityEngine.UI;
 
-public class TextFadeOutOnTrigger : MonoBehaviour
+public class ImageFadeInOutOnTrigger : MonoBehaviour
 {
-    public GameObject textPrefab; // 생성할 텍스트 프리팹
-    private GameObject currentText; // 현재 생성된 텍스트 오브젝트
+    public GameObject imageObject; // 인스펙터에서 연결할 GameObject (이미지가 포함된 GameObject)
+    public float fadeInDuration = 2f; // 페이드인 지속 시간
+    public float fadeOutDuration = 2f; // 페이드아웃 지속 시간
+
+    private Image imageComponent; // 이미지 컴포넌트
+    private Color startColor; // 이미지 시작 색상
+    private float fadeInTimer = 0f; // 페이드인 타이머
+    private float fadeOutTimer = 0f; // 페이드아웃 타이머
+    private bool isTriggered = false; // 트리거 활성화 여부
 
     private void Start()
     {
-        // Coroutine 시작
-        StartCoroutine(FadeOutTextRoutine());
+        if (imageObject != null)
+        {
+            imageComponent = imageObject.GetComponent<Image>();
+            if (imageComponent != null)
+            {
+                imageComponent.color = new Color(imageComponent.color.r, imageComponent.color.g, imageComponent.color.b, 0f); // 처음에 알파 값을 0으로 설정
+                startColor = imageComponent.color; // 시작 색상 저장
+                imageObject.SetActive(false); // 게임 시작 시 이미지를 비활성화
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isTriggered)
         {
-            // 트리거에 플레이어가 진입했을 때 실행
-            // 텍스트 프리팹을 인스턴스화하고 트리거 위치에 배치
-            currentText = Instantiate(textPrefab, transform.position, Quaternion.identity);
-            currentText.transform.SetParent(transform);
-
-            // FadeOutTextRoutine 코루틴을 실행하여 텍스트 페이드 아웃 효과 적용
-            StartCoroutine(FadeOutTextRoutine());
+            isTriggered = true;
+            if (imageObject != null)
+            {
+                imageObject.SetActive(true); // 플레이어가 트리거에 진입하면 이미지를 활성화
+                fadeInTimer = 0f; // 페이드인 타이머 초기화
+            }
         }
     }
 
-    IEnumerator FadeOutTextRoutine()
+    private void Update()
     {
-        TMP_Text textComponent = currentText.GetComponentInChildren<TMP_Text>();
-        if (textComponent != null)
+        if (isTriggered && imageComponent != null)
         {
-            Color startColor = textComponent.color; // 텍스트 시작 색상
-            float duration = 2f; // 페이드 아웃 지속 시간
-            float timer = 0f; // 타이머 초기화
+            fadeInTimer += Time.deltaTime; // 시간 업데이트
+            float progress = fadeInTimer / fadeInDuration; // 진행률 계산
 
-            while (timer < duration)
+            // 이미지의 알파 값을 변경하여 페이드인 효과 구현
+            imageComponent.color = Color.Lerp(startColor, new Color(startColor.r, startColor.g, startColor.b, 1f), progress);
+
+            if (fadeInTimer >= fadeInDuration)
             {
-                timer += Time.deltaTime; // 시간 업데이트
-                float progress = timer / duration; // 진행률 계산
+                fadeOutTimer += Time.deltaTime; // 페이드아웃 타이머 업데이트
+                float fadeOutProgress = fadeOutTimer / fadeOutDuration; // 페이드아웃 진행률 계산
 
-                // 텍스트의 알파 값을 변경하여 페이드 아웃 효과 구현
-                textComponent.color = Color.Lerp(startColor, new Color(startColor.r, startColor.g, startColor.b, 0f), progress);
+                // 이미지의 알파 값을 변경하여 페이드아웃 효과 구현
+                imageComponent.color = Color.Lerp(new Color(startColor.r, startColor.g, startColor.b, 1f), startColor, fadeOutProgress);
 
-                yield return null;
+                if (fadeOutTimer >= fadeOutDuration)
+                {
+                    imageObject.SetActive(false); // 페이드아웃이 완료되면 이미지를 비활성화
+                    enabled = false; // 이 스크립트를 비활성화합니다.
+                }
             }
-
-            Destroy(currentText); // 텍스트 오브젝트 삭제
-        }
-        else
-        {
-            Debug.LogWarning("TMP_Text component not found on the text prefab.");
-            Destroy(currentText);
         }
     }
 }
