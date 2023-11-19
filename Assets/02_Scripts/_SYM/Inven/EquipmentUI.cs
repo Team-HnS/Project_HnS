@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class EquipmentUI : MonoBehaviour
 {
+    public static EquipmentUI Instance { get; private set; }
+
     public ItemData currentItemData;
     public Transform equipmentPanel;
     public GameObject slotPrefab;
@@ -78,6 +80,28 @@ public class EquipmentUI : MonoBehaviour
             }
         }
     }
+    public bool IsItemAlreadyEquipped(E_Item item)
+    {
+        foreach (Slot slot in equipmentSlots)
+        {
+            if (slot.itemData is E_Item equippedItem && equippedItem.Type == item.Type)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public Slot FindSlotByType(E_Item.Equipment_Type type)
+    {
+        foreach (Slot slot in equipmentSlots)
+        {
+            if (slot.itemData is E_Item equippedItem && equippedItem.Type == type)
+            {
+                return slot;
+            }
+        }
+        return null;
+    }
 
     private void AssignItemToSlot(Slot slot, E_Item item)
     {
@@ -91,7 +115,16 @@ public class EquipmentUI : MonoBehaviour
 
         UpdatePlayerStats(item);
     }
-
+    public void ReturnItemToInventory(Slot slot)
+    {
+        if (slot.itemData != null)
+        {
+            // 인벤토리에 아이템 추가
+            ItemManager.Instance.AddItem(slot.itemData, 1);
+            // 슬롯에서 아이템 제거
+            slot.ClearSlot();
+        }
+    }
     private void UpdatePlayerStats(E_Item item)
     {
         PlayerManager.instance.player_s.Max_Hp += item.HpUp;

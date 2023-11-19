@@ -12,16 +12,15 @@ using static UnityEditor.Progress;
 using static UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing;
 
 
-public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
+public class Slot : MonoBehaviour, IPointerClickHandler
 {
     public Image background;
     [SerializeField]
     public ItemData itemData;
     public C_Item consumableItem;
 
-    private GameObject draggedItemClone;
+    private GameObject draggItemClone;
     private CanvasGroup canvasGroup;
-
 
     public Image itemIcon;
     public Text quantityText;
@@ -31,6 +30,16 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
     public Sprite EpicBackground;
     public Sprite UniqueBackground;
     public Sprite LegendaryBackground;
+    void Awake()
+    {
+
+        canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+        {
+            // CanvasGroup 컴포넌트가 없다면 추가
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
+        }
+    }
     private void Start()
     {
         UpdateSlotUI();
@@ -50,8 +59,6 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
             itemIcon.enabled = true;
         }
 
-        // 장비 아이템의 경우 수량을 표시하지 않습니다.
-        int quantity = ItemManager.Instance.GetItemQuantity(itemData);
         if (itemData is E_Item)
         {
             if (quantityText != null)
@@ -59,27 +66,25 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                 quantityText.enabled = false;
             }
 
-            if (quantity <= 0)
-            {
-                Destroy(gameObject); // 현재 슬롯의 GameObject를 파괴
-            }
         }
         else 
         {
+            int quantity = ItemManager.Instance.GetItemQuantity(itemData);
             if (quantityText != null)
             {
                 quantityText.text = quantity > 1 ? quantity.ToString() : "";
-            }
-
-            if (quantity <= 0)
-            {
-                Destroy(gameObject); // 현재 슬롯의 GameObject를 파괴
+                if(itemData is C_Item)
+                {
+                    if (quantity <= 0)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
             }
         }
 
         // 아이템 설명을 업데이트합니다.
         Text explanationText = transform.Find("explanation").GetComponent<Text>();
-        //Text amountText = transform.Find("ItemQuantity").GetComponent<Text>();
         if (explanationText != null)
         {
             //amountText.text = ItemManager.Instance.Item_data[itemData].ToString();
@@ -124,29 +129,7 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
         itemData = null;
         UpdateSlotUI();
     }
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (itemData == null)
-        {
-            Debug.LogError("ItemData is null on drag start.");
-            return;
-        }
-        if (draggedItemClone == null)
-        {
-            Debug.Log("draggedItemClone is null");
-            draggedItemClone = Instantiate(gameObject, transform.parent);
-
-            CanvasGroup canvasGroupClone = draggedItemClone.GetComponent<CanvasGroup>();
-            if (canvasGroupClone == null)
-            {
-                canvasGroupClone = draggedItemClone.AddComponent<CanvasGroup>();
-            }
-            canvasGroupClone.blocksRaycasts = false;
-            // 원본 슬롯 숨기기
-            canvasGroup.alpha = 0.0f;
-            draggedItemClone.transform.SetAsLastSibling(); // 클론을 캔버스 상의 최상단에 위치
-        }
-    }
+   
     public void OnPointerClick(PointerEventData eventData)
     {
         transform.SetAsLastSibling();
@@ -157,9 +140,15 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                 ItemManager.Instance.UseC_Item(consumableItem, ItemManager.Instance.countItem);
                 UpdateSlotUI();
             }
+            else if (itemData is E_Item e_Item)
+            {
+                EquipmentUI.Instance.ReturnItemToInventory(this);
+                int eItemQuantity = ItemManager.Instance.GetItemQuantity(e_Item);
+                Debug.Log("E_Item 수량: " + eItemQuantity);
+            }
             else
             {
-                Debug.LogError("소모품 아이템이 아닙니다.");
+                Debug.Log("이거 뜰 일은 없음 제발");
             }
         }
     }
