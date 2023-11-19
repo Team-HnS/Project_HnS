@@ -152,6 +152,20 @@ public class Slot : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+    public void SetItem(ItemData item, int quantity)
+    {
+        // 아이템 아이콘과 이름을 설정합니다.
+        itemIcon.sprite = item.item_Icon;
 
-    
+        // 수량이 1보다 크면 수량을 표시하고, 아니면 수량을 표시하지 않습니다.
+        if (quantity > 1)
+        {
+            quantityText.text = quantity.ToString();
+        }
+        else
+        {
+            quantityText.text = ""; // 수량이 1인 경우는 표시하지 않음
+        }
+    }
+
 }
