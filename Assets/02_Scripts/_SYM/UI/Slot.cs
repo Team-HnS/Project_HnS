@@ -135,9 +135,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler
         transform.SetAsLastSibling();
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            if (this.itemData is C_Item consumableItem) // 슬롯의 아이템 데이터가 C_Item 형인지 확인
+            if (this.itemData is C_Item c_Item) // 슬롯의 아이템 데이터가 C_Item 형인지 확인
             {
-                ItemManager.Instance.UseC_Item(consumableItem, ItemManager.Instance.countItem);
+                ItemManager.Instance.UseC_Item(c_Item, ItemManager.Instance.countItem);
                 UpdateSlotUI();
             }
             else if (itemData is E_Item e_Item)
