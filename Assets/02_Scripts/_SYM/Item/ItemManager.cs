@@ -30,7 +30,10 @@ public class ItemManager : MonoBehaviour
     public Transform slotPanel;
     public GameObject slotPrefab;
     //public Text weaponExplanationText;
-
+    public List<ItemData> GetConsumableItems()
+    {
+        return items.Where(item => item is C_Item).ToList();
+    }
     private void Awake()
     {
         if (Instance == null)
@@ -237,7 +240,7 @@ public class ItemManager : MonoBehaviour
     public void InitializeInventory(List<ItemData> items)
     {
         Debug.Log("InitializeInventory called. Items count: " + items.Count);
-        Debug.Log(items.ToString());
+        Debug.Log(items);
         foreach (Transform child in slotPanel)
         {
             Destroy(child.gameObject);

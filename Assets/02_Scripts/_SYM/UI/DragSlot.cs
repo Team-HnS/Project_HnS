@@ -142,9 +142,6 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 // EquipmentUI의 슬롯에 아이템 할당
                 equipmentUI.OnItemDropped(droppedEquipment);
             }
-            // 인벤토리에서 해당 아이템 제거
-            //inventoryItems.Remove(currentItemData);
-            //currentItemData = null; // 현재 아이템 데이터 초기화
 
             InventoryUI.Instance.UpdateInventoryUI();
         }

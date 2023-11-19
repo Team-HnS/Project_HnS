@@ -5149,6 +5149,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6965101694145223993, guid: 732e0a4f275768645ace75a471772627, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7198994893769581087, guid: 732e0a4f275768645ace75a471772627, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5247,7 +5251,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 377682950152758158, guid: 732e0a4f275768645ace75a471772627, type: 3}
+    - {fileID: 0}
     - {fileID: 5550967377640304407, guid: 732e0a4f275768645ace75a471772627, type: 3}
+    - {fileID: 8394929524186800322, guid: 732e0a4f275768645ace75a471772627, type: 3}
+    - {fileID: 9037263703123525058, guid: 732e0a4f275768645ace75a471772627, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -45510,6 +45517,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6965101694145223993, guid: 732e0a4f275768645ace75a471772627, type: 3}
   m_PrefabInstance: {fileID: 263520146}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &2020521541 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 758505869881359738, guid: 732e0a4f275768645ace75a471772627, type: 3}
+  m_PrefabInstance: {fileID: 263520146}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2020521547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45519,14 +45531,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2020521540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bee849921086dac4ab1d2a4498815f9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 548b439d4282dc445874a537e34d6a8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  items: []
-  Slots: []
-  slotImage: {fileID: 4862168677799254644, guid: 7f2edf90bc854624e95ae9201b939943, type: 3}
+  expendPanel: {fileID: 2020521541}
+  slotPrefab: {fileID: 1710711415459299260, guid: 7f2edf90bc854624e95ae9201b939943, type: 3}
   currentItemData: {fileID: 0}
-  equipmentUI: {fileID: 0}
+  expendSlots:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &2021439768
 PrefabInstance:
   m_ObjectHideFlags: 0
