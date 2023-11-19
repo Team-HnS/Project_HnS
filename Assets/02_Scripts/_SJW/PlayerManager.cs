@@ -38,6 +38,7 @@ public class PlayerManager : MonoBehaviour
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         reviveZone = GameObject.Find("ReviveZone");
+        print(reviveZone.transform.position + "할당완료");
 
         player = FindObjectOfType<Player>().gameObject;
         player_s = player.GetComponent<Player>();
@@ -46,6 +47,7 @@ public class PlayerManager : MonoBehaviour
 
     public void PlayerRevive()
     {
+        reviveZone = GameObject.Find("ReviveZone");
         player.transform.position = reviveZone.transform.position;
         player_m.playerCharacter.rotation = reviveZone.transform.rotation;
         player_s.GetComponent<NavMeshAgent>().enabled = true;
