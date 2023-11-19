@@ -9416,13 +9416,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383807132}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1273.018, y: 413.87167, z: 4.9428015}
+  m_LocalPosition: {x: 1262.2377, y: 415.28848, z: -22.329937}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1738524653}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1680372543}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &387141526
 PrefabInstance:
@@ -20827,6 +20827,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -153
       objectReference: {fileID: 0}
+    - target: {fileID: 878074210273383638, guid: 7d2bd57058cd94717b331dc1c11b2f27, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1658115195807676132, guid: 7d2bd57058cd94717b331dc1c11b2f27, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -21231,6 +21235,10 @@ PrefabInstance:
     - target: {fileID: 8925993613558916426, guid: 7d2bd57058cd94717b331dc1c11b2f27, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -565
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035261935543806040, guid: 7d2bd57058cd94717b331dc1c11b2f27, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9142951244073115530, guid: 7d2bd57058cd94717b331dc1c11b2f27, type: 3}
       propertyPath: m_Layer
@@ -33489,11 +33497,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3557935518508089484, guid: 90638bc49971544acb896212ade980d0, type: 3}
       propertyPath: m_PresetInfoIsWorld
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3781652796121142643, guid: 90638bc49971544acb896212ade980d0, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3902525855472491914, guid: 90638bc49971544acb896212ade980d0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4133424452503753506, guid: 90638bc49971544acb896212ade980d0, type: 3}
       propertyPath: m_text
@@ -38159,6 +38171,7 @@ Transform:
   - {fileID: 1320504345}
   - {fileID: 360987002}
   - {fileID: 14757635}
+  - {fileID: 383807133}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -38614,6 +38627,10 @@ PrefabInstance:
     - target: {fileID: 140571199322479230, guid: 9ebbb3b1a555c4e849c56c49129bf975, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 978735904043055687, guid: 9ebbb3b1a555c4e849c56c49129bf975, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1185106891755245715, guid: 9ebbb3b1a555c4e849c56c49129bf975, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -48597,6 +48614,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 3ff2ed59000a989428619b61df466c39, type: 2}
+    - target: {fileID: 4871773987730443394, guid: 01eea2503b766f24087159845cf29917, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8132620793824771227, guid: 01eea2503b766f24087159845cf29917, type: 3}
       propertyPath: m_Name
       value: DialogNpc(Quest)
