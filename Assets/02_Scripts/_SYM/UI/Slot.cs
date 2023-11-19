@@ -2,14 +2,10 @@ using DarkLandsUI.Scripts.Equipment;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static ItemData;
-using static UnityEditor.Progress;
-using static UnityEngine.Rendering.PostProcessing.SubpixelMorphologicalAntialiasing;
 
 
 public class Slot : MonoBehaviour, IPointerClickHandler
