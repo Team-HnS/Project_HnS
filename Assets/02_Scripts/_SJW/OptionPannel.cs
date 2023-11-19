@@ -45,4 +45,9 @@ public class OptionPannel : MonoBehaviour
         PlayerPrefs.SetFloat("NarVol", narSlider.value);
     }
 
+      public void ExitGame()
+    {
+
+        Application.Quit();
+    }
 }

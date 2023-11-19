@@ -21,6 +21,7 @@ public class TransparentObject : MonoBehaviour
 
     void Awake()
     {
+        Debug.LogError("¾ËÆÄ°ª!");
         renderers = GetComponentsInChildren<MeshRenderer>();
     }
 
@@ -97,9 +98,9 @@ public class TransparentObject : MonoBehaviour
 
             for (int i = 0; i < renderers.Length; i++)
             {
+
                 if (renderers[i].material.color.a > THRESHOLD_ALPHA)
                     isComplete = false;
-
                 Color color = renderers[i].material.color;
                 color.a -= Time.deltaTime;
                 renderers[i].material.color = color;
