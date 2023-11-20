@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: "\uBC14\uBC14\uB9AC\uC548\uC758 \uC2EC\uC7A5"
   m_EditorClassIdentifier: 
   itemName: "\uBC14\uBC14\uB9AC\uC548\uC758 \uC2EC\uC7A5"
+  itemObj: {fileID: 2918856425992379746, guid: 1cdd39e830d94db46a6c05ebc48d8b13, type: 3}
   item_rank: 2
   item_Color:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 1, g: 1, b: 1, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
-  itemObj: {fileID: 2918856425992379746, guid: 1cdd39e830d94db46a6c05ebc48d8b13, type: 3}
-  item_Icon: {fileID: 0}
-  Max_Amount: 0
-  price: 0
+  item_Icon: {fileID: 21300000, guid: c36fec4105f72984f9d5acf0d7556cc8, type: 3}
+  quantity: 1
+  price: 8000
   isCoin: 0
   explanation: "\uBC14\uBC14\uB9AC\uC548 \uC790\uC774\uC5B8\uD2B8\uC758 \uC2EC\uC7A5\uC774\uB2E4.
     \uC790\uC5F0\uACC4\uC5D0\uC11C \uAC00\uC7A5 \uAC15\uD55C \uD798\uC744 \uB0BC
