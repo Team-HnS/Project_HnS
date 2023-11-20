@@ -24,20 +24,16 @@ public class InventoryUI : MonoBehaviour
 
     private void Awake()
     {
-        // 싱글톤 초기화
         if (Instance == null)
         {
             Instance = this;
         }
 
-        // 나머지 초기화 코드...
     }
     public void UpdateInventoryUI()
     {
-        // 기존의 모든 슬롯을 제거합니다.
         foreach (Transform child in slotPanel)
         {
-            Debug.Log(child.name);
             Destroy(child.gameObject);
         }
 

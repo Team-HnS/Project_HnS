@@ -15,9 +15,11 @@ public class ItemManager : MonoBehaviour
     public int countItem;
     public int PlayerCoin = 0;
 
+
     Slot slot;
 
     public Text coinCountText;
+    public Text shopcoinCountText;
 
     public Dictionary<ItemData, int> Item_data = new Dictionary<ItemData, int>();
     public static ItemManager Instance { get; private set; }
@@ -51,6 +53,7 @@ public class ItemManager : MonoBehaviour
     private void UpdateCoinUI()
     {
         coinCountText.text = "Coins : " + PlayerCoin.ToString();
+        shopcoinCountText.text = PlayerCoin.ToString();
     }
 
     public void AddItem(ItemData newItem, int quantity)
@@ -150,6 +153,7 @@ public class ItemManager : MonoBehaviour
         return total;
     }
 
+    //아이템 사용에만 이거 쓰면 좋을 듯
     public void RemoveItemQuantity(ItemData item, int quantity)
     {
         if (Item_data.ContainsKey(item))
