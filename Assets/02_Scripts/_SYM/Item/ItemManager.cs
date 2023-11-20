@@ -92,8 +92,16 @@ public class ItemManager : MonoBehaviour
     }
     public void UseCoin(int itemPrice)
     {
-        PlayerCoin -= itemPrice;
-        UpdateCoinUI();
+        //if(PlayerCoin>= itemPrice)
+        //{
+            PlayerCoin -= itemPrice;
+            UpdateCoinUI();
+
+        //}
+        //else
+        //{
+        //    Debug.Log("µ∑∫Œ¡∑");
+        //}
     }
     private void AddEquipment(E_Item equipmentItem, int quantity)
     {
@@ -237,8 +245,6 @@ public class ItemManager : MonoBehaviour
 
     public void InitializeInventory(List<ItemData> items)
     {
-        Debug.Log("InitializeInventory called. Items count: " + items.Count);
-        Debug.Log(items);
         foreach (Transform child in slotPanel)
         {
             Destroy(child.gameObject);
@@ -263,9 +269,15 @@ public class ItemManager : MonoBehaviour
     }
     public void InitializeShopSlots()
     {
-        foreach (Transform child in slotPanel)
+        List<GameObject> slotsToDestroy = new List<GameObject>();
+        foreach (Transform child in shopSlotPanel)
         {
-            Destroy(child.gameObject);
+            slotsToDestroy.Add(child.gameObject);
+            Debug.Log("Marked for destruction: " + child.name);
+        }
+        foreach (GameObject slot in slotsToDestroy)
+        {
+            Destroy(slot);
         }
         foreach (ItemData item in items)
         {

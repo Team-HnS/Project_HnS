@@ -12,19 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b59627452bebde4badb63b68ed08de6, type: 3}
   m_Name: "\uD5E4\uB974\uBA54\uC2A4\uC758 \uC2E0\uBC1C"
   m_EditorClassIdentifier: 
-  itemName: "\uD5E4\uB974\uBA54\uC2A4\uC758 \uC2E0\uBC1C"
+  itemName: "\uD5E4\uB974\uBA54\uC2A4\uC758 \uBC1C\uAC78\uC74C"
   itemObj: {fileID: 0}
   item_rank: 0
   item_Color: []
-  item_Icon: {fileID: 21300000, guid: f2b098624d21a5a41ae3cc7afc707ed3, type: 3}
-  quantity: 0
+  item_Icon: {fileID: 21300000, guid: d23782595ed74704d85751b8ae83c507, type: 3}
+  quantity: 1
   price: 1100
   isCoin: 0
-  explanation: "\uC5D0\uB974\uBA54\uC2A4 \uC544\uB2D9\uB2C8\uB2E4 (test)"
+  explanation: "\uAC15\uC778\uD568\uC774 \uC99D\uAC00\uD574 \uAE30\uC808, \uB454\uD654,
+    \uB3C4\uBC1C, \uACF5\uD3EC, \uCE68\uBB35, \uC2E4\uBA85, \uBCC0\uC774 \uBC0F \uC774\uB3D9
+    \uBD88\uAC00 \uD6A8\uACFC\uC758 \uC9C0\uC18D \uC2DC\uAC04\uC774 \uAC10\uC18C\uD569\uB2C8\uB2E4.
+    \uACF5\uC911\uC5D0 \uB728\uAC70\uB098 \uC81C\uC555\uB2F9\uD588\uC744 \uB54C\uB294
+    \uD6A8\uACFC\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4."
   HpUp: 0
   MpUp: 0
   AtkUp: 0
   ItgUP: 0
-  DefUp: 20
-  Speed: 20
+  DefUp: 25
+  Speed: 4
   Type: 3
