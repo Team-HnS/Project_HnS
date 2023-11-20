@@ -26,6 +26,7 @@ public class StoreItem : MonoBehaviour
     public void BuyItem()
     {
         ItemManager.Instance.AddItem(data, data.quantity);
+        ItemManager.Instance.InitializeShopSlots();
         ItemManager.Instance.UseCoin(data.price);
     }
 }
