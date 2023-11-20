@@ -447,8 +447,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 574.43896, y: 39.841675}
-  m_SizeDelta: {x: 820.277, y: 1185.9233}
+  m_AnchoredPosition: {x: 602, y: 105.91816}
+  m_SizeDelta: {x: 868.4192, y: 1291.8364}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &158049353
 MonoBehaviour:
@@ -470,7 +470,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a65e0b99362eb9240a2fa28e982dbde2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6613278e23163ac4eb60795f84b987c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -888,7 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f94ca999a5ce24019ac709e059f25a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneNumber: 2
+  sceneNumber: 5
   loadingSlider: {fileID: 659840830}
   loadingText: {fileID: 561478527}
   videoPlayer: {fileID: 1658747490}
@@ -1432,7 +1432,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b1931ed4c6e069344bd11e6336043a3c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19b81fa1ca991a2488c9f137745ce45a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1881,7 +1881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -312, y: -52}
+  m_AnchoredPosition: {x: -293, y: 22}
   m_SizeDelta: {x: 1191.5372, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1885430604
@@ -1904,10 +1904,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\"\uD63C\uC790\uC11C \uAC10\uD788 \uB3C4\uC804\uD558\uB824\uB294 \uAC70\uC57C?
-    \uBA4B\uC9C4 \uC120\uD0DD\uC774\uC9C0. \n\uC774\uB7F0 \uC704\uD5D8\uC744 \uAC10\uC218\uD560
-    \uC900\uBE44\uAC00 \uB418\uC5B4\uC788\uB098 \uBCF4\uAD70.  \uC5B4\uB514 \uD55C\uBC88
-    \uC0B4\uC544\uB0A8\uC544\uBCF4\uB77C\uAD6C \""
+  m_text: "\"\uBB34\uC5C7\uC774\uB4E0 \uBB3C\uC5B4\uBCF4\uC138\uC694! \uC800\uB294
+    \uC5EC\uB7EC\uBD84\uC758 \uBAA8\uD5D8\uC744 \uB3D5\uAE30 \uC704\uD574 \uC5EC\uAE30
+    \uC788\uC5B4\uC694. \n\uB3C4\uC6C0\uC774 \uD544\uC694\uD558\uBA74 \uB9D0\uC500\uD574\uC8FC\uC138\uC694.
+    \""
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 836313f6af373f847adaad67ecdcf43c, type: 2}
   m_sharedMaterial: {fileID: 1412564588871628121, guid: 836313f6af373f847adaad67ecdcf43c, type: 2}
