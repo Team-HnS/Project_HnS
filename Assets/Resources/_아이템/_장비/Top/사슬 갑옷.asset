@@ -17,7 +17,7 @@ MonoBehaviour:
   item_rank: 1
   item_Color: []
   item_Icon: {fileID: 21300000, guid: b741eef9b6c634940915e134419f6962, type: 3}
-  Max_Amount: 1
+  quantity: 1
   price: 1500
   isCoin: 0
   explanation: "\uC0AC\uC2AC \uAC11\uC637"

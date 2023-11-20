@@ -22,15 +22,15 @@ MonoBehaviour:
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   item_Icon: {fileID: 21300000, guid: 64a2a9d9e9d1f7941b64f36bae9da053, type: 3}
-  Max_Amount: 0
-  price: 0
+  quantity: 1
+  price: 1000000
   isCoin: 0
   explanation: "\uC601\uD63C\uAE4C\uC9C0\uB3C4 \uBCA8 \uC218 \uC788\uB2E4\uACE0 \uC804\uD574\uC9C0\uB294
     \uCE7C"
-  HpUp: 2147483647
-  MpUp: 2147483647
-  AtkUp: 2147483647
-  ItgUP: 2147483647
-  DefUp: 2147483647
-  Speed: 2147483647
+  HpUp: 10000
+  MpUp: 10000
+  AtkUp: 10000
+  ItgUP: 10000
+  DefUp: 10000
+  Speed: 1
   Type: 4

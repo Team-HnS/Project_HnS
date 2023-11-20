@@ -245,14 +245,9 @@ public class ItemManager : MonoBehaviour
 
     public void InitializeInventory(List<ItemData> items)
     {
-        List<GameObject> slotsToDestroy = new List<GameObject>();
-        foreach (Transform child in shopSlotPanel)
+        foreach (Transform child in slotPanel)
         {
-            slotsToDestroy.Add(child.gameObject);
-        }
-        foreach (GameObject slot in slotsToDestroy)
-        {
-            Destroy(slot);
+            Destroy(child.gameObject);
         }
         foreach (ItemData item in items)
         {
@@ -278,6 +273,7 @@ public class ItemManager : MonoBehaviour
         foreach (Transform child in shopSlotPanel)
         {
             slotsToDestroy.Add(child.gameObject);
+            Debug.Log("Marked for destruction: " + child.name);
         }
         foreach (GameObject slot in slotsToDestroy)
         {
