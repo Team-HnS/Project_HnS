@@ -28,11 +28,9 @@ public class Slot : MonoBehaviour, IPointerClickHandler
     public Sprite LegendaryBackground;
     void Awake()
     {
-
         canvasGroup = GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
-            // CanvasGroup 컴포넌트가 없다면 추가
             canvasGroup = gameObject.AddComponent<CanvasGroup>();
         }
     }

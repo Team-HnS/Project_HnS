@@ -21,8 +21,6 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private CanvasGroup canvasGroup;    //드래그 아이템 원본
 
     public ItemData itemData;
-    ItemManager itemManager;
-    private Vector2 originalPosition;
 
     [SerializeField]
     private Image imageItem;
@@ -41,8 +39,6 @@ public class DragSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     void Start()
     {
         itemData = GetComponent<Slot>().itemData; // ItemManager 인스턴스 찾기
-
-
     }
 
     public void DragSetImage(Image _itemImage)
