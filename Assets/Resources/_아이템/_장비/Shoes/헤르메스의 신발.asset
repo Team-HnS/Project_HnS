@@ -16,8 +16,8 @@ MonoBehaviour:
   itemObj: {fileID: 0}
   item_rank: 0
   item_Color: []
-  item_Icon: {fileID: 21300000, guid: 22dc5c3bf70d740099182e747d8aa33b, type: 3}
-  Max_Amount: 0
+  item_Icon: {fileID: 21300000, guid: f2b098624d21a5a41ae3cc7afc707ed3, type: 3}
+  quantity: 0
   price: 1100
   isCoin: 0
   explanation: "\uC5D0\uB974\uBA54\uC2A4 \uC544\uB2D9\uB2C8\uB2E4 (test)"

@@ -21,7 +21,7 @@ MonoBehaviour:
   - {r: 0.5, g: 0, b: 0.5, a: 1}
   - {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
-  item_Icon: {fileID: 21300000, guid: b82c1141786c1bf45bb8925efdf0b300, type: 3}
+  item_Icon: {fileID: 21300000, guid: ac6bbff9ef045534a8f5d3a5d749cfe4, type: 3}
   quantity: 3
   price: 15000
   isCoin: 0
