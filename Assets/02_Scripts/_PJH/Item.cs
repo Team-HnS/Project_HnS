@@ -42,7 +42,7 @@ public class Item : MonoBehaviour
             Item itemComponent = GetComponent<Item>();
             if (itemComponent != null)
             {
-                if(coinAmount != 0)
+                if(itemData.isCoin)
                 {
                     ItemManager.Instance.AddCoin(coinAmount);
                 }

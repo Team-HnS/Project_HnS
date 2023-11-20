@@ -29,6 +29,7 @@ public class ItemManager : MonoBehaviour
     public GameObject slotPrefab;
     public Transform shopSlotPanel;
     //public Text weaponExplanationText;
+    public bool allowBuy = false;
     public List<ItemData> GetConsumableItems()
     {
         return items.Where(item => item is C_Item).ToList();
@@ -42,6 +43,10 @@ public class ItemManager : MonoBehaviour
             //DontDestroyOnLoad(gameObject);
         }
     }
+    private void Start()
+    {
+        AddCoin(10000);
+    }
     public int GetItemQuantity(ItemData item)
     {
         if (Item_data.TryGetValue(item, out int quantity))
@@ -53,12 +58,12 @@ public class ItemManager : MonoBehaviour
     private void UpdateCoinUI()
     {
         coinCountText.text = "Coins : " + PlayerCoin.ToString();
-        
-        if(shopcoinCountText != null)
+
+        if (shopcoinCountText != null)
         {
             shopcoinCountText.text = PlayerCoin.ToString();
         }
-     
+
     }
 
     public void AddItem(ItemData newItem, int quantity)
@@ -95,211 +100,219 @@ public class ItemManager : MonoBehaviour
         PlayerCoin += amount;
         UpdateCoinUI();
     }
+
+    public void CanBuy(int itemPrice)
+    {
+        if (PlayerCoin >= itemPrice)
+        {
+            allowBuy = true;
+        }
+        else
+        {
+            Debug.Log("돈부족");
+
+        }
+    }
+
     public void UseCoin(int itemPrice)
     {
-        //if(PlayerCoin>= itemPrice)
-        //{
-            PlayerCoin -= itemPrice;
-            UpdateCoinUI();
 
-        //}
-        //else
-        //{
-        //    Debug.Log("돈부족");
-        //}
+        PlayerCoin -= itemPrice;
+        UpdateCoinUI();
     }
-    private void AddEquipment(E_Item equipmentItem, int quantity)
-    {
 
-        if (Item_data.ContainsKey(equipmentItem))
+private void AddEquipment(E_Item equipmentItem, int quantity)
+{
+
+    if (Item_data.ContainsKey(equipmentItem))
+    {
+        // 아이템이 이미 존재하면, 수량 증가
+        Item_data[equipmentItem] += quantity;
+        Debug.Log(equipmentItem.name);
+        if (items is null)
         {
-            // 아이템이 이미 존재하면, 수량 증가
-            Item_data[equipmentItem] += quantity;
-            Debug.Log(equipmentItem.name);
-            if (items is null)
-            {
-                Item_data[equipmentItem] = quantity;
-                items.Add(equipmentItem);
-            }
-        }
-        else
-        {
-            // 새로운 아이템을 추가하고, 해당 수량을 설정합니다.
             Item_data[equipmentItem] = quantity;
-            items.Add(equipmentItem); // 아이템 리스트에도 추가합니다.
+            items.Add(equipmentItem);
         }
-        countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
+    }
+    else
+    {
+        // 새로운 아이템을 추가하고, 해당 수량을 설정합니다.
+        Item_data[equipmentItem] = quantity;
+        items.Add(equipmentItem); // 아이템 리스트에도 추가합니다.
+    }
+    countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
+}
+
+private void AddToInventory(ItemData newItem, int quantity)
+{
+    if (Item_data.ContainsKey(newItem))
+    {
+        // 아이템이 이미 존재하면, 수량을 증가시킵니다.
+        Item_data[newItem] += quantity;
+        Debug.Log(newItem.name);
+        if (items is null)
+        {
+            Item_data[newItem] = quantity;
+            items.Add(newItem);
+        }
+    }
+    else
+    {
+        Debug.Log(newItem.name);
+        // 새로운 아이템 추가하고, 해당 수량을 설정합니다.
+        Item_data[newItem] = quantity;
+        items.Add(newItem); // 아이템 리스트에도 추가합니다.
     }
 
-    private void AddToInventory(ItemData newItem, int quantity)
-    {
-        if (Item_data.ContainsKey(newItem))
-        {
-            // 아이템이 이미 존재하면, 수량을 증가시킵니다.
-            Item_data[newItem] += quantity;
-            Debug.Log(newItem.name);
-            if (items is null)
-            {
-                Item_data[newItem] = quantity;
-                items.Add(newItem);
-            }
-        }
-        else
-        {
-            Debug.Log(newItem.name);
-            // 새로운 아이템 추가하고, 해당 수량을 설정합니다.
-            Item_data[newItem] = quantity;
-            items.Add(newItem); // 아이템 리스트에도 추가합니다.
-        }
+    countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
+    Debug.Log(countItem.ToString());
+}
 
+private int CalculateTotalItemCount()
+{
+    int total = 0;
+    foreach (var item in Item_data.Values)
+    {
+        total += item;
+    }
+    return total;
+}
+
+//아이템 사용에만 이거 쓰면 좋을 듯
+public void RemoveItemQuantity(ItemData item, int quantity)
+{
+    if (Item_data.ContainsKey(item))
+    {
+        Item_data[item] -= quantity;
+        if (Item_data[item] <= 0)
+        {
+            Debug.Log(item.name + "수량감소");
+            foreach (var slot in Slots)
+            {
+                if (slot.itemData == item)
+                {
+                    slot.ClearSlot();
+                    break;
+                }
+            }
+            Item_data.Remove(item);
+            items.Remove(item); // 아이템 리스트에서 제거
+        }
         countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
         Debug.Log(countItem.ToString());
     }
+}
 
-    private int CalculateTotalItemCount()
+public void RemoveItemSlot(ItemData item)
+{
+    foreach (var slot in Slots)
     {
-        int total = 0;
-        foreach (var item in Item_data.Values)
+        if (slot.itemData == item)
         {
-            total += item;
-        }
-        return total;
-    }
+            GameObject slotGameObject = slot.gameObject;
+            Debug.Log("Destroying slot: " + slotGameObject.name);
+            Destroy(slotGameObject);
+            Slots.Remove(slot);
+            //slot.UpdateSlotUI();
 
-    //아이템 사용에만 이거 쓰면 좋을 듯
-    public void RemoveItemQuantity(ItemData item, int quantity)
-    {
-        if (Item_data.ContainsKey(item))
-        {
-            Item_data[item] -= quantity;
-            if (Item_data[item] <= 0)
-            {
-                Debug.Log(item.name + "수량감소");
-                foreach (var slot in Slots)
-                {
-                    if (slot.itemData == item)
-                    {
-                        slot.ClearSlot();
-                        break;
-                    }
-                }
-                Item_data.Remove(item);
-                items.Remove(item); // 아이템 리스트에서 제거
-            }
-            countItem = CalculateTotalItemCount(); // 전체 아이템 수 업데이트
-            Debug.Log(countItem.ToString());
+            break;
         }
     }
+}
 
-    public void RemoveItemSlot(ItemData item)
+public void UseC_Item(C_Item c_Item, int c_ItemCount)
+{
+    c_Item.UseEffect();
+    int currentQuantity = GetItemQuantity(c_Item);
+    if (currentQuantity > 0)
     {
-        foreach (var slot in Slots)
-        {
-            if (slot.itemData == item)
-            {
-                GameObject slotGameObject = slot.gameObject;
-                Debug.Log("Destroying slot: " + slotGameObject.name);
-                Destroy(slotGameObject);
-                Slots.Remove(slot);
-                //slot.UpdateSlotUI();
+        RemoveItemQuantity(c_Item, 1);
+        UpdateAllSlots();
 
-                break;
-            }
-        }
-    }
-
-    public void UseC_Item(C_Item c_Item, int c_ItemCount)
-    {
-        c_Item.UseEffect();
-        int currentQuantity = GetItemQuantity(c_Item);
-        if (currentQuantity > 0)
+        if (GetItemQuantity(c_Item) == 0)
         {
-            RemoveItemQuantity(c_Item, 1);
+            RemoveItemSlot(c_Item);
             UpdateAllSlots();
+        }
+    }
+    else
+    {
+        RemoveItemSlot(c_Item);
+        Debug.Log("아이템이 없습니다.");
+    }
 
-            if (GetItemQuantity(c_Item) == 0)
-            {
-                RemoveItemSlot(c_Item);
-                UpdateAllSlots();
-            }
+}
+
+
+public void UpdateAllSlots()
+{
+    foreach (var slot in Slots)
+    {
+        if (slot.itemData != null) // itemData가 설정되어 있는지 확인
+        {
+            slot.UpdateSlotUI();
         }
         else
         {
-            RemoveItemSlot(c_Item);
-            Debug.Log("아이템이 없습니다.");
+            slot.ClearSlot();
         }
-
     }
+}
 
 
-    public void UpdateAllSlots()
+public void InitializeInventory(List<ItemData> items)
+{
+    foreach (Transform child in slotPanel)
     {
-        foreach (var slot in Slots)
-        {
-            if (slot.itemData != null) // itemData가 설정되어 있는지 확인
-            {
-                slot.UpdateSlotUI();
-            }
-            else
-            {
-                slot.ClearSlot();
-            }
-        }
+        Destroy(child.gameObject);
     }
-
-
-    public void InitializeInventory(List<ItemData> items)
+    foreach (ItemData item in items)
     {
-        foreach (Transform child in slotPanel)
+        if (Item_data[item] <= 0)
         {
-            Destroy(child.gameObject);
+            Debug.Log(Item_data[item]);
+            continue;
         }
-        foreach (ItemData item in items)
-        {
-            if (Item_data[item] <= 0)
-            {
-                Debug.Log(Item_data[item]);
-                continue;
-            }
 
-            GameObject instance = Instantiate(slotPrefab, slotPanel);
+        GameObject instance = Instantiate(slotPrefab, slotPanel);
 
-            Slot slotInstance = instance.GetComponent<Slot>();
-            slotInstance.itemData = item; // 여기에서 itemData 설정
-            slotInstance.UpdateSlotUI();  // UI 업데이트 호출
-            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-            instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
-            instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-        }
+        Slot slotInstance = instance.GetComponent<Slot>();
+        slotInstance.itemData = item; // 여기에서 itemData 설정
+        slotInstance.UpdateSlotUI();  // UI 업데이트 호출
+        instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+        instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
+        instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
     }
-    public void InitializeShopSlots()
+}
+public void InitializeShopSlots()
+{
+    List<GameObject> slotsToDestroy = new List<GameObject>();
+    foreach (Transform child in shopSlotPanel)
     {
-        List<GameObject> slotsToDestroy = new List<GameObject>();
-        foreach (Transform child in shopSlotPanel)
-        {
-            slotsToDestroy.Add(child.gameObject);
-            Debug.Log("Marked for destruction: " + child.name);
-        }
-        foreach (GameObject slot in slotsToDestroy)
-        {
-            Destroy(slot);
-        }
-        foreach (ItemData item in items)
-        {
-            if (Item_data[item] <= 0)
-            {
-                Debug.Log(Item_data[item]);
-                continue;
-            }
-
-            GameObject instance = Instantiate(slotPrefab, shopSlotPanel);
-
-            Slot slotInstance = instance.GetComponent<Slot>();
-            slotInstance.itemData = item; // 여기에서 itemData 설정
-            slotInstance.UpdateSlotUI();  // UI 업데이트 호출
-            instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
-            instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
-            instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
-        }
+        slotsToDestroy.Add(child.gameObject);
+        Debug.Log("Marked for destruction: " + child.name);
     }
+    foreach (GameObject slot in slotsToDestroy)
+    {
+        Destroy(slot);
+    }
+    foreach (ItemData item in items)
+    {
+        if (Item_data[item] <= 0)
+        {
+            Debug.Log(Item_data[item]);
+            continue;
+        }
+
+        GameObject instance = Instantiate(slotPrefab, shopSlotPanel);
+
+        Slot slotInstance = instance.GetComponent<Slot>();
+        slotInstance.itemData = item; // 여기에서 itemData 설정
+        slotInstance.UpdateSlotUI();  // UI 업데이트 호출
+        instance.transform.Find("ItemImage").GetComponent<Image>().sprite = item.item_Icon;
+        instance.transform.Find("ItemQuantity").GetComponent<Text>().text = Item_data[item].ToString();
+        instance.transform.Find("explanation").GetComponent<Text>().text = item.itemName + "\n" + "\n" + item.explanation;
+    }
+}
 }
