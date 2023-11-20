@@ -21,7 +21,6 @@ public class TransparentObject : MonoBehaviour
 
     void Awake()
     {
-        Debug.LogError("¾ËÆÄ°ª!");
         renderers = GetComponentsInChildren<MeshRenderer>();
     }
 

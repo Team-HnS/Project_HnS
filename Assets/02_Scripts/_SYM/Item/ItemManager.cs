@@ -53,7 +53,12 @@ public class ItemManager : MonoBehaviour
     private void UpdateCoinUI()
     {
         coinCountText.text = "Coins : " + PlayerCoin.ToString();
-        shopcoinCountText.text = PlayerCoin.ToString();
+        
+        if(shopcoinCountText != null)
+        {
+            shopcoinCountText.text = PlayerCoin.ToString();
+        }
+     
     }
 
     public void AddItem(ItemData newItem, int quantity)

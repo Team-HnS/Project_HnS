@@ -11,6 +11,7 @@ public class SpawnManager : MonoBehaviour
     public int spawnCount = 10; // 최대 호출 횟수
     private int currentCount = 0; // 현재 호출 횟수
 
+
     void Start()
     {
         InvokeRepeating("SpawnObject", 0, spawnInterval);
