@@ -22030,6 +22030,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 408704, guid: 0d6e5cb5406ecf648812fe2278838cf4, type: 3}
   m_PrefabInstance: {fileID: 930133149}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &931538082 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 121275877625816719, guid: 7d2bd57058cd94717b331dc1c11b2f27, type: 3}
+  m_PrefabInstance: {fileID: 904260868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &932449484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -48130,6 +48135,10 @@ PrefabInstance:
       propertyPath: coinCountText
       value: 
       objectReference: {fileID: 397147504}
+    - target: {fileID: 6416496197216350188, guid: e55cd1d6389ad354ba0679bd5f124d86, type: 3}
+      propertyPath: shopSlotPanel
+      value: 
+      objectReference: {fileID: 931538082}
     - target: {fileID: 6416496197216350188, guid: e55cd1d6389ad354ba0679bd5f124d86, type: 3}
       propertyPath: shopcoinCountText
       value: 
