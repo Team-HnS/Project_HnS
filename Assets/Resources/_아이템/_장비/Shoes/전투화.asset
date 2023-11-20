@@ -16,7 +16,7 @@ MonoBehaviour:
   itemObj: {fileID: 0}
   item_rank: 2
   item_Color: []
-  item_Icon: {fileID: 21300000, guid: a2035532866506c42a3d9d479c7aeea1, type: 3}
+  item_Icon: {fileID: 21300000, guid: 36d56ab9be904fd4ab6420735b1792d4, type: 3}
   quantity: 1
   price: 5000
   isCoin: 0
