@@ -5471,6 +5471,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5604896026189367607, guid: 4f211dfd83129f340b0f247283e4735c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5789517289679887705, guid: 4f211dfd83129f340b0f247283e4735c, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -5539,6 +5543,10 @@ PrefabInstance:
       propertyPath: m_Color.rgba
       value: 4294442876
       objectReference: {fileID: 0}
+    - target: {fileID: 7516506269240030866, guid: 4f211dfd83129f340b0f247283e4735c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartSceneLoading2
+      objectReference: {fileID: 0}
     - target: {fileID: 7719668295862782837, guid: 4f211dfd83129f340b0f247283e4735c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5546,6 +5554,10 @@ PrefabInstance:
     - target: {fileID: 7719668295862782837, guid: 4f211dfd83129f340b0f247283e4735c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: DialogToggleimage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8260462960324088059, guid: 4f211dfd83129f340b0f247283e4735c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8407046260749575057, guid: 4f211dfd83129f340b0f247283e4735c, type: 3}
       propertyPath: m_Sprite
@@ -10791,6 +10803,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 430254, guid: f21c48374d4fdc4489f7894214718503, type: 3}
   m_PrefabInstance: {fileID: 447278711}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &447956046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 447956048}
+  - component: {fileID: 447956047}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &447956047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447956046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ce97006c3aeeb84fa0292f63d18ec60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &447956048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 447956046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 910.5411, y: 558.6178, z: 5.5622587}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &459580545
 GameObject:
   m_ObjectHideFlags: 0
@@ -33413,6 +33469,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 324433631618362870, guid: 90638bc49971544acb896212ade980d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 447956047}
+    - target: {fileID: 324433631618362870, guid: 90638bc49971544acb896212ade980d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartSceneLoading4
+      objectReference: {fileID: 0}
     - target: {fileID: 475658480846022176, guid: 90638bc49971544acb896212ade980d0, type: 3}
       propertyPath: m_Layer
       value: 5
@@ -33543,6 +33607,14 @@ PrefabInstance:
     - target: {fileID: 5398117579730361555, guid: 90638bc49971544acb896212ade980d0, type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692561363440133879, guid: 90638bc49971544acb896212ade980d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 447956047}
+    - target: {fileID: 5692561363440133879, guid: 90638bc49971544acb896212ade980d0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartSceneLoading3
       objectReference: {fileID: 0}
     - target: {fileID: 6045866159829841789, guid: 90638bc49971544acb896212ade980d0, type: 3}
       propertyPath: m_Layer

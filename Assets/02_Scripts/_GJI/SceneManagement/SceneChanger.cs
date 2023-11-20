@@ -21,6 +21,23 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene("LoadingScene");
     }
 
+    public void StartSceneLoading1()
+    {
+        SceneManager.LoadScene("LoadingScene1");
+    }
+    public void StartSceneLoading2()
+    {
+        SceneManager.LoadScene("LoadingScene2");
+    }
+    public void StartSceneLoading3()
+    {
+        SceneManager.LoadScene("LoadingScene3");
+    }
+    public void StartSceneLoading4()
+    {
+        SceneManager.LoadScene("LoadingScene4");
+    }
+
     public void instanceDeongun()
     {
         SceneManager.LoadScene("Map_InstanceDungeon_master");
