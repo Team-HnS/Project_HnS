@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ItemManager : MonoBehaviour
@@ -43,10 +44,36 @@ public class ItemManager : MonoBehaviour
             //DontDestroyOnLoad(gameObject);
         }
     }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if(shopcoinCountText = GameObject.Find("ObjectSellerNpc").transform.Find("Store UI Maker/Store UI _Master/CoinBG/coinText").GetComponent<Text>())
+        {
+            shopcoinCountText = GameObject.Find("ObjectSellerNpc").transform.Find("Store UI Maker/Store UI _Master/CoinBG/coinText").GetComponent<Text>();
+            print("찾음!");
+        }
+
+        if (shopcoinCountText = GameObject.Find("ObjectSellerNpc").transform.Find("Store UI Maker/Store UI _Master/CoinBG/coinText").GetComponent<Text>())
+        {
+            shopSlotPanel = GameObject.Find("ObjectSellerNpc").transform.Find("Store UI Maker/Store UI _Master/Bag").transform;
+            print("찾음!");
+        }
+
+    }
+
     private void Start()
     {
         AddCoin(10000);
     }
+
+
+
+
+
     public int GetItemQuantity(ItemData item)
     {
         if (Item_data.TryGetValue(item, out int quantity))
@@ -55,7 +82,8 @@ public class ItemManager : MonoBehaviour
         }
         return 0;
     }
-    private void UpdateCoinUI()
+
+    public void UpdateCoinUI()
     {
         coinCountText.text = "Coins : " + PlayerCoin.ToString();
 
