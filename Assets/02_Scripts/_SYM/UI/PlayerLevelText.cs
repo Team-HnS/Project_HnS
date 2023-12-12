@@ -26,12 +26,28 @@ public class PlayerLevelText : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
+            if (PlayerManager.instance.player_s != null)
+            { player = PlayerManager.instance.player_s; }
+            else
+            {
+                Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
+            }
+           
         }
     }
 
     private void Update()
     {
-        PlayerLevText.text = "Lv. "+player.Lv.ToString();
+        if(player != null) 
+        {
+            PlayerLevText.text = "Lv. " + player.Lv.ToString();
+        }
+        else
+        {
+            if (PlayerManager.instance.player_s != null)
+            player = PlayerManager.instance.player_s;
+        }
+      
+
     }
 }

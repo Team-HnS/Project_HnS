@@ -10,6 +10,7 @@ public class NpcNameHandler : MonoBehaviour
     
         private void Update()
         {
+           if(Camera.main != null)
             gameObject.transform.forward = Camera.main.transform.forward;
         }
     

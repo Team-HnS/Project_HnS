@@ -17,6 +17,34 @@ public class PlayerHPMPBar : MonoBehaviour
 
     public Player PlayerState;
 
+    //정우가 추가한 부분
+    public void Awake()
+    {
+      if(PlayerState  ==null)
+        {
+            StartCoroutine(FindPlayer());
+        }
+    }
+
+    IEnumerator FindPlayer()
+    {
+        while(PlayerManager.instance.player == null) 
+        {
+            yield return null;  
+        }
+
+        PlayerState = PlayerManager.instance.player_s;
+
+        hp_Slider = GameObject.Find("hp_Slider").GetComponent<Slider>();
+        mp_Slider = GameObject.Find("mp_Slider").GetComponent<Slider>();
+        exp_Slider = GameObject.Find("exp_Slider").GetComponent<Slider>();
+        hpPer = GameObject.Find("hpPer").GetComponent<TMP_Text>();
+        mpPer = GameObject.Find("mpPer").GetComponent<TMP_Text>();
+        hp_Slider.minValue = 0;
+        mp_Slider.minValue = 0;
+        exp_Slider.minValue = 0;
+    }
+    //정우가 추가한부분 end
     void Start()
     {
         GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
@@ -37,7 +65,7 @@ public class PlayerHPMPBar : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
+            //Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
         }
 
 
@@ -71,7 +99,11 @@ public class PlayerHPMPBar : MonoBehaviour
         }
         else
         {
-            Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
+            if (PlayerState == null)
+            {
+                StartCoroutine(FindPlayer());
+            }
+           // Debug.LogError("Player 오브젝트에 PlayerScript가 없습니다.");
         }
 
     }
@@ -89,6 +121,9 @@ public class PlayerHPMPBar : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerState == null)
+        { return; }
+
         hp_Slider.maxValue = PlayerState.Max_Hp;
         mp_Slider.maxValue = PlayerState.Max_Mp;
         exp_Slider.maxValue = PlayerState.Exp;

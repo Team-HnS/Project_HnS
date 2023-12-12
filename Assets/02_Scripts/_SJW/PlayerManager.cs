@@ -21,9 +21,16 @@ public class PlayerManager : MonoBehaviour
     {
         instance = this;
 
-        player = FindObjectOfType<Player>().gameObject;
-        player_s = player.GetComponent<Player>();
-        player_m = player.GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            player_s = player.GetComponent<Player>();
+            player_m = player.GetComponent<PlayerMovement>();
+        }
+        else
+        {
+            StartCoroutine(PlayerFind());
+        }
+
     }
 
     private void OnEnable()
@@ -39,10 +46,10 @@ public class PlayerManager : MonoBehaviour
     {
         reviveZone = GameObject.Find("ReviveZone");
         print(reviveZone.transform.position + "할당완료");
-
-        player = FindObjectOfType<Player>().gameObject;
-        player_s = player.GetComponent<Player>();
-        player_m = player.GetComponent<PlayerMovement>();
+        StartCoroutine(PlayerFind());
+        //player = FindObjectOfType<Player>().gameObject;
+        //player_s = player.GetComponent<Player>();
+        //player_m = player.GetComponent<PlayerMovement>();
     }
 
     public void PlayerRevive()
@@ -52,18 +59,31 @@ public class PlayerManager : MonoBehaviour
         player_m.playerCharacter.rotation = reviveZone.transform.rotation;
         player_s.GetComponent<NavMeshAgent>().enabled = true;
         player_s.PlayerRevival();
-       
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+
+    IEnumerator PlayerFind()
+    {
+        while (player == null)
+        {
+            //print("플레이어 찾는중");
+            yield return null;
+        }
+
+        player_s = player.GetComponent<Player>();
+        player_m = player.GetComponent<PlayerMovement>();
     }
 }

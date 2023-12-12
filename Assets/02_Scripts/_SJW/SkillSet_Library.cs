@@ -27,10 +27,18 @@ public class SkillSet_Library : MonoBehaviour
             if (null == instance)
             {
                 //이 클래스 인스턴스가 탄생했을 때 전역변수 instance에 게임매니저 인스턴스가 담겨있지 않다면, 자신을 넣어준다.
-                instance = this; 
+                instance = this;
+                if (player != null)
+                {
                 player = FindObjectOfType<Player>().gameObject;
                 player_s = player.GetComponent<Player>();
                 player_m = player.GetComponent<PlayerMovement>();
+                }
+                else
+                {
+                //print("찾을게");
+                StartCoroutine(PlayerFind());
+                }
 
             //씬 전환이 되더라도 파괴되지 않게 한다.
             //gameObject만으로도 이 스크립트가 컴포넌트로서 붙어있는 Hierarchy상의 게임오브젝트라는 뜻이지만, 
@@ -47,6 +55,18 @@ public class SkillSet_Library : MonoBehaviour
             }
 
     }
+
+    IEnumerator PlayerFind()
+    {
+        while (PlayerManager.instance.player == null)
+        {
+            yield return null;
+        }
+        player = PlayerManager.instance.player;
+        player_s = PlayerManager.instance.player_s;
+        player_m = PlayerManager.instance.player_m;
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -54,9 +74,18 @@ public class SkillSet_Library : MonoBehaviour
 
     private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
-        player = FindObjectOfType<Player>().gameObject;
-        player_s = player.GetComponent<Player>();
-        player_m = player.GetComponent<PlayerMovement>();
+        if (player != null)
+        {
+            player = FindObjectOfType<Player>().gameObject;
+            player_s = player.GetComponent<Player>();
+            player_m = player.GetComponent<PlayerMovement>();
+        }
+        else
+        {
+            //print("찾을게");
+            StartCoroutine(PlayerFind());
+        }
+
     }
 
     bool SkillCostCheck(int cost) //마나코스트

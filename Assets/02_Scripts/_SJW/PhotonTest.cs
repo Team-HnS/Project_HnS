@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PhotonTest : MonoBehaviourPunCallbacks
 {
+    public Transform Startpos;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +19,16 @@ public class PhotonTest : MonoBehaviourPunCallbacks
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 5;
         PhotonNetwork.JoinOrCreateRoom("Room1", options, null);
+
+
+
     }
 
     public override void OnJoinedRoom()
     {
         Debug.Log("방 입장 성공");
 
+        PhotonNetwork.Instantiate("Prefabs/player Photon", Startpos.position,Quaternion.identity,0);
     }
 
 }

@@ -19,7 +19,8 @@ public class NPCClickHandler : MonoBehaviour
 
     private void Update()
     {
-        uiObject.transform.forward = Camera.main.transform.forward;
+        if (Camera.main != null)
+            uiObject.transform.forward = Camera.main.transform.forward;
     }
 
     public void ToggleUI()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerSound : MonoBehaviour
@@ -34,6 +35,11 @@ public class PlayerSound : MonoBehaviour
 
     private IEnumerator PlayFootstepSound()
     {
+        while (PlayerManager.instance.player_s == null)
+        {
+            yield return null;
+        }
+
         while (true)
         {
             yield return new WaitUntil(() => PlayerManager.instance.player_s.state == Player.PlayerState.Run);
