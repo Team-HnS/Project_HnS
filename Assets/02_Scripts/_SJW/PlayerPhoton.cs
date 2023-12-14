@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPhoton : MonoBehaviour
+public class PlayerPhoton : MonoBehaviourPunCallbacks
 {
     PhotonView pv;
     public GameObject cam;
@@ -27,5 +27,21 @@ public class PlayerPhoton : MonoBehaviour
     void Update()
     {
         
+    }
+
+    [PunRPC]
+    public void PlayerSetting(Vector3 pos, float rot)
+    {
+        gameObject.transform.position = pos;
+        gameObject.GetComponent<PlayerMovement>().playerCharacter.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, rot, 0));
+    }
+
+    public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
+    {
+        Vector3 pos = gameObject.transform.position;
+        float rot = gameObject.GetComponent<PlayerMovement>().playerCharacter.gameObject.transform.rotation.eulerAngles.y;
+        print(rot);
+        print(gameObject.GetComponent<PlayerMovement>().playerCharacter.gameObject.name);
+        pv.RPC(nameof(PlayerSetting),RpcTarget.Others,pos,rot);
     }
 }
