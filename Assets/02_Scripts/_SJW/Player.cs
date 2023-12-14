@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     private SkinnedMeshAfterImage Afterglow;
     public Gradient[] Afterglowgradiant;
+    private PhotonView pv;
 
     private Collider col;
 
@@ -158,6 +160,7 @@ public class Player : MonoBehaviour
         playersound = GetComponent<PlayerSound>();
         animator = GetComponentInChildren<Animator>();
         Afterglow = GetComponentInChildren<SkinnedMeshAfterImage>();
+        pv = GetComponent<PhotonView>();
         SetState();
 
         col = GetComponent<Collider>();
@@ -187,13 +190,19 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        playermove.LookMoveDirection();
+
+        if (!pv.IsMine)
+        {
+            return;
+        }
+
+
         if (canDash) 
         {
             Checkcollider();
         }
-        
-    
-        playermove.LookMoveDirection();
+
 
         if (Input.GetMouseButton(0))
         {
@@ -368,6 +377,7 @@ public class Player : MonoBehaviour
         playermove.CanMove();
     }
 
+    [PunRPC]
     public void PlayerRun()
     {
         if(state != PlayerState.Run ) 

@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     Player player;
     PlayerSound playersound;
+    PhotonView pv;
     private void Awake()
     {
         cam = Camera.main;
@@ -35,10 +37,17 @@ public class PlayerMovement : MonoBehaviour
 
         player = GetComponent<Player>();
         playersound = GetComponent<PlayerSound>();
+        pv = GetComponent<PhotonView>();
     }
 
     private void Update()
     {
+        if (!pv.IsMine)
+        {
+            return;
+        }
+
+
         if (player.state == Player.PlayerState.Trace) // 적 추적중일경우
         {
 
@@ -74,11 +83,17 @@ public class PlayerMovement : MonoBehaviour
 
                     return;
                 }
-
+                
                 player.target = null;
-                SetDest(hit.point);
+
+                pv.RPC(nameof(SetDest),RpcTarget.All, hit.point);
+                //SetDest(hit.point);
+
+
                 agent.velocity = agent.desiredVelocity.normalized * agent.speed;
-                player.PlayerRun(); // 이동 시킴
+
+                pv.RPC(nameof(player.PlayerRun), RpcTarget.All,null);
+                //player.PlayerRun(); // 이동 시킴
             }
 
             else if (hit.transform.gameObject.layer == 10) // 만약몹이면
@@ -138,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-
+    [PunRPC]
     public void SetDest(Vector3 dest)
     {
         agent.SetDestination(dest);
